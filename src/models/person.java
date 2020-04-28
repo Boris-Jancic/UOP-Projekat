@@ -11,6 +11,21 @@ public abstract class person {
     protected String username;
     protected String password;
 
+    @Override
+    public String toString() {
+        return "person{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", jmbg='" + jmbg + '\'' +
+                ", gender='" + gender + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
     public person(String id, String name, String lastName, String jmbg, String gender, String address, String phone, String username, String password) {
         this.id = id;
         this.name = name;
