@@ -1,4 +1,4 @@
-package models;
+package userModels;
 
 public class worker extends employe {
     private String specialization;
