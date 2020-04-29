@@ -1,4 +1,4 @@
-package models;
+package userModels;
 
 public abstract class person {
     protected String id;

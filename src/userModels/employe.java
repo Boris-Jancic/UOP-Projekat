@@ -1,20 +1,18 @@
-package models;
+package userModels;
 
-public class client extends person {
-    private int points;
-    //private Car[] cars;
+public abstract class employe extends person {
+    private double sallary;
 
-    public client(String id, String name, String lastName, String jmbg, String gender,
-                  String address, String phone, String username, String password, int points) {
+    public employe(String id, String name, String lastName, String jmbg, String gender,
+                   String address, String phone, String username, String password, double sallary) {
         super(id, name, lastName, jmbg, gender, address, phone, username, password);
-        this.points = points;
+        this.sallary = sallary;
     }
-
 
     @Override
     public String toString() {
-        return "client{" +
-                "points=" + points +
+        return "employe{" +
+                "sallary=" + sallary +
                 ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -27,11 +25,11 @@ public class client extends person {
                 '}';
     }
 
-    public int getPoints() {
-        return points;
-    }
+    public double getSallary() { return sallary; }
+    public void setSallary(double sallary) { this.sallary = sallary; }
 
-    public void setPoints(int points) {
-        this.points = points;
+    private void makeReservation(){
+
     }
 }
+

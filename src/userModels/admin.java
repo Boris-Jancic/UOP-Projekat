@@ -1,4 +1,4 @@
-package models;
+package userModels;
 
 public class admin extends employe {
 
