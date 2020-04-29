@@ -4,7 +4,7 @@ import userModels.*;
 
 import java.io.*;
 
-public class loadUsers {
+public class LoadUsers {
 
     public static void main(String[] args) throws IOException {
         load();
@@ -30,18 +30,18 @@ public class loadUsers {
 
             if (role.equals("1")) {
                 int points = Integer.parseInt(userSplit[10]);
-                client c = new client(id, name, lastName, jmbg, gender, address, phone, username, password, points);
+                Client c = new Client(id, name, lastName, jmbg, gender, address, phone, username, password, points);
                 System.out.println(c.toString());
             }
             if (role.equals("2")) {
                 Double sallary = Double.parseDouble(userSplit[10]);
                 String specialization = userSplit[11];
-                worker w = new worker(id, name, lastName, jmbg, gender, address, phone, username, password, specialization, sallary);
+                Worker w = new Worker(id, name, lastName, jmbg, gender, address, phone, username, password, specialization, sallary);
                 System.out.println(w.toString());
             }
             if (role.equals("3")) {
                 Double sallary = Double.parseDouble(userSplit[10]);
-                admin a = new admin(id, name, lastName, jmbg, gender, address, phone, username, password, sallary);
+                Admin a = new Admin(id, name, lastName, jmbg, gender, address, phone, username, password, sallary);
                 System.out.println(a.toString());
             }
         }
