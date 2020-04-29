@@ -1,9 +1,8 @@
 package main;
 
-import models.*;
+import userModels.*;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class loadUsers {
 
