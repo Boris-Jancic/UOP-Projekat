@@ -44,8 +44,8 @@ public class login {
                 }
 
                 String[] lineSplit = line.split("\\|");
-                user = lineSplit[5];
-                pass = lineSplit[6];
+                user = lineSplit[7];
+                pass = lineSplit[8];
             }   while(!user.equals(username) || !pass.equals(password));
 
             return true;
