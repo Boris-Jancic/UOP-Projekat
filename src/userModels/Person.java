@@ -1,6 +1,6 @@
 package userModels;
 
-public abstract class person {
+public abstract class Person {
     protected String id;
     protected String name;
     protected String lastName;
@@ -11,7 +11,7 @@ public abstract class person {
     protected String username;
     protected String password;
 
-    public person(String id, String name, String lastName, String jmbg, String gender, String address, String phone, String username, String password) {
+    public Person(String id, String name, String lastName, String jmbg, String gender, String address, String phone, String username, String password) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;

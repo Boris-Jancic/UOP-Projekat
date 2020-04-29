@@ -1,13 +1,13 @@
 package carModels;
 
-public class part {
+public class Part {
     private mark mark;
     private model model;
     private String name;
     private double price;
     private String id;
 
-    public part(carModels.mark mark, carModels.model model, String name,
+    public Part(carModels.mark mark, carModels.model model, String name,
                 double price, String id) {
         this.mark = mark;
         this.model = model;

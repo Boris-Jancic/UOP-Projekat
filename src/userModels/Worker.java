@@ -1,10 +1,10 @@
 package userModels;
 
-public class worker extends employe {
+public class Worker extends Employe {
     private String specialization;
 
 
-    public worker(String id, String name, String lastName, String jmbg,
+    public Worker(String id, String name, String lastName, String jmbg,
                   String gender, String address, String phone, String username,
                   String password, String specialization, Double sallary) {
         super(id, name, lastName, jmbg, gender, address, phone, username, password, sallary);

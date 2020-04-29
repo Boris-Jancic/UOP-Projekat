@@ -1,10 +1,10 @@
 package carModels;
 
-public class carBook {
+public class CarBook {
     private car car;
     private service[] services;
 
-    public carBook(carModels.car car, service[] services) {
+    public CarBook(carModels.car car, service[] services) {
         this.car = car;
         this.services = services;
     }

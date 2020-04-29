@@ -1,6 +1,6 @@
 package carModels;
 
-import userModels.worker;
+import userModels.Worker;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -11,10 +11,10 @@ enum status{
 
 public class service {
     private car car;
-    private worker worker;
+    private Worker worker;
     private Date reservation;
     private String description;
-    private part[] usedParts;
+    private Part[] usedParts;
     private status status;
     private String id;
 
@@ -31,8 +31,8 @@ public class service {
                 '}';
     }
 
-    public service(carModels.car car, userModels.worker worker, Date reservation, String description,
-                   part[] usedParts, carModels.status status, String id) {
+    public service(carModels.car car, Worker worker, Date reservation, String description,
+                   Part[] usedParts, carModels.status status, String id) {
         this.car = car;
         this.worker = worker;
         this.reservation = reservation;
@@ -50,11 +50,11 @@ public class service {
         this.car = car;
     }
 
-    public userModels.worker getWorker() {
+    public Worker getWorker() {
         return worker;
     }
 
-    public void setWorker(userModels.worker worker) {
+    public void setWorker(Worker worker) {
         this.worker = worker;
     }
 
@@ -74,11 +74,11 @@ public class service {
         this.description = description;
     }
 
-    public part[] getUsedParts() {
+    public Part[] getUsedParts() {
         return usedParts;
     }
 
-    public void setUsedParts(part[] usedParts) {
+    public void setUsedParts(Part[] usedParts) {
         this.usedParts = usedParts;
     }
 

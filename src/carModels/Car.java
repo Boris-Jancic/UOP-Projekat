@@ -1,5 +1,5 @@
 package carModels;
-import userModels.client;
+import userModels.Client;
 
 enum mark{
     BMW,LAMBO,YUGO,OPEL
@@ -13,7 +13,7 @@ enum model{
 
 public class car {
 
-    private client client;
+    private Client client;
     private mark mark;
     private model model;
     private fuel fuel;
@@ -22,7 +22,7 @@ public class car {
     private int enginePower;
     private String id;
 
-    public car(userModels.client client, carModels.mark mark, carModels.model model, carModels.fuel fuel,
+    public car(Client client, carModels.mark mark, carModels.model model, carModels.fuel fuel,
                String age, float engineVolume, int enginePower, String id) {
         this.client = client;
         this.mark = mark;
@@ -48,11 +48,11 @@ public class car {
                 '}';
     }
 
-    public userModels.client getClient() {
+    public Client getClient() {
         return client;
     }
 
-    public void setClient(userModels.client client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 
