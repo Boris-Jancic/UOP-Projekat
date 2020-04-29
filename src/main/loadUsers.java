@@ -18,27 +18,31 @@ public class loadUsers {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] userSplit = line.split("\\|");
-            String name = userSplit[0];
-            String lastName = userSplit[1];
-            String jmbg = userSplit[2];
-            String gender = userSplit[3];
-            String addres = userSplit[4];
-            String phone = userSplit[5];
-            String username = userSplit[6];
-            String password = userSplit[7];
-            String id = userSplit[8];
-            String role = userSplit[9];
+            String role = userSplit[0];
+            String name = userSplit[1];
+            String lastName = userSplit[2];
+            String jmbg = userSplit[3];
+            String gender = userSplit[4];
+            String address = userSplit[5];
+            String phone = userSplit[6];
+            String username = userSplit[7];
+            String password = userSplit[8];
+            String id = userSplit[9];
 
             if (role.equals("1")) {
-                client c = new client(id, name, lastName, jmbg, gender, phone, username, password, id);
+                int points = Integer.parseInt(userSplit[10]);
+                client c = new client(id, name, lastName, jmbg, gender, address, phone, username, password, points);
                 System.out.println(c.toString());
             }
             if (role.equals("2")) {
-                worker w = new worker(id, name, lastName, jmbg, gender, phone, username, password, id);
+                Double sallary = Double.parseDouble(userSplit[10]);
+                String specialization = userSplit[11];
+                worker w = new worker(id, name, lastName, jmbg, gender, address, phone, username, password, specialization, sallary);
                 System.out.println(w.toString());
             }
             if (role.equals("3")) {
-                admin a = new admin(id, name, lastName, jmbg, gender, phone, username, password, id);
+                Double sallary = Double.parseDouble(userSplit[10]);
+                admin a = new admin(id, name, lastName, jmbg, gender, address, phone, username, password, sallary);
                 System.out.println(a.toString());
             }
         }
