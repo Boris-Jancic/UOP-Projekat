@@ -6,12 +6,8 @@ import java.io.*;
 
 public class LoadUsers {
 
-    public static void main(String[] args) throws IOException {
-        load();
-    }
-
-    public static void load() throws IOException {
-        File file = new File("src/login/korisnici.txt");
+    public void load() throws IOException {
+        File file = new File("src/data/korisnici.txt");
         BufferedReader reader = new BufferedReader(new FileReader(file));
 
         String line;
@@ -30,18 +26,18 @@ public class LoadUsers {
 
             if (role.equals("1")) {
                 int points = Integer.parseInt(userSplit[10]);
-                Client c = new Client(id, name, lastName, jmbg, gender, address, phone, username, password, points);
+                Client c = new Client(name, lastName, jmbg, gender, address, phone, username, password, points);
                 System.out.println(c.toString());
             }
             if (role.equals("2")) {
                 Double sallary = Double.parseDouble(userSplit[10]);
                 String specialization = userSplit[11];
-                Worker w = new Worker(id, name, lastName, jmbg, gender, address, phone, username, password, specialization, sallary);
+                Worker w = new Worker(name, lastName, jmbg, gender, address, phone, username, password, specialization, sallary);
                 System.out.println(w.toString());
             }
             if (role.equals("3")) {
                 Double sallary = Double.parseDouble(userSplit[10]);
-                Admin a = new Admin(id, name, lastName, jmbg, gender, address, phone, username, password, sallary);
+                Admin a = new Admin(name, lastName, jmbg, gender, address, phone, username, password, sallary);
                 System.out.println(a.toString());
             }
         }

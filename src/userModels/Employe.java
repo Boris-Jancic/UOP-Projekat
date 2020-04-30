@@ -3,26 +3,10 @@ package userModels;
 public abstract class Employe extends Person {
     private double sallary;
 
-    public Employe(String id, String name, String lastName, String jmbg, String gender,
+    public Employe(String name, String lastName, String jmbg, String gender,
                    String address, String phone, String username, String password, double sallary) {
-        super(id, name, lastName, jmbg, gender, address, phone, username, password);
+        super(name, lastName, jmbg, gender, address, phone, username, password);
         this.sallary = sallary;
-    }
-
-    @Override
-    public String toString() {
-        return "employe{" +
-                "sallary=" + sallary +
-                ", id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", jmbg='" + jmbg + '\'' +
-                ", gender='" + gender + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 
     public double getSallary() { return sallary; }
