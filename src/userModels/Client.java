@@ -4,9 +4,9 @@ public class Client extends Person {
     private int points;
     //private Car[] cars;
 
-    public Client(String id, String name, String lastName, String jmbg, String gender,
+    public Client(String name, String lastName, String jmbg, String gender,
                   String address, String phone, String username, String password, int points) {
-        super(id, name, lastName, jmbg, gender, address, phone, username, password);
+        super(name, lastName, jmbg, gender, address, phone, username, password);
         this.points = points;
     }
 
