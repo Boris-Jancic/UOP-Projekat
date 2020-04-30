@@ -5,12 +5,8 @@ import userModels.Worker;
 import java.util.Arrays;
 import java.util.Date;
 
-enum status{
-    DONE,FINISHED,NOTFINISHED
-}
-
-public class service {
-    private car car;
+class service {
+    private Car car;
     private Worker worker;
     private Date reservation;
     private String description;
@@ -31,7 +27,7 @@ public class service {
                 '}';
     }
 
-    public service(carModels.car car, Worker worker, Date reservation, String description,
+    public service(carModels.Car car, Worker worker, Date reservation, String description,
                    Part[] usedParts, carModels.status status, String id) {
         this.car = car;
         this.worker = worker;
@@ -42,11 +38,11 @@ public class service {
         this.id = id;
     }
 
-    public carModels.car getCar() {
+    public carModels.Car getCar() {
         return car;
     }
 
-    public void setCar(carModels.car car) {
+    public void setCar(carModels.Car car) {
         this.car = car;
     }
 
