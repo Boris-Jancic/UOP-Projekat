@@ -1,19 +1,19 @@
 package carModels;
 
 public class CarBook {
-    private car car;
+    private Car car;
     private service[] services;
 
-    public CarBook(carModels.car car, service[] services) {
+    public CarBook(carModels.Car car, service[] services) {
         this.car = car;
         this.services = services;
     }
 
-    public carModels.car getCar() {
+    public carModels.Car getCar() {
         return car;
     }
 
-    public void setCar(carModels.car car) {
+    public void setCar(carModels.Car car) {
         this.car = car;
     }
 
