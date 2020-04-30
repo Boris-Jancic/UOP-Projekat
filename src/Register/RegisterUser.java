@@ -1,10 +1,9 @@
-package login;
-
+package Register;
 import java.io.*;
 import java.util.*;
 
 
-class Register {
+public class RegisterUser {
 
     public enum gender {
         FEMALE,
@@ -18,11 +17,7 @@ class Register {
         LIMAR
     }
 
-    public static void main(String[] args) {
-        register();
-    }
-
-    private static void register(){
+    public void register(){
         Scanner scanner = new Scanner(System.in);
         int option = 0;
 
@@ -74,17 +69,17 @@ class Register {
         System.out.print("\n>>> Lozinka : ");
         String password = scanner.nextLine();
 
-        Register reg = new Register();
+        RegisterUser reg = new RegisterUser();
 
 
         if (option == 1) {
-            System.out.println("\n>>> Plata : ");
+            System.out.print("\n>>> Plata : ");
             Double sallary = scanner.nextDouble();
             registerA("3", name, lastName, jmbg, g.toString(), phone, address, userName, password, sallary );
         }
 
         if (option == 2) {
-            System.out.println("\n>>> Plata : ");
+            System.out.print("\n>>> Plata : ");
             Double sallary = scanner.nextDouble();
 
             option = 0;
@@ -137,7 +132,7 @@ class Register {
             newCredentials = position + "|" + name + "|" + lastName + "|" + jmbg + "|" + gender + "|" + address
                     + "|" + userName + "|" + password + "|" + id + "|" + Integer.parseInt(String.valueOf(points));
 
-            File file = new File("src/login/korisnici.txt");
+            File file = new File("src/data/korisnici.txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             String line;
@@ -170,7 +165,7 @@ class Register {
             newCredentials = position + "|" + name + "|" + lastName + "|" + jmbg + "|" + gender + "|" + addres + "|" + phone
                     + "|" + userName + "|" + password + "|" + id + "|" + Double.toString(sallary) + "|" + specialization;
 
-            File file = new File("src/login/korisnici.txt");
+            File file = new File("src/data/korisnici.txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             String line;
@@ -204,7 +199,7 @@ class Register {
             newCredentials = position + "|" + name + "|" + lastName + "|" + jmbg + "|" + gender + "|" + addres
                     + "|" + phone + "|" + userName + "|" + password + "|" + id + "|" + Double.toString(sallary);
 
-            File file = new File("src/login/korisnici.txt");
+            File file = new File("src/data/korisnici.txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             String line;
