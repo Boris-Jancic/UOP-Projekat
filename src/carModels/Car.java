@@ -1,29 +1,21 @@
 package carModels;
 import userModels.Client;
 
-enum mark{
-    BMW,LAMBO,YUGO,OPEL
-}
-enum fuel{
-    DIZEL,ELECTRIC,GAS
-}
-enum model{
-    ONE,TWO,THREE,FOUR
-}
 
-public class car {
+public class Car {
 
     private Client client;
-    private mark mark;
-    private model model;
-    private fuel fuel;
+    private String mark;
+    private String  model;
+    private String  fuel;
     private String age;
     private float engineVolume;
     private int enginePower;
     private String id;
+    private String carBook;
 
-    public car(Client client, carModels.mark mark, carModels.model model, carModels.fuel fuel,
-               String age, float engineVolume, int enginePower, String id) {
+    public Car(Client client, String mark, String model, String fuel,
+               String age, float engineVolume, int enginePower, String carBook) {
         this.client = client;
         this.mark = mark;
         this.model = model;
@@ -31,13 +23,13 @@ public class car {
         this.age = age;
         this.engineVolume = engineVolume;
         this.enginePower = enginePower;
-        this.id = id;
+        this.carBook = carBook;
     }
 
     @Override
     public String toString() {
         return "car{" +
-                "client=" + client +
+                "client=" + client.getId() +
                 ", mark=" + mark +
                 ", model=" + model +
                 ", fuel=" + fuel +
@@ -45,70 +37,46 @@ public class car {
                 ", engineVolume=" + engineVolume +
                 ", enginePower=" + enginePower +
                 ", id='" + id + '\'' +
+                ", carBook='" + carBook + '\'' +
                 '}';
     }
 
-    public Client getClient() {
-        return client;
-    }
+    public Client getClient() { return client; }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
+    public void setClient(Client client) { this.client = client; }
 
-    public carModels.mark getMark() {
-        return mark;
-    }
 
-    public void setMark(carModels.mark mark) {
-        this.mark = mark;
-    }
+    public String  getMark() { return mark; }
 
-    public carModels.model getModel() {
-        return model;
-    }
+    public void setMark(String mark) { this.mark = mark; }
 
-    public void setModel(carModels.model model) {
-        this.model = model;
-    }
 
-    public carModels.fuel getFuel() {
-        return fuel;
-    }
+    public String  getModel() { return model; }
 
-    public void setFuel(carModels.fuel fuel) {
-        this.fuel = fuel;
-    }
+    public void setModel(String  model) { this.model = model; }
 
-    public String getAge() {
-        return age;
-    }
 
-    public void setAge(String age) {
-        this.age = age;
-    }
+    public String  getFuel() { return fuel; }
 
-    public float getEngineVolume() {
-        return engineVolume;
-    }
+    public void setFuel(String  fuel) { this.fuel = fuel; }
 
-    public void setEngineVolume(float engineVolume) {
-        this.engineVolume = engineVolume;
-    }
 
-    public int getEnginePower() {
-        return enginePower;
-    }
+    public String getAge() { return age; }
 
-    public void setEnginePower(int enginePower) {
-        this.enginePower = enginePower;
-    }
+    public void setAge(String age) { this.age = age; }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public float getEngineVolume() { return engineVolume; }
+
+    public void setEngineVolume(float engineVolume) { this.engineVolume = engineVolume; }
+
+
+    public int getEnginePower() { return enginePower; }
+
+    public void setEnginePower(int enginePower) { this.enginePower = enginePower;}
+
+
+    public String getCarBook() { return carBook; }
+
+    public void setCarBook(String carBook) { this.carBook = carBook; }
 }
