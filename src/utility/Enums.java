@@ -1,8 +1,8 @@
-package carModels;
+package utility;
 
-enum status{
-    DONE,FINISHED,NOTFINISHED
-}
+//enum status{
+//    DONE,FINISHED,NOTFINISHED
+//}
 
 enum mark{
     BMW,LAMBO,YUGO,OPEL
