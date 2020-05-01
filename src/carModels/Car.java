@@ -1,22 +1,26 @@
 package carModels;
-import userModels.Client;
 
+import java.util.Random;
 
 public class Car {
 
-    private Client client;
+    private String clientID;
+    private String carID;
     private String mark;
     private String  model;
     private String  fuel;
     private String age;
     private float engineVolume;
     private int enginePower;
-    private String id;
     private String carBook;
 
-    public Car(Client client, String mark, String model, String fuel,
+    Random r = new Random();
+    int rand = r.nextInt(999999);
+
+    public Car(String clientID, String mark, String model, String fuel,
                String age, float engineVolume, int enginePower, String carBook) {
-        this.client = client;
+        this.clientID = clientID;
+        this.carID = Integer.toString(rand);
         this.mark = mark;
         this.model = model;
         this.fuel = fuel;
@@ -29,21 +33,26 @@ public class Car {
     @Override
     public String toString() {
         return "car{" +
-                "client=" + client.getId() +
+                "clientID=" + clientID +
+                ", carID=" + carID +
                 ", mark=" + mark +
                 ", model=" + model +
                 ", fuel=" + fuel +
                 ", age='" + age + '\'' +
                 ", engineVolume=" + engineVolume +
                 ", enginePower=" + enginePower +
-                ", id='" + id + '\'' +
                 ", carBook='" + carBook + '\'' +
                 '}';
     }
 
-    public Client getClient() { return client; }
+    public String getClient() { return clientID; }
 
-    public void setClient(Client client) { this.client = client; }
+    public void setClient(String client) { this.clientID = client; }
+
+
+    public String getCarID() { return carID; }
+
+    public void setCarID(String carID) { this.carID = carID; }
 
 
     public String  getMark() { return mark; }

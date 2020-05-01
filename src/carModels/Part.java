@@ -1,19 +1,24 @@
 package carModels;
 
+import java.util.Random;
+
 public class Part {
-    private mark mark;
-    private model model;
+    private String mark;
+    private String model;
     private String name;
     private double price;
     private String id;
 
-    public Part(carModels.mark mark, carModels.model model, String name,
-                double price, String id) {
+    Random r = new Random();
+    int rand = r.nextInt(999999);
+
+    public Part(String mark, String model, String name,
+                double price) {
         this.mark = mark;
         this.model = model;
         this.name = name;
         this.price = price;
-        this.id = id;
+        this.id = Integer.toString(rand);
     }
 
     @Override
@@ -27,19 +32,19 @@ public class Part {
                 '}';
     }
 
-    public carModels.mark getMark() {
+    public String getMark() {
         return mark;
     }
 
-    public void setMark(carModels.mark mark) {
+    public void setMark(String mark) {
         this.mark = mark;
     }
 
-    public carModels.model getModel() {
+    public String getModel() {
         return model;
     }
 
-    public void setModel(carModels.model model) {
+    public void setModel(String model) {
         this.model = model;
     }
 

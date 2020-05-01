@@ -1,4 +1,4 @@
-package Register;
+package register;
 import java.io.*;
 import java.util.*;
 
@@ -123,13 +123,11 @@ public class RegisterUser {
 
     private static void registerC( String position, String name, String lastName, String jmbg, String gender,
                                    String address, String phone, String userName, String password, int points) {
-
-        Random rand = new Random();
-        int id = rand.nextInt(999999);
-
-        String newCredentials;
         try {
-            newCredentials = position + "|" + name + "|" + lastName + "|" + jmbg + "|" + gender + "|" + address
+            Random rand = new Random();
+            int id = rand.nextInt(999999);
+
+            String newCredentials = position + "|" + name + "|" + lastName + "|" + jmbg + "|" + gender + "|" + address
                     + "|" + userName + "|" + password + "|" + id + "|" + Integer.parseInt(String.valueOf(points));
 
             File file = new File("src/data/korisnici.txt");
@@ -157,12 +155,11 @@ public class RegisterUser {
     private static void registerW( String position, String name, String lastName, String jmbg, String gender,String addres, String phone,
                                    String userName, String password, double sallary, String specialization) {
 
-        Random rand = new Random();
-        int id = rand.nextInt(999999);
 
-        String newCredentials;
         try {
-            newCredentials = position + "|" + name + "|" + lastName + "|" + jmbg + "|" + gender + "|" + addres + "|" + phone
+            Random rand = new Random();
+            int id = rand.nextInt(999999);
+            String newCredentials = position + "|" + name + "|" + lastName + "|" + jmbg + "|" + gender + "|" + addres + "|" + phone
                     + "|" + userName + "|" + password + "|" + id + "|" + Double.toString(sallary) + "|" + specialization;
 
             File file = new File("src/data/korisnici.txt");
@@ -191,12 +188,11 @@ public class RegisterUser {
     private static void registerA(String position, String name, String lastName, String jmbg, String gender, String addres,
                                   String phone, String userName, String password, Double sallary) {
 
-        Random rand = new Random();
-        int id = rand.nextInt(999999);
-
-        String newCredentials;
         try {
-            newCredentials = position + "|" + name + "|" + lastName + "|" + jmbg + "|" + gender + "|" + addres
+            Random rand = new Random();
+            int id = rand.nextInt(999999);
+
+            String newCredentials = position + "|" + name + "|" + lastName + "|" + jmbg + "|" + gender + "|" + addres
                     + "|" + phone + "|" + userName + "|" + password + "|" + id + "|" + Double.toString(sallary);
 
             File file = new File("src/data/korisnici.txt");
