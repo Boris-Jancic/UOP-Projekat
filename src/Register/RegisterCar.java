@@ -1,27 +1,59 @@
 package Register;
 
-import carModels.Car;
-import userModels.Client;
+import utility.Checks;
+import utility.PickEnums;
 
 import java.io.*;
+import java.util.Random;
+import java.util.Scanner;
 
 public class RegisterCar {
 
     public void register() {
-        Client c = new Client("Boris", "Jancic", "2508000750014",
-                "MALE", "Smederevo", "123 123 1234", "brs", "1234", 0);
+        try {
+            Checks c = new Checks();
+            PickEnums p = new PickEnums();
+            Scanner scanner = new Scanner(System.in);
+            File file = new File("src/data/korisnici.txt");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
 
-        Car a = new Car(c, "BMW", "ONE", "DIZEL", "2000", 2, 30, "keda");
+            String mark = p.pickMark();
+            String model = p.pickModel();
+            String fuel = p.pickFuel();
+
+            System.out.println(">>> ID Musterije : ");
+            String clientID = scanner.nextLine();
+
+            if(!c.ifUsersExists(clientID)) {
+                System.out.println("\n! Korisnik sa takvim ID-om ne postoji !\n");
+                return;
+            }
+
+            System.out.print(">>> Godiste (Samo godina proizvodnje): ");
+            String age = scanner.nextLine();
+
+            System.out.print(">>> Zapremina motora : ");
+            String engineVolume = scanner.nextLine();
+
+            System.out.print(">>> Jacina motora : ");
+            String enginePower = scanner.nextLine();
+
+            register(clientID, mark, model, fuel, age, Double.parseDouble(engineVolume),
+                    Integer.parseInt(enginePower), "333333");
 
 
-        System.out.println(a.toString());
-        register(c, "BMW", "ONE", "DIZEL", "2000", 2, 30, "knjizica");
+        } catch (IOException e) {
+            System.out.println("Nema datog fajla !");
+        }
     }
 
-    private void register(Client client, String mark, String model, String fuel, String age, double engineVolume,
+    private void register(String clientID, String mark, String model, String fuel, String age, double engineVolume,
                                 int enginePower, String carBook){
         try {
-            String output = client.getId() + "|" + mark + "|" + model + "|" + fuel + "|" + age + "|" + engineVolume
+
+            Random r = new Random();
+            int rand = r.nextInt(999999);
+            String output = clientID + "|" + Integer.toString(rand) + "|" + mark + "|" + model + "|" + fuel + "|" + age + "|" + engineVolume
                     + "|" + enginePower  + "|" + carBook;
 
             File file = new File("src/data/cars.txt");
@@ -33,7 +65,7 @@ public class RegisterCar {
                 oldcredentials += line + "\n";
             }
             reader.close();
-            System.out.println(oldcredentials);
+
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(oldcredentials + output);
             writer.close();
