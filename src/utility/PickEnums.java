@@ -14,16 +14,17 @@ public class PickEnums {
         System.out.print(">>> Marka : ");
         option2 = scanner.nextInt();
         scanner.nextLine();
+
         mark m = null;
 
         if (option2 == 1)
-            m = m.BMW;
+            m = mark.BMW;
         if (option2 == 2)
-            m = m.LAMBO;
+            m = mark.LAMBO;
         if (option2 == 3)
-            m = m.YUGO;
+            m = mark.YUGO;
         if (option2 == 4)
-            m = m.OPEL;
+            m = mark.OPEL;
 
         return m.toString();
     }
@@ -40,13 +41,13 @@ public class PickEnums {
         model m = null;
 
         if (option2 == 1)
-            m = m.ONE;
+            m = model.ONE;
         if (option2 == 2)
-            m = m.TWO;
+            m = model.TWO;
         if (option2 == 3)
-            m = m.THREE;
+            m = model.THREE;
         if (option2 == 4)
-            m = m.FOUR;
+            m = model.FOUR;
 
         return m.toString();
     }
@@ -62,11 +63,11 @@ public class PickEnums {
         fuel f = null;
 
         if (option2 == 1)
-            f = f.DIZEL;
+            f = fuel.DIZEL;
         if (option2 == 2)
-            f = f.ELECTRIC;
+            f = fuel.ELECTRIC;
         if (option2 == 3)
-            f = f.GAS;
+            f = fuel.GAS;
 
         return f.toString();
     }
