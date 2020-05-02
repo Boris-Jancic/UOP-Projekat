@@ -19,31 +19,30 @@ public class RegisterCar {
         System.out.print("\n>>> ID Musterije : ");
         String clientID = scanner.nextLine();
 
-        if(!c.ifUsersExists(clientID)) {
-            System.out.println("\n! Korisnik sa takvim ID-om ne postoji !\n");
+        if (c.ifUsersExists(clientID)) {
+            Random r = new Random();
+            int rand = r.nextInt(999999);
+
+            String mark = p.pickMark();
+            String model = p.pickModel();
+            String fuel = p.pickFuel();
+
+
+            System.out.print(">>> Godiste (Samo godina proizvodnje): ");
+            String age = scanner.nextLine();
+
+            System.out.print(">>> Zapremina motora : ");
+            String engineVolume = scanner.nextLine();
+
+            System.out.print(">>> Jacina motora : ");
+            String enginePower = scanner.nextLine();
+
+            String newCar = clientID + "|" + rand + "|" + mark + "|" + model + "|"
+                    + fuel + "|" + age + "|" + engineVolume + "|" + enginePower + "|" + "CARBOOK"; // TODO carbook implement
+
+            write.write(newCar, "src/data/cars.txt");
             return;
         }
-
-        Random r = new Random();
-        int rand = r.nextInt(999999);
-
-        String mark = p.pickMark();
-        String model = p.pickModel();
-        String fuel = p.pickFuel();
-
-
-        System.out.print(">>> Godiste (Samo godina proizvodnje): ");
-        String age = scanner.nextLine();
-
-        System.out.print(">>> Zapremina motora : ");
-        String engineVolume = scanner.nextLine();
-
-        System.out.print(">>> Jacina motora : ");
-        String enginePower = scanner.nextLine();
-
-        String newCar = clientID + "|" + rand + "|" +  mark + "|" + model + "|"
-                + fuel  + "|" + age + "|" + engineVolume + "|" + enginePower + "CARBOOK"; // TODO carbook implement
-
-        write.write(newCar, "src/data/cars.txt");
+        System.out.println("\n! Korisnik sa takvim ID-om ne postoji !");
     }
 }
