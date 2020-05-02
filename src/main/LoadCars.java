@@ -2,17 +2,14 @@ package main;
 
 import carModels.Car;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class LoadCars {
 
     public void load(){
-        try {
-            File carFile = new File("src/data/cars.txt");
-            BufferedReader carReader = new BufferedReader(new FileReader(carFile));
+
+        try(FileReader carFile = new FileReader ("src/data/cars.txt");
+            BufferedReader carReader = new BufferedReader(carFile);) {
 
             String carLine;
             while((carLine = carReader.readLine()) != null){
@@ -33,6 +30,7 @@ public class LoadCars {
 
                 System.out.println(car.toString());
             }
+
         } catch (IOException e) {
             System.out.println("Dati fajl nije pronadjen");
         }
