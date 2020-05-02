@@ -21,10 +21,12 @@ public class Login {
         System.out.println("\n>>> Lozinka : ");
         String password = scanner.nextLine();
 
-        if(login(username, password))
+        if(login(username, password)) {
             System.out.println("Ulogovani");
-        else
-            System.out.println("Pogresno korisnicko ime ili sifra");
+            return;
+        }
+
+        System.out.println("Pogresno korisnicko ime ili sifra");
     }
 
     public static boolean login(String username, String password) {
