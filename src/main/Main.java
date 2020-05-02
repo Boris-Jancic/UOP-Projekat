@@ -15,8 +15,8 @@ public class Main {
         RegisterPart rP = new RegisterPart();
         LoadParts lP = new LoadParts();
 
-        String option = "";
-        while (option != "0") {
+        while (true) {
+            String option = "";
             System.out.println("\n1) Registruj korisnika");
             System.out.println("2) Ucitaj korisnike");
             System.out.println("3) Registruj automobil");
@@ -28,27 +28,16 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             System.out.print(">>> Unesi funkciju : ");
             option = scanner.nextLine();
+            // TODO: switch
 
-            if (option.equals("1")) {
-                rU.register();
-            }
-            if (option.equals("2")) {
-                lU.load();
-            }
-            if (option.equals("3")) {
-                rC.register();
-            }
-            if (option.equals("4")) {
-                lC.load();
-            }
-            if (option.equals("5")) {
-                rP.register();
-            }
-            if (option.equals("6")) {
-                lP.load();
-            }
-            if (option.equals("0")) {
-                break;
+            switch (option) {
+                case "1": rU.register();break;
+                case "2": lU.load();break;
+                case "3": rC.register();break;
+                case "4": lC.load();break;
+                case "5": rP.register();break;
+                case "6": lP.load();break;
+                case "0": break;
             }
         }
     }
