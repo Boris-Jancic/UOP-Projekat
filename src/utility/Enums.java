@@ -1,7 +1,7 @@
 package utility;
 
 enum status{
-    DONE,FINISHED,NOTFINISHED
+    NOTSTARTED,FINISHED,NOTFINISHED
 }
 
 enum mark{
@@ -21,6 +21,5 @@ enum specialization{
 }
 
 enum gender {
-    FEMALE,
-    MALE
+    FEMALE, MALE
 }

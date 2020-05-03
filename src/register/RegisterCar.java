@@ -19,7 +19,7 @@ public class RegisterCar {
         System.out.print("\n>>> ID Musterije : ");
         String clientID = scanner.nextLine();
 
-        if (c.ifUsersExists(clientID)) {
+        if (c.ifUsersExists(clientID, "1")) {
             Random r = new Random();
             int rand = r.nextInt(999999);
 

@@ -122,4 +122,26 @@ public class PickEnums {
 
         return g;
     }
+
+    public String pickStatus(){
+        System.out.println("\n1) Gotov");
+        System.out.println("2) U toku");
+        System.out.println("3) Nije poceo");
+        System.out.print(">>> Status : ");
+        String option = scanner.nextLine();
+
+        String s = "";
+
+        if (option.equals("1")) {
+            s = status.FINISHED.toString();
+        }
+        if (option.equals("2")) {
+            s = status.NOTFINISHED.toString();
+        }
+        if (option.equals("3")) {
+            s = status.NOTSTARTED.toString();
+        }
+
+        return s;
+    }
 }

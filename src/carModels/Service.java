@@ -1,35 +1,30 @@
 package carModels;
 
-import userModels.Worker;
-
-import java.util.Arrays;
-import java.util.Date;
-
-class service {
-    private Car car;
-    private Worker worker;
-    private Date reservation;
+public class Service {
+    private String carID;
+    private String worker;
+    private String reservation;
     private String description;
-    private Part[] usedParts;
-    private status status;
+    private String usedParts;
+    private String status;
     private String id;
 
     @Override
     public String toString() {
         return "service{" +
-                "car=" + car +
+                "car=" + carID +
                 ", worker=" + worker +
                 ", reservation=" + reservation +
                 ", description='" + description + '\'' +
-                ", usedParts=" + Arrays.toString(usedParts) +
+                ", usedParts=" + usedParts +
                 ", status=" + status +
                 ", id='" + id + '\'' +
                 '}';
     }
 
-    public service(carModels.Car car, Worker worker, Date reservation, String description,
-                   Part[] usedParts, carModels.status status, String id) {
-        this.car = car;
+    public Service(String carID, String worker, String reservation, String description,
+                   String usedParts, String status, String id) {
+        this.carID = carID;
         this.worker = worker;
         this.reservation = reservation;
         this.description = description;
@@ -38,27 +33,27 @@ class service {
         this.id = id;
     }
 
-    public carModels.Car getCar() {
-        return car;
+    public String getCar() {
+        return carID;
     }
 
-    public void setCar(carModels.Car car) {
-        this.car = car;
+    public void setCar(String carID) {
+        this.carID = carID;
     }
 
-    public Worker getWorker() {
+    public String getWorker() {
         return worker;
     }
 
-    public void setWorker(Worker worker) {
+    public void setWorker(String worker) {
         this.worker = worker;
     }
 
-    public Date getReservation() {
+    public String getReservation() {
         return reservation;
     }
 
-    public void setReservation(Date reservation) {
+    public void setReservation(String reservation) {
         this.reservation = reservation;
     }
 
@@ -70,19 +65,19 @@ class service {
         this.description = description;
     }
 
-    public Part[] getUsedParts() {
+    public String getUsedParts() {
         return usedParts;
     }
 
-    public void setUsedParts(Part[] usedParts) {
+    public void setUsedParts(String usedParts) {
         this.usedParts = usedParts;
     }
 
-    public carModels.status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(carModels.status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

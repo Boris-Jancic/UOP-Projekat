@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Checks {
 
-    public Boolean ifUsersExists(String id) {
+    public Boolean ifUsersExists(String id, String roleP) {
         try {
             File file = new File("src/data/korisnici.txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -17,7 +17,7 @@ public class Checks {
                 String[] userSplit = line.split("\\|");
                 String role = userSplit[0];
                 String userID = userSplit[9];
-                if (role.equals("1") && userID.equals(id)) {
+                if (role.equals(roleP) && userID.equals(id)) {
                         return true;
                 }
             }
@@ -37,11 +37,9 @@ public class Checks {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] userSplit = line.split("\\|");
-                String role = userSplit[0];
-                if (role.equals("1")) {
-                    String userID = userSplit[8];
-                    if (id.equals(userID))
-                        return true;
+                String carID = userSplit[1];
+                if (carID.equals(id)) {
+                    return true;
                 }
             }
         } catch (IOException e) {

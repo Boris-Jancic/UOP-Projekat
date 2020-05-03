@@ -2,9 +2,9 @@ package carModels;
 
 public class CarBook {
     private Car car;
-    private service[] services;
+    private Service[] services;
 
-    public CarBook(carModels.Car car, service[] services) {
+    public CarBook(carModels.Car car, Service[] services) {
         this.car = car;
         this.services = services;
     }
@@ -17,11 +17,11 @@ public class CarBook {
         this.car = car;
     }
 
-    public service[] getServices() {
+    public Service[] getServices() {
         return services;
     }
 
-    public void setServices(service[] services) {
+    public void setServices(Service[] services) {
         this.services = services;
     }
 }

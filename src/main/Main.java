@@ -1,6 +1,7 @@
 package main;
 import register.RegisterCar;
 import register.RegisterPart;
+import register.RegisterService;
 import register.RegisterUser;
 
 import java.io.IOException;
@@ -14,6 +15,8 @@ public class Main {
         LoadCars lC = new LoadCars();
         RegisterPart rP = new RegisterPart();
         LoadParts lP = new LoadParts();
+        RegisterService rS = new RegisterService();
+        LoadServices lS = new LoadServices();
 
         while (true) {
             String option = "";
@@ -23,10 +26,12 @@ public class Main {
             System.out.println("4) Ucitaj automobile");
             System.out.println("5) Registruj deo");
             System.out.println("6) Ucitaj delove");
+            System.out.println("7) Registruj servis");
+            System.out.println("8) Ucitaj servise");
             System.out.println("0) Ugasi aplikaciju");
 
             Scanner scanner = new Scanner(System.in);
-            System.out.print(">>> Unesi funkciju : ");
+            System.out.print("\n>>> Unesi funkciju : ");
             option = scanner.nextLine();
             // TODO: switch
 
@@ -37,6 +42,8 @@ public class Main {
                 case "4": lC.load();break;
                 case "5": rP.register();break;
                 case "6": lP.load();break;
+                case "7": rS.register();break;
+                case "8": lS.load();break;
                 case "0": break;
             }
         }
