@@ -1,16 +1,11 @@
 package carModels;
 
-import userModels.Worker;
-
-import java.util.Arrays;
-import java.util.Date;
-
-class service {
+public class Service {
     private String carID;
-    private Worker worker;
-    private Date reservation;
+    private String worker;
+    private String reservation;
     private String description;
-    private Part[] usedParts;
+    private String usedParts;
     private String status;
     private String id;
 
@@ -21,14 +16,14 @@ class service {
                 ", worker=" + worker +
                 ", reservation=" + reservation +
                 ", description='" + description + '\'' +
-                ", usedParts=" + Arrays.toString(usedParts) +
+                ", usedParts=" + usedParts +
                 ", status=" + status +
                 ", id='" + id + '\'' +
                 '}';
     }
 
-    public service(String carID, Worker worker, Date reservation, String description,
-                   Part[] usedParts, String status, String id) {
+    public Service(String carID, String worker, String reservation, String description,
+                   String usedParts, String status, String id) {
         this.carID = carID;
         this.worker = worker;
         this.reservation = reservation;
@@ -46,19 +41,19 @@ class service {
         this.carID = carID;
     }
 
-    public Worker getWorker() {
+    public String getWorker() {
         return worker;
     }
 
-    public void setWorker(Worker worker) {
+    public void setWorker(String worker) {
         this.worker = worker;
     }
 
-    public Date getReservation() {
+    public String getReservation() {
         return reservation;
     }
 
-    public void setReservation(Date reservation) {
+    public void setReservation(String reservation) {
         this.reservation = reservation;
     }
 
@@ -70,11 +65,11 @@ class service {
         this.description = description;
     }
 
-    public Part[] getUsedParts() {
+    public String getUsedParts() {
         return usedParts;
     }
 
-    public void setUsedParts(Part[] usedParts) {
+    public void setUsedParts(String usedParts) {
         this.usedParts = usedParts;
     }
 
