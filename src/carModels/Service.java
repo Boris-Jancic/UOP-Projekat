@@ -6,18 +6,18 @@ import java.util.Arrays;
 import java.util.Date;
 
 class service {
-    private Car car;
+    private String carID;
     private Worker worker;
     private Date reservation;
     private String description;
     private Part[] usedParts;
-    private status status;
+    private String status;
     private String id;
 
     @Override
     public String toString() {
         return "service{" +
-                "car=" + car +
+                "car=" + carID +
                 ", worker=" + worker +
                 ", reservation=" + reservation +
                 ", description='" + description + '\'' +
@@ -27,9 +27,9 @@ class service {
                 '}';
     }
 
-    public service(carModels.Car car, Worker worker, Date reservation, String description,
-                   Part[] usedParts, carModels.status status, String id) {
-        this.car = car;
+    public service(String carID, Worker worker, Date reservation, String description,
+                   Part[] usedParts, String status, String id) {
+        this.carID = carID;
         this.worker = worker;
         this.reservation = reservation;
         this.description = description;
@@ -38,12 +38,12 @@ class service {
         this.id = id;
     }
 
-    public carModels.Car getCar() {
-        return car;
+    public String getCar() {
+        return carID;
     }
 
-    public void setCar(carModels.Car car) {
-        this.car = car;
+    public void setCar(String carID) {
+        this.carID = carID;
     }
 
     public Worker getWorker() {
@@ -78,11 +78,11 @@ class service {
         this.usedParts = usedParts;
     }
 
-    public carModels.status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(carModels.status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
