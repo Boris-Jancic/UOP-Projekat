@@ -11,7 +11,6 @@ public class LoadServices {
         services = readFromFile.read("src/data/services.txt").split("\n");
 
         for (String service : services){
-            System.out.println(service);
             String[] serviceSplit = service.split("\\|");
             String carID = serviceSplit[0];
             String date = serviceSplit[1];
