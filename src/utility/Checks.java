@@ -1,52 +1,102 @@
 package utility;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import carModels.Car;
+import userModels.Client;
 
 public class Checks {
 
     public Boolean ifUsersExists(String id, String roleP) {
-        try {
-            File file = new File("src/data/korisnici.txt");
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+        ReadFromFile readFromFile = new ReadFromFile();
+        String[] users = readFromFile.read("src/data/korisnici.txt").split("\n");
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] userSplit = line.split("\\|");
-                String role = userSplit[0];
-                String userID = userSplit[9];
-                if (role.equals(roleP) && userID.equals(id)) {
-                        return true;
-                }
+        for (String user : users) {
+            String[] userSplit = user.split("\\|");
+            String role = userSplit[0];
+            String userID = userSplit[9];
+
+            if (role.equals(roleP) && userID.equals(id)) {
+                    return true;
             }
-            reader.close();
-            return false;
-        } catch (IOException e) {
-            System.out.println("Nema datog fajla");
         }
+
         return false;
     }
 
     public Boolean ifCarExists(String id) {
-        try{
-            File file = new File("src/data/cars.txt");
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+        ReadFromFile readFromFile = new ReadFromFile();
+        String[] cars = readFromFile.read("src/data/cars.txt").split("\n");
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] userSplit = line.split("\\|");
-                String carID = userSplit[1];
-                if (carID.equals(id)) {
-                    return true;
-                }
+        for (String car : cars){
+            String[] userSplit = car.split("\\|");
+            String carID = userSplit[1];
+
+            if (carID.equals(id)) {
+                return true;
             }
-        } catch (IOException e) {
-            System.out.println("Nema datog fajla");
         }
         return false;
     }
+
+    public Client findClient(String id) {
+        ReadFromFile readFromFile = new ReadFromFile();
+        String[] users = readFromFile.read("src/data/korisnici.txt").split("\n");
+
+        for (String user : users){
+            String[] userSplit = user.split("\\|");
+            String role = userSplit[0];
+            String userID = userSplit[9];
+
+            if (role.equals("1") && userID.equals(id)) {
+                String name = userSplit[1];
+                String lastName = userSplit[2];
+                String jmbg = userSplit[3];
+                String gender = userSplit[4];
+                String address = userSplit[5];
+                String phone = userSplit[6];
+                String username = userSplit[7];
+                String password = userSplit[8];
+                String points = userSplit[10];
+
+                Client c = new Client(name, lastName, jmbg, gender, address, phone,
+                        username, password, Integer.parseInt(points), userID);
+
+                String[] cars = userSplit[11].split(",");
+
+                for(String carId : cars){
+                    c.addCar(findCar(carId));
+                }
+
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public Car findCar(String id) throws StackOverflowError {
+        ReadFromFile readFromFile = new ReadFromFile();
+        String[] cars = readFromFile.read("src/data/cars.txt").split("\n");
+
+        for (String car : cars){
+            String[] carSplit = car.split("\\|");
+            String carId = carSplit[1];
+
+            if(carId.equals(id)){
+                String clientId = carSplit[0];
+                Client c = findClient(clientId);
+
+                String mark = carSplit[2];
+                String model = carSplit[3];
+                String fuel = carSplit[4];
+                String age = carSplit[5];
+                String engineVolume = carSplit[6];
+                String enginePower = carSplit[7];
+
+                Car Car = new Car(c, mark, model, fuel, age,
+                        Float.parseFloat(engineVolume), Integer.parseInt(enginePower));
+
+                return Car;
+            }
+        }
+        return null;
+    }
 }
-
-
