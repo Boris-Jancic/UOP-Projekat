@@ -27,7 +27,7 @@ public abstract class Person {
         this.password = password;
     }
 
-    public String getId() { return id; }
+    public String getId(String id) { return this.id; }
     public void setId(String id) { this.id = id; }
 
 
