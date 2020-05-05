@@ -1,5 +1,6 @@
 package register;
 
+import userModels.Client;
 import utility.Checks;
 import utility.PickEnums;
 import utility.WriteToFile;
@@ -22,6 +23,8 @@ public class RegisterCar {
         if (c.ifUsersExists(clientID, "1")) {
             Random r = new Random();
             int rand = r.nextInt(999999);
+            Client client = c.findClient(clientID);
+            System.out.println(client.toString());
 
             String mark = p.pickMark();
             String model = p.pickModel();
@@ -41,6 +44,7 @@ public class RegisterCar {
                     + fuel + "|" + age + "|" + engineVolume + "|" + enginePower + "|" + "CARBOOK"; // TODO carbook implement
 
             write.write(newCar, "src/data/cars.txt");
+            write.writeCarToUser(clientID, Integer.toString(rand));
             return;
         }
         System.out.println("\n! Korisnik sa takvim ID-om ne postoji !");
