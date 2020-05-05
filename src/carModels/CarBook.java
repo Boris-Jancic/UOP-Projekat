@@ -1,27 +1,21 @@
 package carModels;
 
+import java.util.ArrayList;
+
 public class CarBook {
     private Car car;
-    private Service[] services;
+    private ArrayList<Service> services;
 
-    public CarBook(carModels.Car car, Service[] services) {
-        this.car = car;
-        this.services = services;
-    }
-
-    public carModels.Car getCar() {
-        return car;
-    }
-
-    public void setCar(carModels.Car car) {
+    public CarBook(carModels.Car car) {
         this.car = car;
     }
 
-    public Service[] getServices() {
-        return services;
-    }
+    public carModels.Car getCar() { return car; }
 
-    public void setServices(Service[] services) {
-        this.services = services;
-    }
+    public void setCar(carModels.Car car) { this.car = car; }
+
+    public void addService(Service service) { this.services.add(service); }
+    public void removeServices(Service service) { this.services.remove(service); }
+
+
 }
