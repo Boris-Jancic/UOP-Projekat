@@ -1,18 +1,20 @@
 package main;
 
 import userModels.*;
+import utility.Checks;
+import utility.ReadFromFile;
 
 import java.io.*;
 
 public class LoadUsers {
 
     public void load() throws IOException {
-        File file = new File("src/data/korisnici.txt");
-        BufferedReader reader = new BufferedReader(new FileReader(file));
+        ReadFromFile readFromFile = new ReadFromFile();
+        Checks c = new Checks();
+        String[] users = readFromFile.read("src/data/korisnici.txt").split("\n");
 
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] userSplit = line.split("\\|");
+        for (String user : users){
+            String[] userSplit = user.split("\\|");
             String role = userSplit[0];
             String name = userSplit[1];
             String lastName = userSplit[2];
@@ -26,20 +28,24 @@ public class LoadUsers {
 
             if (role.equals("1")) {
                 int points = Integer.parseInt(userSplit[10]);
-                Client c = new Client(name, lastName, jmbg, gender, address, phone, username, password, points);
-                System.out.println(c.toString());
+                Client client = c.findClient(id);
+                client.setId(id);
+                System.out.println(client.toString());
             }
             if (role.equals("2")) {
                 Double sallary = Double.parseDouble(userSplit[10]);
                 String specialization = userSplit[11];
                 Worker w = new Worker(name, lastName, jmbg, gender, address, phone, username, password, specialization, sallary);
+                w.setId(id);
                 System.out.println(w.toString());
             }
             if (role.equals("3")) {
                 Double sallary = Double.parseDouble(userSplit[10]);
                 Admin a = new Admin(name, lastName, jmbg, gender, address, phone, username, password, sallary);
+                a.setId(id);
                 System.out.println(a.toString());
             }
+            // TODO: zastita ako nema role
         }
     }
 }
