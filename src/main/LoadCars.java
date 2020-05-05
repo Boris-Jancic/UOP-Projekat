@@ -1,38 +1,39 @@
 package main;
 
 import carModels.Car;
-
-import java.io.*;
+import carModels.CarBook;
+import userModels.Client;
+import utility.Checks;
+import utility.ReadFromFile;
 
 public class LoadCars {
 
     public void load(){
+        Checks c = new Checks();
+        ReadFromFile readFromFile = new ReadFromFile();
+        String[] cars = readFromFile.read("src/data/cars.txt").split("\n");
 
-        try(FileReader carFile = new FileReader ("src/data/cars.txt");
-            BufferedReader carReader = new BufferedReader(carFile);) {
+        for(String car : cars){
+            String[] carSplit = car.split("\\|");
+            String clientId = carSplit[0];
+            Client client = c.findClient(clientId);
 
-            String carLine;
-            while((carLine = carReader.readLine()) != null){
-                String[] carSplit = carLine.split("\\|");
-                String clientId = carSplit[0];
-                String carId = carSplit[1];
-                String mark = carSplit[2];
-                String model = carSplit[3];
-                String fuel = carSplit[4];
-                String age = carSplit[5];
-                String engineVolume = carSplit[6];
-                String enginePower = carSplit[7];
-                String carBookId = carSplit[8];
+            String carId = carSplit[1];
+            String mark = carSplit[2];
+            String model = carSplit[3];
+            String fuel = carSplit[4];
+            String age = carSplit[5];
+            String engineVolume = carSplit[6];
+            String enginePower = carSplit[7];
 
-                Car car = new Car(clientId, mark, model, fuel, age,
-                        Float.parseFloat(engineVolume),Integer.parseInt(enginePower),carBookId);
-                car.setCarID(carId);
+            Car Car = new Car(client, carId, mark, model, fuel, age,
+                    Float.parseFloat(engineVolume),Integer.parseInt(enginePower));
 
-                System.out.println(car.toString());
-            }
+            CarBook carBook = new CarBook(Car);
 
-        } catch (IOException e) {
-            System.out.println("Dati fajl nije pronadjen");
+            Car.setCarBook(carBook);
+
+            System.out.println(Car.toString());
         }
     }
 }
