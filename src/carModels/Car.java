@@ -46,7 +46,7 @@ public class Car {
     @Override
     public String toString() {
         return "car{" +
-                "clientID=" + client.getUsername() +
+                "clientID=" + client.getId() +
                 ", carID=" + carID +
                 ", mark=" + mark +
                 ", model=" + model +
