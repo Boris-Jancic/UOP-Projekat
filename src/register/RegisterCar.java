@@ -44,8 +44,6 @@ public class RegisterCar {
                     + fuel + "|" + age + "|" + engineVolume + "|" + enginePower + "|" + "CARBOOK"; // TODO carbook implement
 
             write.write(newCar, "src/data/cars.txt");
-            write.writeCarToUser(clientID, Integer.toString(rand));
-            return;
         }
         System.out.println("\n! Korisnik sa takvim ID-om ne postoji !");
     }
