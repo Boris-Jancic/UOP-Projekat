@@ -1,10 +1,12 @@
 package carModels;
 
+import userModels.Client;
+
 import java.util.Random;
 
 public class Car {
 
-    private String clientID;
+    private Client client;
     private String carID;
     private String mark;
     private String  model;
@@ -12,14 +14,26 @@ public class Car {
     private String age;
     private float engineVolume;
     private int enginePower;
-    private String carBook;
+    private CarBook carBook;
 
     Random r = new Random();
     int rand = r.nextInt(999999);
 
-    public Car(String clientID, String mark, String model, String fuel,
-               String age, float engineVolume, int enginePower, String carBook) {
-        this.clientID = clientID;
+    public Car(Client client, String carID, String mark, String model, String fuel,
+               String age, float engineVolume, int enginePower) {
+        this.client = client;
+        this.carID = carID;
+        this.mark = mark;
+        this.model = model;
+        this.fuel = fuel;
+        this.age = age;
+        this.engineVolume = engineVolume;
+        this.enginePower = enginePower;
+    }
+
+    public Car(Client client, String mark, String model, String fuel,
+                    String age, float engineVolume, int enginePower) {
+        this.client = client;
         this.carID = Integer.toString(rand);
         this.mark = mark;
         this.model = model;
@@ -27,13 +41,12 @@ public class Car {
         this.age = age;
         this.engineVolume = engineVolume;
         this.enginePower = enginePower;
-        this.carBook = carBook;
     }
 
     @Override
     public String toString() {
         return "car{" +
-                "clientID=" + clientID +
+                "clientID=" + client.getId() +
                 ", carID=" + carID +
                 ", mark=" + mark +
                 ", model=" + model +
@@ -41,13 +54,13 @@ public class Car {
                 ", age='" + age + '\'' +
                 ", engineVolume=" + engineVolume +
                 ", enginePower=" + enginePower +
-                ", carBook='" + carBook + '\'' +
+                ", carBook='" + carBook.getCar().getCarID() + '\'' +
                 '}';
     }
 
-    public String getClient() { return clientID; }
+    public Client getClient() { return client; }
 
-    public void setClient(String client) { this.clientID = client; }
+    public void setClient(Client client) { this.client = client; }
 
 
     public String getCarID() { return carID; }
@@ -85,7 +98,7 @@ public class Car {
     public void setEnginePower(int enginePower) { this.enginePower = enginePower;}
 
 
-    public String getCarBook() { return carBook; }
+    public CarBook getCarBook() { return carBook; }
 
-    public void setCarBook(String carBook) { this.carBook = carBook; }
+    public void setCarBook(CarBook carBook) { this.carBook = carBook; }
 }

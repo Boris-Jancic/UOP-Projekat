@@ -1,18 +1,23 @@
 package main;
 
+import carModels.Car;
 import userModels.*;
+import utility.Checks;
+import utility.ReadFromFile;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class LoadUsers {
 
-    public void load() throws IOException {
-        File file = new File("src/data/korisnici.txt");
-        BufferedReader reader = new BufferedReader(new FileReader(file));
+    public ArrayList<Person> load(ArrayList<Car> Cars) throws IOException {
+        ReadFromFile readFromFile = new ReadFromFile();
+        Checks c = new Checks();
+        String[] users = readFromFile.read("src/data/korisnici.txt").split("\n");
+        ArrayList<Person> people = new ArrayList<Person>();
 
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] userSplit = line.split("\\|");
+        for (String user : users){
+            String[] userSplit = user.split("\\|");
             String role = userSplit[0];
             String name = userSplit[1];
             String lastName = userSplit[2];
@@ -25,21 +30,25 @@ public class LoadUsers {
             String id = userSplit[9];
 
             if (role.equals("1")) {
-                int points = Integer.parseInt(userSplit[10]);
-                Client c = new Client(name, lastName, jmbg, gender, address, phone, username, password, points);
-                System.out.println(c.toString());
+                Client client = c.findClient(id);
+                client.setId(id);
+                client.setCars(c.findCars(Cars, id));
+                people.add(client);
             }
             if (role.equals("2")) {
                 Double sallary = Double.parseDouble(userSplit[10]);
                 String specialization = userSplit[11];
                 Worker w = new Worker(name, lastName, jmbg, gender, address, phone, username, password, specialization, sallary);
-                System.out.println(w.toString());
+                w.setId(id);
+                people.add(w);
             }
             if (role.equals("3")) {
                 Double sallary = Double.parseDouble(userSplit[10]);
                 Admin a = new Admin(name, lastName, jmbg, gender, address, phone, username, password, sallary);
-                System.out.println(a.toString());
+                a.setId(id);
+                people.add(a);
             }
         }
+        return people;
     }
 }
