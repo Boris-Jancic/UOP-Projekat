@@ -26,7 +26,7 @@ public class Client extends Person {
     public String toString() {
         return "client{" +
                 "points=" + points +
-                ", cars='" + cars.toString() + '\'' +
+                ", cars='" + printCars() +
                 ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -37,6 +37,14 @@ public class Client extends Person {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    private String printCars(){
+        String carId = "";
+        for (Car car : this.cars){
+            carId += "|" + car.getCarID() + "|";
+        }
+        return carId;
     }
 
     public int getPoints() {
@@ -56,7 +64,12 @@ public class Client extends Person {
     }
 
     public void addCar(Car car) { this.cars.add(car); }
+
     public void removeCar(Car car) {this.cars.remove(car); }
 
+
+    public ArrayList<Car> getCars() { return cars; }
+
+    public void setCars(ArrayList<Car> cars) { this.cars = cars; }
 
 }
