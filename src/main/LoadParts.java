@@ -1,31 +1,29 @@
 package main;
 
 import carModels.Part;
+import utility.ReadFromFile;
 
-import java.io.*;
+import java.util.ArrayList;
 
 public class LoadParts {
-    public void load(){
-        try {
-            File file = new File("src/data/parts.txt");
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+    public ArrayList<Part> load(){
+        ReadFromFile readFromFile = new ReadFromFile();
+        String[] parts = readFromFile.read("src/data/parts.txt").split("\n");
+        ArrayList<Part> partsReturn = new ArrayList<>();
 
-            String line;
-            while((line = reader.readLine()) != null){
-                String [] partSplit = line.split("\\|");
-                String mark = partSplit[0];
-                String model = partSplit[1];
-                String name = partSplit[2];
-                Double price = Double.parseDouble(partSplit[3]);
-                String id = partSplit[4];
+        for (String part : parts){
+            String[] partSplit = part.split("\\|");
+            String mark = partSplit[0];
+            String model = partSplit[1];
+            String name = partSplit[2];
+            Double price = Double.parseDouble(partSplit[3]);
+            String id = partSplit[4];
 
-                Part p = new Part(mark, model, name, price);
-                p.setId(id);
-                System.out.println(p.toString());
-            }
-
-        } catch (IOException e){
-            System.out.println("Nema datog fajla !");
+            Part p = new Part(mark, model, name, price);
+            p.setId(id);
+            partsReturn.add(p);
         }
+
+        return partsReturn;
     }
 }
