@@ -19,30 +19,4 @@ public class WriteToFile {
             System.out.println("Nema datog fajla !");
         }
     }
-
-    public void writeCarToUser(String id, String car){
-        ReadFromFile readFromFile = new ReadFromFile();
-        String[] korisnici = readFromFile.read("src/data/korisnici.txt").split("\n");
-        try{
-            BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/korisnici.txt"));
-            String output = new String();
-
-            for(String user : korisnici) {
-                String[] userSplit = user.split("\\|");
-                String role = userSplit[0];
-                String userId = userSplit[9];
-
-                if (role.equals("1") && userId.equals(id)){
-                    String cars = userSplit[11];
-                    user = user.replace(cars, cars + "," + car);
-                    System.out.println(user);
-                }
-                output += user + "\n";
-            }
-            writer.write(output);
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Nema datog fajla !");
-        }
-    }
 }
