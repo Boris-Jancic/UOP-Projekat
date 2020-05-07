@@ -11,13 +11,12 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class LoadServices {
-    public ArrayList<Service> load(ArrayList<Car> Cars, ArrayList<Part> Parts){
+    public ArrayList<Service> load(ArrayList<Car> Cars){
         ReadFromFile readFromFile = new ReadFromFile();
         Checks c = new Checks();
-        LoadParts lp = new LoadParts();
         String[] servicesString;
 
-        servicesString = readFromFile.read("src/data/services.txt").split("\n");
+        servicesString = ReadFromFile.read("src/data/services.txt").split("\n");
         ArrayList<Service> Services = new ArrayList<>();
 
         for (String service : servicesString){

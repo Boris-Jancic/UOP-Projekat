@@ -19,7 +19,7 @@ public class RegisterPart {
         String name = scanner.nextLine();
 
         System.out.print(">>> Cena : ");
-        Double price = scanner.nextDouble();
+        double price = scanner.nextDouble();
 
 
         Random rand = new Random();

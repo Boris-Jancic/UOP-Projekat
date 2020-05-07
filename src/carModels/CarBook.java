@@ -31,14 +31,5 @@ public class CarBook {
 
     public void setServices(ArrayList<Service> services) { this.services = services; }
 
-    public ArrayList<Service> getServices() { return services; }
-
-    public carModels.Car getCar() { return car; }
-
-    public void setCar(carModels.Car car) { this.car = car; }
-
-    public void addService(Service service) { this.services.add(service); }
-    public void removeServices(Service service) { this.services.remove(service); }
-
 
 }

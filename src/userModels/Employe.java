@@ -9,11 +9,5 @@ public abstract class Employe extends Person {
         this.sallary = sallary;
     }
 
-    public double getSallary() { return sallary; }
-    public void setSallary(double sallary) { this.sallary = sallary; }
-
-    private void makeReservation(){
-
-    }
 }
 

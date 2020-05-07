@@ -39,48 +39,19 @@ public class Service {
     }
 
     private String printParts(){
-        String output = "";
+        StringBuilder output = new StringBuilder();
 
         for (Part part : usedParts){
-            output += "|" + part.getId() + "|";
+            output.append("|").append(part.getId()).append("|");
 
         }
-        return output;
+        return output.toString();
     }
 
 
     public Car getCar() { return car; }
 
-    public void setCar(Car car) { this.car = car; }
-
-
-    public Worker getWorker() { return worker; }
-
-    public void setWorker(Worker worker) { this.worker = worker; }
-
-
-    public GregorianCalendar getReservation() { return reservation; }
-
-    public void setReservation(GregorianCalendar reservation) { this.reservation = reservation; }
-
-
-    public String getDescription() { return description; }
-
-    public void setDescription(String description) { this.description = description; }
-
-
-
-    public ArrayList<Part> getUsedParts() { return usedParts; }
-
-    public void setUsedParts(ArrayList<Part> usedParts) { this.usedParts = usedParts; }
-
-
-    public String getStatus() { return status; }
-
-    public void setStatus(String status) { this.status = status; }
-
 
     public String getId() { return id; }
 
-    public void setId(String id) { this.id = id; }
 }

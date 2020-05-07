@@ -23,7 +23,4 @@ public class Admin extends Employe {
                 '}';
     }
 
-    private void addMembers(){
-
-    }
 }

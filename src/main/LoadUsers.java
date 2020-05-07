@@ -1,19 +1,21 @@
 package main;
 
 import carModels.Car;
-import userModels.*;
+import userModels.Admin;
+import userModels.Client;
+import userModels.Person;
+import userModels.Worker;
 import utility.Checks;
 import utility.ReadFromFile;
 
-import java.io.*;
 import java.util.ArrayList;
 
 public class LoadUsers {
 
-    public ArrayList<Person> load(ArrayList<Car> Cars) throws IOException {
+    public ArrayList<Person> load(ArrayList<Car> Cars) {
         ReadFromFile readFromFile = new ReadFromFile();
         Checks c = new Checks();
-        String[] users = readFromFile.read("src/data/korisnici.txt").split("\n");
+        String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
         ArrayList<Person> people = new ArrayList<Person>();
 
         for (String user : users){
@@ -43,7 +45,7 @@ public class LoadUsers {
                 people.add(w);
             }
             if (role.equals("3")) {
-                Double sallary = Double.parseDouble(userSplit[10]);
+                double sallary = Double.parseDouble(userSplit[10]);
                 Admin a = new Admin(name, lastName, jmbg, gender, address, phone, username, password, sallary);
                 a.setId(id);
                 people.add(a);
