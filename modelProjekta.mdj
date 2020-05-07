@@ -5000,12 +5000,12 @@
 										"$ref": "AAAAAAFxwMTC0WrHSbQ="
 									},
 									"font": "Arial;13;0",
-									"left": 1053,
-									"top": 680,
+									"left": 1055,
+									"top": 687,
 									"width": 66.84716796875,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 15,
+									"alpha": 1.667270571986858,
+									"distance": 22,
 									"hostEdge": {
 										"$ref": "AAAAAAFxwMTC0WrLa54="
 									},
@@ -5106,12 +5106,12 @@
 										"$ref": "AAAAAAFxwMTC0WrIr3U="
 									},
 									"font": "Arial;13;0",
-									"left": 1122,
-									"top": 647,
+									"left": 1128,
+									"top": 672,
 									"width": 11,
 									"height": 13,
-									"alpha": -0.49388248597991513,
-									"distance": 25.059928172283335,
+									"alpha": 0.5692257192412224,
+									"distance": 24.08318915758459,
 									"hostEdge": {
 										"$ref": "AAAAAAFxwMTC0WrLa54="
 									},
@@ -5168,11 +5168,11 @@
 										"$ref": "AAAAAAFxwMTC0WrJqiM="
 									},
 									"font": "Arial;13;0",
-									"left": 1039,
-									"top": 649,
+									"left": 1032,
+									"top": 679,
 									"width": 19.5126953125,
 									"height": 13,
-									"alpha": 0.5235987755982988,
+									"alpha": -0.8308211382830173,
 									"distance": 25,
 									"hostEdge": {
 										"$ref": "AAAAAAFxwMTC0WrLa54="
@@ -7563,17 +7563,18 @@
 									"model": {
 										"$ref": "AAAAAAFx4WcMUKjJf+k="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1089,
+									"left": 1066,
 									"top": 611,
+									"width": 47.328125,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
 									"hostEdge": {
 										"$ref": "AAAAAAFx4WcMUajNrw8="
 									},
-									"edgePosition": 1
+									"edgePosition": 1,
+									"text": "+vlasnik"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7944,6 +7945,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFxwJo2uTF4kTI="
 							},
+							"name": "vlasnik",
 							"end1": {
 								"_type": "UMLAssociationEnd",
 								"_id": "AAAAAAFx4WcMUKjKU/M=",
