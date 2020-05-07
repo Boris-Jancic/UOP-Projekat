@@ -13,7 +13,7 @@ public class LoadCars {
     public ArrayList<Car> load(){
         Checks c = new Checks();
         ReadFromFile readFromFile = new ReadFromFile();
-        String[] cars = readFromFile.read("src/data/cars.txt").split("\n");
+        String[] cars = ReadFromFile.read("src/data/cars.txt").split("\n");
         ArrayList<Car> Cars = new ArrayList<Car>();
 
         for(String car : cars){

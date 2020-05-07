@@ -3,7 +3,7 @@ package utility;
 import java.util.Scanner;
 
 public class PickEnums {
-    Scanner scanner = new Scanner(System.in);
+    final Scanner scanner = new Scanner(System.in);
 
     public String pickMark() {
         System.out.println("\n1) Bmw");
@@ -53,7 +53,7 @@ public class PickEnums {
         if (option.equals("4")) {
             m = model.FOUR.toString();
         }
-        System.out.println(m);
+
         return m;
     }
 

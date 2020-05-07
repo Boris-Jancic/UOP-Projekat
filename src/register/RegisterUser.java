@@ -45,13 +45,10 @@ public class RegisterUser {
         System.out.print("\n>>> Lozinka : ");
         String password = scanner.nextLine();
 
-        RegisterUser reg = new RegisterUser();
-
-
         Random rand = new Random();
         int id = rand.nextInt(999999);
         String newCredentials = "|" + name + "|" + lastName + "|" + jmbg + "|" + gender + "|" + address
-                + "|" + userName + "|" + password + "|" + id + "|";
+                + "|" + phone + "|" + userName + "|" + password + "|" + id + "|";
 
         if (option.equals("1")) {
             System.out.print("\n>>> Plata : ");
@@ -62,7 +59,7 @@ public class RegisterUser {
         }
         if (option.equals("2")) {
             System.out.print("\n>>> Plata : ");
-            Double sallary = scanner.nextDouble();
+            double sallary = scanner.nextDouble();
             String specialization = pickEnums.pickSpecialization();
 
             newCredentials = option + newCredentials + sallary + "|" + specialization;

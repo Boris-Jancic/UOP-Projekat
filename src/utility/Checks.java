@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 
 public class Checks {
@@ -40,7 +41,7 @@ public class Checks {
 
     public Boolean ifCarExists(String id) {
         ReadFromFile readFromFile = new ReadFromFile();
-        String[] cars = readFromFile.read("src/data/cars.txt").split("\n");
+        String[] cars = ReadFromFile.read("src/data/cars.txt").split("\n");
 
         for (String car : cars) {
             String[] userSplit = car.split("\\|");
@@ -53,6 +54,7 @@ public class Checks {
         return false;
     }
 
+    @SuppressWarnings("AccessStaticViaInstance")
     public Worker findWorker(String id) {
         ReadFromFile readFromFile = new ReadFromFile();
         String[] users = readFromFile.read("src/data/korisnici.txt").split("\n");
@@ -84,7 +86,7 @@ public class Checks {
 
     public Client findClient(String id) {
         ReadFromFile readFromFile = new ReadFromFile();
-        String[] users = readFromFile.read("src/data/korisnici.txt").split("\n");
+        String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
 
         for (String user : users) {
             String[] userSplit = user.split("\\|");
@@ -111,7 +113,7 @@ public class Checks {
 
     public Boolean ifUsersExists(String id, String roleP) {
         ReadFromFile readFromFile = new ReadFromFile();
-        String[] users = readFromFile.read("src/data/korisnici.txt").split("\n");
+        String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
 
         for (String user : users) {
             String[] userSplit = user.split("\\|");
@@ -154,22 +156,17 @@ public class Checks {
         return date;
     }
 
-    public String dateToString(GregorianCalendar dateP) {
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        return format.format(dateP.getTime());
-    }
-
 
     public Boolean writeCarBook(String carIDP, String newServiceID) {
         ReadFromFile readFromFile = new ReadFromFile();
 
-        String[] carBooks = readFromFile.read("src/data/carbooks.txt").split("\n");
+        String[] carBooks = ReadFromFile.read("src/data/carbooks.txt").split("\n");
         String output = "";
-        Boolean b = false;
+        boolean b = false;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/carbooks.txt"))) {
             for (String carBook : carBooks) {
                 String[] carBookSplit = carBook.split("\\|");
-                System.out.println(carBookSplit);
+                System.out.println(Arrays.toString(carBookSplit));
                 String carID = carBookSplit[0];
                 String serviceIDs = carBookSplit[1];
 

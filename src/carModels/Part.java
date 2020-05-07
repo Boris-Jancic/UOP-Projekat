@@ -9,8 +9,8 @@ public class Part {
     private double price;
     private String id;
 
-    Random r = new Random();
-    int rand = r.nextInt(999999);
+    final Random r = new Random();
+    final int rand = r.nextInt(999999);
 
     public Part(String mark, String model, String name,
                 double price) {
@@ -30,38 +30,6 @@ public class Part {
                 ", price=" + price +
                 ", id='" + id + '\'' +
                 '}';
-    }
-
-    public String getMark() {
-        return mark;
-    }
-
-    public void setMark(String mark) {
-        this.mark = mark;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getId() {

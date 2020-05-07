@@ -9,12 +9,6 @@ public class Client extends Person {
     private ArrayList<Car> cars;
 
     public Client(String name, String lastName, String jmbg, String gender,
-                  String address, String phone, String username, String password, int points) {
-        super(name, lastName, jmbg, gender, address, phone, username, password);
-        this.points = points;
-    }
-
-    public Client(String name, String lastName, String jmbg, String gender,
                   String address, String phone, String username, String password,
                   int points, String id) {
         super(name, lastName, jmbg, gender, address, phone, username, password);
@@ -40,35 +34,13 @@ public class Client extends Person {
     }
 
     private String printCars(){
-        String carId = "";
-        for (Car car : this.cars){
-            carId += "|" + car.getCarID() + "|";
-        }
-        return carId;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    public Car linkCars(String username){
+        String output = "";
         for (Car car : cars){
-            if(this.username.equals(car.getClient().getUsername()));
-                return car;
+            output += "|" + car.getCarID() + "|";
         }
-        return null;
+        return output;
     }
 
-    public void addCar(Car car) { this.cars.add(car); }
-
-    public void removeCar(Car car) {this.cars.remove(car); }
-
-
-    public ArrayList<Car> getCars() { return cars; }
 
     public void setCars(ArrayList<Car> cars) { this.cars = cars; }
 

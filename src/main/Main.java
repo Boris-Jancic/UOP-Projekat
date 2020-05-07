@@ -29,11 +29,11 @@ public class Main {
         ArrayList<Car> Cars = lC.load();
         ArrayList<Person> People = lU.load(Cars);
         ArrayList<Part> Parts = lP.load();
-        ArrayList<Service> Services = lS.load(Cars, Parts);
+        ArrayList<Service> Services = lS.load(Cars);
         ArrayList<CarBook> CarBooks = lB.load(Services);
 
         while (true) {
-            String option = "";
+            String option;
             System.out.println("\n1) Registruj korisnika");
             System.out.println("2) Prikazi korisnike");
             System.out.println("3) Registruj automobil");

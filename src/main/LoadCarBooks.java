@@ -11,14 +11,13 @@ public class LoadCarBooks {
         ReadFromFile readFromFile = new ReadFromFile();
         ArrayList<CarBook> returnCarBooks = new ArrayList<>();
 
-        String[] carBooks = readFromFile.read("src/data/carbooks.txt").split("\n");
+        String[] carBooks = ReadFromFile.read("src/data/carbooks.txt").split("\n");
 
         for (String carBook : carBooks){
             ArrayList<Service> carBookServices = new ArrayList<>();
 
             String[] carBookSplit = carBook.split("\\|");
             String carBookCar = carBookSplit[0];
-            String[] serviceIDs = carBookSplit[1].split(",");
 
             CarBook c = null;
 
@@ -28,6 +27,7 @@ public class LoadCarBooks {
                     carBookServices.add(service);
                 }
             }
+            assert c != null;
             c.setServices(carBookServices);
 
             returnCarBooks.add(c);
