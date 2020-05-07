@@ -10,16 +10,16 @@ public class ReadFromFile {
     public static String read(String fileP){
         File file = new File(fileP);
         try(BufferedReader reader = new BufferedReader(new FileReader(file)) ){
-            StringBuilder oldCredenitals = new StringBuilder();
+            String oldCredenitals = "";
 
             String line;
 
             while((line = reader.readLine()) != null){
-                oldCredenitals.append(line).append("\n");
+                oldCredenitals += line + "\n";
             }
 
             reader.close();
-            return oldCredenitals.toString();
+            return oldCredenitals;
         } catch (IOException e) {
             System.out.println("Nema datog fajla !");
         }

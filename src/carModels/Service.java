@@ -39,13 +39,13 @@ public class Service {
     }
 
     private String printParts(){
-        StringBuilder output = new StringBuilder();
+        String output = "";
 
         for (Part part : usedParts){
-            output.append("|").append(part.getId()).append("|");
+            output += "|" + part.getId() + "|";
 
         }
-        return output.toString();
+        return output;
     }
 
 

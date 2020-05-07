@@ -34,11 +34,11 @@ public class Client extends Person {
     }
 
     private String printCars(){
-        StringBuilder carId = new StringBuilder();
-        for (Car car : this.cars){
-            carId.append("|").append(car.getCarID()).append("|");
+        String output = "";
+        for (Car car : cars){
+            output += "|" + car.getCarID() + "|";
         }
-        return carId.toString();
+        return output;
     }
 
 

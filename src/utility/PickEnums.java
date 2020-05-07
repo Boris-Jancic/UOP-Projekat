@@ -53,7 +53,7 @@ public class PickEnums {
         if (option.equals("4")) {
             m = model.FOUR.toString();
         }
-        System.out.println(m);
+
         return m;
     }
 

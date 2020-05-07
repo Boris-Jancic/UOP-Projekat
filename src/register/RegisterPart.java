@@ -24,7 +24,7 @@ public class RegisterPart {
 
         Random rand = new Random();
         int id = rand.nextInt(999999);
-        String newPart = mark + "|" + model + "|" + name + "|" + price + id;
+        String newPart = mark + "|" + model + "|" + name + "|" + price + "|" + rand;
         writeToFile.write(newPart, "src/data/parts.txt");
     }
 }
