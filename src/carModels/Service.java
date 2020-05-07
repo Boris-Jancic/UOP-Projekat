@@ -1,91 +1,86 @@
 package carModels;
 
+import userModels.Worker;
+
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+
 public class Service {
-    private String carID;
-    private String worker;
-    private String reservation;
+    private Car car;
+    private Worker worker;
+    private GregorianCalendar reservation;
     private String description;
-    private String usedParts;
+    private ArrayList<Part> usedParts;
     private String status;
     private String id;
+
+    public Service(Car car, Worker worker, GregorianCalendar reservation, String description,
+                   ArrayList<Part> usedParts, String status, String id) {
+        this.car = car;
+        this.worker = worker;
+        this.reservation = reservation;
+        this.description = description;
+        this.usedParts = usedParts;
+        this.status = status;
+        this.id = id;
+    }
 
     @Override
     public String toString() {
         return "service{" +
-                "car=" + carID +
-                ", worker=" + worker +
-                ", reservation=" + reservation +
+                "car=" + car.getCarID() +
+                ", worker=" + worker.getId() +
+                ", reservation=" + reservation.getTime() +
                 ", description='" + description + '\'' +
-                ", usedParts=" + usedParts +
+                ", usedParts=" + printParts() +
                 ", status=" + status +
                 ", id='" + id + '\'' +
                 '}';
     }
 
-    public Service(String carID, String worker, String reservation, String description,
-                   String usedParts, String status, String id) {
-        this.carID = carID;
-        this.worker = worker;
-        this.reservation = reservation;
-        this.description = description;
-        this.usedParts = usedParts;
-        this.status = status;
-        this.id = id;
+    private String printParts(){
+        String output = "";
+
+        for (Part part : usedParts){
+            output += "|" + part.getId() + "|";
+
+        }
+        return output;
     }
 
-    public String getCar() {
-        return carID;
-    }
 
-    public void setCar(String carID) {
-        this.carID = carID;
-    }
+    public Car getCar() { return car; }
 
-    public String getWorker() {
-        return worker;
-    }
+    public void setCar(Car car) { this.car = car; }
 
-    public void setWorker(String worker) {
-        this.worker = worker;
-    }
 
-    public String getReservation() {
-        return reservation;
-    }
+    public Worker getWorker() { return worker; }
 
-    public void setReservation(String reservation) {
-        this.reservation = reservation;
-    }
+    public void setWorker(Worker worker) { this.worker = worker; }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public GregorianCalendar getReservation() { return reservation; }
 
-    public String getUsedParts() {
-        return usedParts;
-    }
+    public void setReservation(GregorianCalendar reservation) { this.reservation = reservation; }
 
-    public void setUsedParts(String usedParts) {
-        this.usedParts = usedParts;
-    }
 
-    public String getStatus() {
-        return status;
-    }
+    public String getDescription() { return description; }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public void setDescription(String description) { this.description = description; }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+
+    public ArrayList<Part> getUsedParts() { return usedParts; }
+
+    public void setUsedParts(ArrayList<Part> usedParts) { this.usedParts = usedParts; }
+
+
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) { this.status = status; }
+
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 }

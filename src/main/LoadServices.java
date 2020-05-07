@@ -1,26 +1,40 @@
 package main;
 
-import utility.ReadFromFile;
+import carModels.Car;
+import carModels.Part;
 import carModels.Service;
+import userModels.Worker;
+import utility.Checks;
+import utility.ReadFromFile;
+
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class LoadServices {
-    public void load(){
+    public ArrayList<Service> load(ArrayList<Car> Cars, ArrayList<Part> Parts){
         ReadFromFile readFromFile = new ReadFromFile();
-        String[] services;
+        Checks c = new Checks();
+        LoadParts lp = new LoadParts();
+        String[] servicesString;
 
-        services = readFromFile.read("src/data/services.txt").split("\n");
+        servicesString = readFromFile.read("src/data/services.txt").split("\n");
+        ArrayList<Service> Services = new ArrayList<>();
 
-        for (String service : services){
+        for (String service : servicesString){
             String[] serviceSplit = service.split("\\|");
-            String carID = serviceSplit[0];
-            String date = serviceSplit[1];
-            String description = serviceSplit[2];
-            String usedParts = serviceSplit[3];
-            String state = serviceSplit[4];
-            String serviceID = serviceSplit[5];
 
-            Service ser = new Service(carID, "123123",date, description, usedParts, state, serviceID);
-            System.out.print(ser.toString());
+            Car car = c.findCar(Cars, serviceSplit[0]);
+            Worker worker = c.findWorker(serviceSplit[1]);
+            GregorianCalendar date = c.stringToDate(serviceSplit[2]);
+            String description = serviceSplit[3];
+            ArrayList<Part> usedParts = c.findParts(serviceSplit[4].split(","));
+            String serviceID = serviceSplit[6];
+            String state = serviceSplit[5];
+
+            Service ser = new Service(car, worker, date, description, usedParts, state, serviceID);
+            Services.add(ser);
         }
+
+        return Services;
     }
 }

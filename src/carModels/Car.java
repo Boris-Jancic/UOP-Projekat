@@ -54,7 +54,6 @@ public class Car {
                 ", age='" + age + '\'' +
                 ", engineVolume=" + engineVolume +
                 ", enginePower=" + enginePower +
-                ", carBook='" + carBook.getCar().getCarID() + '\'' +
                 '}';
     }
 

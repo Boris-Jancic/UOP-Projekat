@@ -1,7 +1,9 @@
 package main;
 
 import carModels.Car;
+import carModels.CarBook;
 import carModels.Part;
+import carModels.Service;
 import register.RegisterCar;
 import register.RegisterPart;
 import register.RegisterService;
@@ -22,6 +24,13 @@ public class Main {
         LoadParts lP = new LoadParts();
         RegisterService rS = new RegisterService();
         LoadServices lS = new LoadServices();
+        LoadCarBooks lB = new LoadCarBooks();
+
+        ArrayList<Car> Cars = lC.load();
+        ArrayList<Person> People = lU.load(Cars);
+        ArrayList<Part> Parts = lP.load();
+        ArrayList<Service> Services = lS.load(Cars, Parts);
+        ArrayList<CarBook> CarBooks = lB.load(Services);
 
         while (true) {
             String option = "";
@@ -33,15 +42,13 @@ public class Main {
             System.out.println("6) Prikazi delove");
             System.out.println("7) Registruj servis");
             System.out.println("8) Prikazi servise");
+            System.out.println("9) Prikazi knjizice");
             System.out.println("0) Ugasi aplikaciju");
 
             Scanner scanner = new Scanner(System.in);
             System.out.print("\n>>> Unesi funkciju : ");
             option = scanner.nextLine();
 
-            ArrayList<Car> Cars = lC.load();
-            ArrayList<Person> People = lU.load(Cars);
-            ArrayList<Part> Parts = lP.load();
 
             switch (option) {
                 case "1": rU.register();break;
@@ -51,8 +58,9 @@ public class Main {
                 case "5": rP.register();break;
                 case "6": for(Part part : Parts) { System.out.println(part); } break;
                 case "7": rS.register();break;
-                case "8": lS.load();break;
-                case "0": break;
+                case "8": for(Service service : Services) { System.out.println(service); }break;
+                case "9": for(CarBook carBook : CarBooks) { System.out.println(carBook); }break;
+                case "0": return;
             }
         }
     }
