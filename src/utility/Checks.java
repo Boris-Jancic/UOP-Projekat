@@ -54,7 +54,6 @@ public class Checks {
         return false;
     }
 
-    @SuppressWarnings("AccessStaticViaInstance")
     public Worker findWorker(String id) {
         ReadFromFile readFromFile = new ReadFromFile();
         String[] users = readFromFile.read("src/data/korisnici.txt").split("\n");

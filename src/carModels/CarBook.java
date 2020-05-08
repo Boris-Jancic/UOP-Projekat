@@ -18,10 +18,10 @@ public class CarBook {
                 '}';
     }
 
-    private String printParts(){
+    private String printParts() {
         String output = "";
 
-        for (Service service : services){
+        for (Service service : services) {
             output += "|" + service.getId() + "|";
 
         }
@@ -29,7 +29,9 @@ public class CarBook {
     }
 
 
-    public void setServices(ArrayList<Service> services) { this.services = services; }
+    public void setServices(ArrayList<Service> services) {
+        this.services = services;
+    }
 
 
 }

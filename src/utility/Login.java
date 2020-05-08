@@ -9,10 +9,10 @@ import java.util.Scanner;
 public class Login {
 
     public static void main(String[] args) {
-            login();
+        login();
     }
 
-    public static void login(){
+    public static void login() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n>>> Korisnicko ime : ");
@@ -21,7 +21,7 @@ public class Login {
         System.out.println("\n>>> Lozinka : ");
         String password = scanner.nextLine();
 
-        if(login(username, password)) {
+        if (login(username, password)) {
             System.out.println("Ulogovani");
             return;
         }
@@ -48,10 +48,10 @@ public class Login {
                 String[] lineSplit = line.split("\\|");
                 user = lineSplit[7];
                 pass = lineSplit[8];
-            }   while(!user.equals(username) || !pass.equals(password));
+            } while (!user.equals(username) || !pass.equals(password));
 
             return true;
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Nema datog fajla");
             return false;
         }

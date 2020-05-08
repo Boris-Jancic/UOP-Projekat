@@ -73,7 +73,7 @@ public class PickEnums {
             f = fuel.ELECTRIC.toString();
         }
         if (option.equals("3")) {
-            f =fuel.GAS.toString();
+            f = fuel.GAS.toString();
         }
 
         return f;
@@ -105,7 +105,7 @@ public class PickEnums {
         return s;
     }
 
-    public String pickGender(){
+    public String pickGender() {
         System.out.println("\n1) Muski");
         System.out.println("2) Zenski");
         System.out.print(">>> Pol : ");
@@ -123,7 +123,7 @@ public class PickEnums {
         return g;
     }
 
-    public String pickStatus(){
+    public String pickStatus() {
         System.out.println("\n1) Gotov");
         System.out.println("2) U toku");
         System.out.println("3) Nije poceo");

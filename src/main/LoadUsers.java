@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class LoadUsers {
 
     public ArrayList<Person> load(ArrayList<Car> Cars) {
-        ReadFromFile readFromFile = new ReadFromFile();
         Checks c = new Checks();
         String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
         ArrayList<Person> people = new ArrayList<Person>();

@@ -38,10 +38,10 @@ public class Service {
                 '}';
     }
 
-    private String printParts(){
+    private String printParts() {
         String output = "";
 
-        for (Part part : usedParts){
+        for (Part part : usedParts) {
             output += "|" + part.getId() + "|";
 
         }
@@ -49,9 +49,13 @@ public class Service {
     }
 
 
-    public Car getCar() { return car; }
+    public Car getCar() {
+        return car;
+    }
 
 
-    public String getId() { return id; }
+    public String getId() {
+        return id;
+    }
 
 }

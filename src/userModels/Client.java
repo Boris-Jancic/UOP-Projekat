@@ -33,9 +33,9 @@ public class Client extends Person {
                 '}';
     }
 
-    private String printCars(){
+    private String printCars() {
         String output = "";
-        for (Car car : cars){
+        for (Car car : cars) {
             output += "|" + car.getCarID() + "|";
         }
         return output;
