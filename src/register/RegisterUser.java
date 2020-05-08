@@ -1,4 +1,5 @@
 package register;
+
 import utility.PickEnums;
 import utility.WriteToFile;
 
@@ -7,13 +8,13 @@ import java.util.Scanner;
 
 
 public class RegisterUser {
-    public void register(){
+    public void register() {
         Scanner scanner = new Scanner(System.in);
         PickEnums pickEnums = new PickEnums();
         WriteToFile writeToFile = new WriteToFile();
         String option = "";
 
-        while(!option.equals("1") && !option.equals("2") && !option.equals("3")) {
+        while (!option.equals("1") && !option.equals("2") && !option.equals("3")) {
             System.out.println("\nKog korisnika zelite da dodate?");
             System.out.println("1) Administrator");
             System.out.println("2) Serviser");

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class RegisterPart {
 
-    public void register(){
+    public void register() {
         Scanner scanner = new Scanner(System.in);
         PickEnums p = new PickEnums();
         WriteToFile writeToFile = new WriteToFile();

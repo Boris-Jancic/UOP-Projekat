@@ -9,8 +9,8 @@ public class Car {
     private Client client;
     private String carID;
     private String mark;
-    private String  model;
-    private String  fuel;
+    private String model;
+    private String fuel;
     private String age;
     private float engineVolume;
     private int enginePower;
@@ -45,11 +45,17 @@ public class Car {
                 '}';
     }
 
-    public Client getClient() { return client; }
+    public Client getClient() {
+        return client;
+    }
 
 
-    public String getCarID() { return carID; }
+    public String getCarID() {
+        return carID;
+    }
 
 
-    public void setCarBook(CarBook carBook) { this.carBook = carBook; }
+    public void setCarBook(CarBook carBook) {
+        this.carBook = carBook;
+    }
 }

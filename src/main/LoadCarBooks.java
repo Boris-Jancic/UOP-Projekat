@@ -13,7 +13,7 @@ public class LoadCarBooks {
 
         String[] carBooks = ReadFromFile.read("src/data/carbooks.txt").split("\n");
 
-        for (String carBook : carBooks){
+        for (String carBook : carBooks) {
             ArrayList<Service> carBookServices = new ArrayList<>();
 
             String[] carBookSplit = carBook.split("\\|");
@@ -21,8 +21,8 @@ public class LoadCarBooks {
 
             CarBook c = null;
 
-            for (Service service : services){
-                if (service.getCar().getCarID().equals(carBookCar)){
+            for (Service service : services) {
+                if (service.getCar().getCarID().equals(carBookCar)) {
                     c = new CarBook(service.getCar());
                     carBookServices.add(service);
                 }

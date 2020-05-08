@@ -10,13 +10,13 @@ import java.util.ArrayList;
 
 public class LoadCars {
 
-    public ArrayList<Car> load(){
+    public ArrayList<Car> load() {
         Checks c = new Checks();
         ReadFromFile readFromFile = new ReadFromFile();
         String[] cars = ReadFromFile.read("src/data/cars.txt").split("\n");
         ArrayList<Car> Cars = new ArrayList<Car>();
 
-        for(String car : cars){
+        for (String car : cars) {
             String[] carSplit = car.split("\\|");
             String clientId = carSplit[0];
             Client client = c.findClient(clientId);
@@ -30,7 +30,7 @@ public class LoadCars {
             String enginePower = carSplit[7];
 
             Car Car = new Car(client, carId, mark, model, fuel, age,
-                    Float.parseFloat(engineVolume),Integer.parseInt(enginePower));
+                    Float.parseFloat(engineVolume), Integer.parseInt(enginePower));
 
 
             CarBook carBook = new CarBook(Car);

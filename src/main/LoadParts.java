@@ -6,12 +6,12 @@ import utility.ReadFromFile;
 import java.util.ArrayList;
 
 public class LoadParts {
-    public ArrayList<Part> load(){
+    public ArrayList<Part> load() {
         ReadFromFile readFromFile = new ReadFromFile();
         String[] parts = ReadFromFile.read("src/data/parts.txt").split("\n");
         ArrayList<Part> partsReturn = new ArrayList<>();
 
-        for (String part : parts){
+        for (String part : parts) {
             String[] partSplit = part.split("\\|");
             String mark = partSplit[0];
             String model = partSplit[1];
