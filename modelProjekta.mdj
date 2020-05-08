@@ -237,7 +237,7 @@
 											"top": 688,
 											"width": 200.12890625,
 											"height": 13,
-											"text": "-gorivo Gorivo",
+											"text": "-gorivo: Gorivo",
 											"horizontalAlignment": 0
 										},
 										{
@@ -267,6 +267,7 @@
 											"model": {
 												"$ref": "AAAAAAFxy39aDQGiJt4="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 821,
 											"top": 703,
@@ -286,7 +287,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 821,
-											"top": 718,
+											"top": 703,
 											"width": 200.12890625,
 											"height": 13,
 											"text": "-id: String {id}",
@@ -297,7 +298,7 @@
 									"left": 816,
 									"top": 593,
 									"width": 210.12890625,
-									"height": 143
+									"height": 128
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -310,7 +311,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 816,
-									"top": 736,
+									"top": 721,
 									"width": 210.12890625,
 									"height": 10
 								},
@@ -7136,7 +7137,7 @@
 										"$ref": "AAAAAAFxysSFVXGrlCo="
 									},
 									"edgePosition": 2,
-									"text": "1"
+									"text": "1..*"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7197,7 +7198,7 @@
 									"hostEdge": {
 										"$ref": "AAAAAAFxysSFVXGrlCo="
 									},
-									"text": "0..*"
+									"text": "1..*"
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -7564,8 +7565,8 @@
 										"$ref": "AAAAAAFx4WcMUKjJf+k="
 									},
 									"font": "Arial;13;0",
-									"left": 1066,
-									"top": 611,
+									"left": 1067,
+									"top": 603,
 									"width": 47.328125,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -7587,8 +7588,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 1091,
-									"top": 596,
+									"left": 1093,
+									"top": 588,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -7608,8 +7609,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1086,
-									"top": 640,
+									"left": 1085,
+									"top": 632,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -7629,8 +7630,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1049,
-									"top": 616,
+									"left": 1048,
+									"top": 610,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -7650,8 +7651,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1049,
-									"top": 602,
+									"left": 1048,
+									"top": 596,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -7669,17 +7670,18 @@
 									"model": {
 										"$ref": "AAAAAAFx4WcMUKjKU/M="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1049,
-									"top": 644,
+									"left": 1032,
+									"top": 616,
+									"width": 19.5126953125,
 									"height": 13,
-									"alpha": -0.5235987755982988,
-									"distance": 25,
+									"alpha": 0.5597443003497428,
+									"distance": 20.518284528683193,
 									"hostEdge": {
 										"$ref": "AAAAAAFx4WcMUajNrw8="
 									},
-									"edgePosition": 2
+									"edgePosition": 2,
+									"text": "1..*"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -7692,8 +7694,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1127,
-									"top": 615,
+									"left": 1128,
+									"top": 610,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -7712,8 +7714,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1126,
-									"top": 602,
+									"left": 1128,
+									"top": 596,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -7730,16 +7732,17 @@
 									"model": {
 										"$ref": "AAAAAAFx4WcMUKjLOzA="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1127,
-									"top": 643,
+									"left": 1136,
+									"top": 615,
+									"width": 7.22998046875,
 									"height": 13,
-									"alpha": 0.5235987755982988,
-									"distance": 25,
+									"alpha": -0.6739489319515184,
+									"distance": 18.439088914585774,
 									"hostEdge": {
 										"$ref": "AAAAAAFx4WcMUajNrw8="
-									}
+									},
+									"text": "1"
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -7752,6 +7755,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"top": -8,
 									"width": 10,
 									"height": 10
 								},
@@ -7766,6 +7770,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"top": -8,
 									"width": 10,
 									"height": 10
 								}
@@ -7778,7 +7783,7 @@
 								"$ref": "AAAAAAFxwJo2ujF6rLk="
 							},
 							"lineStyle": 1,
-							"points": "1026:641;1088:632;1151:640",
+							"points": "1026:636;1088:624;1151:636",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFx4WcMUajOE6o="
@@ -7955,7 +7960,8 @@
 								"reference": {
 									"$ref": "AAAAAAFxwJo2uTF4kTI="
 								},
-								"navigable": false
+								"navigable": false,
+								"multiplicity": "1..*"
 							},
 							"end2": {
 								"_type": "UMLAssociationEnd",
@@ -7965,7 +7971,8 @@
 								},
 								"reference": {
 									"$ref": "AAAAAAFxwMA1NEb2GzA="
-								}
+								},
+								"multiplicity": "1"
 							}
 						}
 					],
@@ -8038,9 +8045,9 @@
 							"_parent": {
 								"$ref": "AAAAAAFxwJo2uTF4kTI="
 							},
-							"name": "gorivo Gorivo",
+							"name": "gorivo",
 							"visibility": "private",
-							"type": ""
+							"type": "Gorivo"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -8411,7 +8418,7 @@
 									"$ref": "AAAAAAFxwJ5pjTZb6Fg="
 								},
 								"navigable": false,
-								"multiplicity": "1"
+								"multiplicity": "1..*"
 							},
 							"end2": {
 								"_type": "UMLAssociationEnd",
@@ -8422,7 +8429,7 @@
 								"reference": {
 									"$ref": "AAAAAAFxwKEQrzmk9V0="
 								},
-								"multiplicity": "0..*"
+								"multiplicity": "1..*"
 							}
 						}
 					],
