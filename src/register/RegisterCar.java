@@ -1,5 +1,6 @@
 package register;
 
+import carModels.Car;
 import userModels.Client;
 import utility.Checks;
 import utility.PickEnums;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 
 public class RegisterCar {
 
-    public void register() {
+    public Car register() {
         Checks c = new Checks();
         PickEnums p = new PickEnums();
         Scanner scanner = new Scanner(System.in);
@@ -19,8 +20,9 @@ public class RegisterCar {
 
         System.out.print("\n>>> ID Musterije : ");
         String clientID = scanner.nextLine();
+        Client client = c.findClient(clientID);
 
-        if (c.ifUsersExists(clientID, "1")) {
+        if (client != null) {
             Random r = new Random();
             int rand = r.nextInt(999999);
 
@@ -39,11 +41,13 @@ public class RegisterCar {
             String enginePower = scanner.nextLine();
 
             String newCar = clientID + "|" + rand + "|" + mark + "|" + model + "|"
-                    + fuel + "|" + age + "|" + engineVolume + "|" + enginePower + "|" + "CARBOOK"; // TODO carbook implement
+                    + fuel + "|" + age + "|" + engineVolume + "|" + enginePower;
 
             write.write(newCar, "src/data/cars.txt");
-            return;
+            Car car = new Car(client, Integer.toString(rand), mark, model, fuel, age, Float.parseFloat(engineVolume), Integer.parseInt(enginePower));
+            return car;
         }
         System.out.println("\n! Korisnik sa takvim ID-om ne postoji !");
+        return null;
     }
 }
