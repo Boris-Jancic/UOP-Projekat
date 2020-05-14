@@ -4,8 +4,9 @@ public class Admin extends Employe {
 
 
     public Admin(String name, String lastName, String jmbg, String gender
-            , String address, String phone, String username, String password, double sallary) {
+            , String address, String phone, String username, String password, double sallary, String id) {
         super(name, lastName, jmbg, gender, address, phone, username, password, sallary);
+        this.id = id;
     }
 
     @Override
