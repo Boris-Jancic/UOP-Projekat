@@ -6,10 +6,14 @@ public class Worker extends Employe {
 
     public Worker(String name, String lastName, String jmbg,
                   String gender, String address, String phone, String username,
-                  String password, String specialization, Double sallary) {
+                  String password, String specialization, Double sallary, String id) {
         super(name, lastName, jmbg, gender, address, phone, username, password, sallary);
         this.specialization = specialization;
+        this.id = id;
+
     }
+
+
 
     @Override
     public String toString() {
