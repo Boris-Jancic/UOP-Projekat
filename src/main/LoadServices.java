@@ -13,24 +13,24 @@ import java.util.GregorianCalendar;
 public class LoadServices {
     public ArrayList<Service> load(ArrayList<Car> Cars) {
         Checks c = new Checks();
-        String[] servicesString;
-
-        servicesString = ReadFromFile.read("src/data/services.txt").split("\n");
+        String[] servicesString = ReadFromFile.read("src/data/services.txt").split("\n");
         ArrayList<Service> Services = new ArrayList<>();
 
-        for (String service : servicesString) {
-            String[] serviceSplit = service.split("\\|");
+        if (servicesString[0] != "") {
+            for (String service : servicesString) {
+                String[] serviceSplit = service.split("\\|");
 
-            Car car = c.findCar(Cars, serviceSplit[0]);
-            Worker worker = c.findWorker(serviceSplit[1]);
-            GregorianCalendar date = c.stringToDate(serviceSplit[2]);
-            String description = serviceSplit[3];
-            ArrayList<Part> usedParts = c.findParts(serviceSplit[4].split(","));
-            String serviceID = serviceSplit[6];
-            String state = serviceSplit[5];
+                Car car = c.findCar(Cars, serviceSplit[0]);
+                Worker worker = c.findWorker(serviceSplit[1]);
+                GregorianCalendar date = c.stringToDate(serviceSplit[2]);
+                String description = serviceSplit[3];
+                ArrayList<Part> usedParts = c.findParts(serviceSplit[4].split(","));
+                String serviceID = serviceSplit[6];
+                String state = serviceSplit[5];
 
-            Service ser = new Service(car, worker, date, description, usedParts, state, serviceID);
-            Services.add(ser);
+                Service ser = new Service(car, worker, date, description, usedParts, state, serviceID);
+                Services.add(ser);
+            }
         }
 
         return Services;
