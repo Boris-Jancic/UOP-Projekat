@@ -1,5 +1,9 @@
 package register;
 
+import userModels.Admin;
+import userModels.Client;
+import userModels.Person;
+import userModels.Worker;
 import utility.PickEnums;
 import utility.WriteToFile;
 
@@ -8,7 +12,7 @@ import java.util.Scanner;
 
 
 public class RegisterUser {
-    public void register() {
+    public Person register() {
         Scanner scanner = new Scanner(System.in);
         PickEnums pickEnums = new PickEnums();
         WriteToFile writeToFile = new WriteToFile();
@@ -57,6 +61,8 @@ public class RegisterUser {
 
             newCredentials = option + newCredentials + sallary;
             writeToFile.write(newCredentials, "src/data/korisnici.txt");
+            Admin admin = new Admin(name,lastName,jmbg,gender,address,phone,userName,password, sallary, Integer.toString(id));
+            return admin;
         }
         if (option.equals("2")) {
             System.out.print("\n>>> Plata : ");
@@ -65,10 +71,15 @@ public class RegisterUser {
 
             newCredentials = option + newCredentials + sallary + "|" + specialization;
             writeToFile.write(newCredentials, "src/data/korisnici.txt");
+            Worker worker = new Worker(name,lastName,jmbg,gender,address,phone,userName,password,Integer.toString(id), sallary, specialization);
+            return  worker;
         }
         if (option.equals("3")) {
             newCredentials = option + newCredentials + "0";
             writeToFile.write(newCredentials, "src/data/korisnici.txt");
+            Client client = new Client(name, lastName, jmbg, gender, address, phone, userName, password, 0, Integer.toString(id));
+            return client;
         }
+        return null;
     }
 }
