@@ -8,12 +8,14 @@ public class Client extends Person {
     private int points;
     private ArrayList<Car> cars;
 
-    public Client(String name, String lastName, String jmbg, String gender,
-                  String address, String phone, String username, String password,
-                  int points, String id) {
+    public Client(String name, String lastName, String jmbg, String gender, String address,
+                  String phone, String username, String password, int points, String id) {
+
         super(name, lastName, jmbg, gender, address, phone, username, password);
         this.points = points;
         this.id = id;
+        this.cars = new ArrayList<Car>();
+
     }
 
     @Override
@@ -41,7 +43,7 @@ public class Client extends Person {
         return output;
     }
 
+    public ArrayList<Car> getCars() { return cars; }
 
     public void setCars(ArrayList<Car> cars) { this.cars = cars; }
-
 }

@@ -8,6 +8,7 @@ import register.RegisterCar;
 import register.RegisterPart;
 import register.RegisterService;
 import register.RegisterUser;
+import userModels.Client;
 import userModels.Person;
 
 import java.io.IOException;
@@ -31,6 +32,7 @@ public class Main {
         ArrayList<Part> Parts = lP.load();
         ArrayList<Service> Services = lS.load(Cars);
         ArrayList<CarBook> CarBooks = lB.load(Services);
+        System.out.print(CarBooks);
 
         while (true) {
             String option;
@@ -42,7 +44,6 @@ public class Main {
             System.out.println("6) Prikazi delove");
             System.out.println("7) Registruj servis");
             System.out.println("8) Prikazi servise");
-            System.out.println("9) Prikazi knjizice");
             System.out.println("0) Ugasi aplikaciju");
 
             Scanner scanner = new Scanner(System.in);
@@ -51,15 +52,48 @@ public class Main {
 
 
             switch (option) {
-                case "1": rU.register();break;
+                case "1":
+                    Person registeredPerson = rU.register();
+                    People.add(registeredPerson);
+                    break;
+
                 case "2": for(Person person : People) { System.out.println(person); } break;
-                case "3": rC.register();break;
+
+                case "3":
+                    Car registeredCar = rC.register();
+
+                    if (registeredCar == null)
+                        break;
+
+                    Cars.add(registeredCar);
+                    for (Person person : People) {
+                        if (person instanceof Client){
+                            if (registeredCar.getClient().getId().equals(person.getId())) {
+                                System.out.println(registeredCar);
+                                ArrayList<Car> clientCars = ((Client) person).getCars();
+                                clientCars.add(registeredCar);
+                                ((Client) person).setCars(clientCars);
+                            }
+                        }
+                    }
+                    break;
+
                 case "4": for(Car car : Cars) { System.out.println(car); } break;
-                case "5": rP.register();break;
+
+                case "5":
+                    Part registeredPart = rP.register();
+                    Parts.add(registeredPart);
+                    break;
+
                 case "6": for(Part part : Parts) { System.out.println(part); } break;
-                case "7": rS.register();break;
+
+                case "7":
+                    Service registerService = rS.register(Cars);
+                    Services.add(registerService);
+                    break;
+
                 case "8": for(Service service : Services) { System.out.println(service); }break;
-                case "9": for(CarBook carBook : CarBooks) { System.out.println(carBook); }break;
+
                 case "0": return;
             }
         }

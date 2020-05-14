@@ -2,8 +2,6 @@ package carModels;
 
 import userModels.Client;
 
-import java.util.Random;
-
 public class Car {
 
     private Client client;
@@ -15,9 +13,6 @@ public class Car {
     private float engineVolume;
     private int enginePower;
     private CarBook carBook;
-
-    final Random r = new Random();
-    final int rand = r.nextInt(999999);
 
     public Car(Client client, String carID, String mark, String model, String fuel,
                String age, float engineVolume, int enginePower) {
@@ -34,7 +29,7 @@ public class Car {
     @Override
     public String toString() {
         return "car{" +
-                "clientID=" + client.getId() +
+                "clientID=" + client +
                 ", carID=" + carID +
                 ", mark=" + mark +
                 ", model=" + model +
