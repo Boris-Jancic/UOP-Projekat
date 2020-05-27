@@ -40,6 +40,13 @@ public class Car {
                 '}';
     }
 
+    public String carToString() {
+        String carString = this.client.getId() + "|" + this.carID + "|" + this.model + "|" + this.mark + "|" +
+                this.fuel + "|" + this.age + "|" + this.engineVolume + "|" + this.enginePower;
+
+        return carString;
+    }
+
     public Client getClient() {
         return client;
     }

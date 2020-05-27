@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 
 public class RegisterUser {
-    public Person register() {
+    public static Person register() {
         Scanner scanner = new Scanner(System.in);
         PickEnums pickEnums = new PickEnums();
         WriteToFile writeToFile = new WriteToFile();
@@ -52,31 +52,23 @@ public class RegisterUser {
 
         Random rand = new Random();
         int id = rand.nextInt(999999);
-        String newCredentials = "|" + name + "|" + lastName + "|" + jmbg + "|" + gender + "|" + address
-                + "|" + phone + "|" + userName + "|" + password + "|" + id + "|";
 
         if (option.equals("1")) {
             System.out.print("\n>>> Plata : ");
             Double sallary = scanner.nextDouble();
 
-            newCredentials = option + newCredentials + sallary;
-            writeToFile.write(newCredentials, "src/data/korisnici.txt");
             Admin admin = new Admin(name,lastName,jmbg,gender,address,phone,userName,password, sallary, Integer.toString(id));
             return admin;
         }
         if (option.equals("2")) {
             System.out.print("\n>>> Plata : ");
-            double sallary = scanner.nextDouble();
+            double salary = scanner.nextDouble();
             String specialization = pickEnums.pickSpecialization();
 
-            newCredentials = option + newCredentials + sallary + "|" + specialization;
-            writeToFile.write(newCredentials, "src/data/korisnici.txt");
-            Worker worker = new Worker(name,lastName,jmbg,gender,address,phone,userName,password,Integer.toString(id), sallary, specialization);
+            Worker worker = new Worker(name,lastName,jmbg,gender,address,phone,userName,password,Integer.toString(id), salary, specialization);
             return  worker;
         }
         if (option.equals("3")) {
-            newCredentials = option + newCredentials + "0";
-            writeToFile.write(newCredentials, "src/data/korisnici.txt");
             Client client = new Client(name, lastName, jmbg, gender, address, phone, userName, password, 0, Integer.toString(id));
             return client;
         }

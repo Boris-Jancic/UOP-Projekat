@@ -4,6 +4,7 @@ import carModels.Car;
 import carModels.Part;
 import main.LoadParts;
 import userModels.Client;
+import userModels.Person;
 import userModels.Worker;
 
 import java.io.BufferedWriter;
@@ -14,10 +15,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
+import java.util.Set;
 
 public class Checks {
 
-    public ArrayList<Car> findCars(ArrayList<Car> Cars, String id) {
+    public static ArrayList<Car> findCars(ArrayList<Car> Cars, String id) {
         ArrayList<Car> carsReturn = new ArrayList<>();
 
         for (Car car : Cars) {
@@ -30,7 +32,7 @@ public class Checks {
     }
 
 
-    public Car findCar(ArrayList<Car> Cars, String carID) {
+    public static Car findCar(ArrayList<Car> Cars, String carID) {
         for (Car car : Cars) {
             if (car.getCarID().equals(carID)) {
                 return car;
@@ -39,38 +41,18 @@ public class Checks {
         return null;
     }
 
-    public Worker findWorker(String id) {
-        ReadFromFile readFromFile = new ReadFromFile();
-        String[] users = readFromFile.read("src/data/korisnici.txt").split("\n");
 
-        if (users[0] != "") {
-            for (String user : users) {
-                String[] userSplit = user.split("\\|");
-                String role = userSplit[0];
-                String userID = userSplit[9];
-                String name = userSplit[1];
-                String lastName = userSplit[2];
-                String jmbg = userSplit[3];
-                String gender = userSplit[4];
-                String address = userSplit[5];
-                String phone = userSplit[6];
-                String username = userSplit[7];
-                String password = userSplit[8];
-
-                if (role.equals("2") && userID.equals(id)) {
-                    Double sallary = Double.parseDouble(userSplit[10]);
-                    String specialization = userSplit[11];
-                    Worker w = new Worker(name, lastName, jmbg, gender, address, phone,
-                            username, password, specialization, sallary, id);
-                    w.setId(userID);
-                    return w;
-                }
+    public static Worker findWorker(String id, Set<Person> people) {
+        for (Person person : people) {
+            if (person instanceof Worker && person.getId().equals(id)){
+                return (Worker) person;
             }
         }
         return null;
     }
 
-    public Client findClient(String id) {
+
+    public static Client findClient(String id) {
         String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
 
         if (!users[0].equals("")) {
@@ -99,7 +81,19 @@ public class Checks {
         return null;
     }
 
-    public ArrayList<Part> findParts(String[] PartIDs) {
+
+    public static Part findPart(String partID, ArrayList<Part> parts) {
+
+        for (Part part : parts){
+            if (part != null && partID.equals(part.getId())){
+                return part;
+            }
+        }
+        return null;
+    }
+
+
+    public static ArrayList<Part> findParts(String[] PartIDs) {
         ArrayList<Part> returnParts = new ArrayList<>();
         LoadParts lp = new LoadParts();
         ArrayList<Part> parts = lp.load();
@@ -114,7 +108,8 @@ public class Checks {
         return returnParts;
     }
 
-    public GregorianCalendar stringToDate(String dateP) {
+
+    public static GregorianCalendar stringToDate(String dateP) {
         GregorianCalendar date = new GregorianCalendar();
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
@@ -127,8 +122,13 @@ public class Checks {
         return date;
     }
 
+    public static String dateToString(GregorianCalendar dateP) {
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        return format.format(dateP.getTime());
+    }
 
-    public Boolean writeCarBook(String carIDP, String newServiceID) {
+
+    public static Boolean writeCarBook(String carIDP, String newServiceID) {
 
         String[] carBooks = ReadFromFile.read("src/data/carbooks.txt").split("\n");
         String output = "";

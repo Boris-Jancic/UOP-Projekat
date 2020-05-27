@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 public class LoadCars {
 
-    public ArrayList<Car> load() {
-        Checks c = new Checks();
+    public static ArrayList<Car> load() {
         String[] cars = ReadFromFile.read("src/data/cars.txt").split("\n");
         ArrayList<Car> Cars = new ArrayList<>();
 
@@ -20,7 +19,7 @@ public class LoadCars {
                 String[] carSplit = car.split("\\|");
                 String clientId = carSplit[0];
 
-                Client client = c.findClient(clientId);
+                Client client = Checks.findClient(clientId);
 
                 String carId = carSplit[1];
                 String mark = carSplit[2];

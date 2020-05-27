@@ -35,6 +35,8 @@ public class Client extends Person {
                 '}';
     }
 
+
+
     private String printCars() {
         String output = "";
         for (Car car : cars) {
@@ -42,6 +44,10 @@ public class Client extends Person {
         }
         return output;
     }
+
+    public int getPoints() { return points; }
+
+    public void setPoints(int points) { this.points = points; }
 
     public ArrayList<Car> getCars() { return cars; }
 
