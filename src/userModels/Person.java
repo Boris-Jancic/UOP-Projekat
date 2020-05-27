@@ -22,11 +22,12 @@ public abstract class Person {
         this.password = password;
     }
 
+
+    public String personToString(){
+        return this.name + "|" + this.lastName + "|" + this.jmbg + "|" + this.gender + "|" +
+                this.address + "|" + this.phone + "|" + this.username + "|" + this.password + "|" + this.id;
+    }
+
     public String getId() { return this.id; }
     public void setId(String id) { this.id = id; }
-
-
-    public String getUsername() { return username; }
-
-
 }
