@@ -8,8 +8,7 @@ import java.io.IOException;
 
 public class ReadFromFile {
     public static String read(String fileP) {
-        File file = new File(fileP);
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileP))) {
             String oldCredenitals = "";
 
             String line;
@@ -20,6 +19,7 @@ public class ReadFromFile {
 
             reader.close();
             return oldCredenitals;
+
         } catch (IOException e) {
             System.out.println("Nema datog fajla !");
         }
