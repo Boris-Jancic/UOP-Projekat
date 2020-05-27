@@ -6,7 +6,7 @@ import utility.ReadFromFile;
 import java.util.ArrayList;
 
 public class LoadParts {
-    public ArrayList<Part> load() {
+    public static ArrayList<Part> load() {
         String[] parts = ReadFromFile.read("src/data/parts.txt").split("\n");
         ArrayList<Part> partsReturn = new ArrayList<>();
 

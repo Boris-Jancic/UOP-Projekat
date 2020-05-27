@@ -7,7 +7,7 @@ import utility.ReadFromFile;
 import java.util.ArrayList;
 
 public class LoadCarBooks {
-    public ArrayList<CarBook> load(ArrayList<Service> services) {
+    public static ArrayList<CarBook> load(ArrayList<Service> services) {
         ArrayList<CarBook> returnCarBooks = new ArrayList<>();
 
         String[] carBooks = ReadFromFile.read("src/data/carbooks.txt").split("\n");

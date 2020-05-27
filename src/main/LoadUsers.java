@@ -9,13 +9,14 @@ import utility.Checks;
 import utility.ReadFromFile;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class LoadUsers {
 
-    public ArrayList<Person> load(ArrayList<Car> Cars) {
-        Checks c = new Checks();
+    public static Set<Person> load(ArrayList<Car> Cars) {
         String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
-        ArrayList<Person> people = new ArrayList<Person>();
+        Set<Person> people = new HashSet<>();
 
         if (users[0] != "") {
             for (String user : users) {
@@ -32,8 +33,8 @@ public class LoadUsers {
                 String id = userSplit[9];
 
                 if (role.equals("3")) {
-                    Client client = c.findClient(id);
-                    client.setCars(c.findCars(Cars, id));
+                    Client client = Checks.findClient(id);
+                    client.setCars(Checks.findCars(Cars, id));
                     people.add(client);
                 }
                 if (role.equals("2")) {
