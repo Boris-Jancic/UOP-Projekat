@@ -14,6 +14,9 @@ public class Worker extends Employe {
     }
 
 
+    public String getSpecialization() { return specialization; }
+
+    public void setSpecialization(String specialization) { this.specialization = specialization; }
 
     @Override
     public String toString() {
