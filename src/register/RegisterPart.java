@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class RegisterPart {
 
-    public Part register() {
+    public static Part register() {
         Scanner scanner = new Scanner(System.in);
         PickEnums p = new PickEnums();
         WriteToFile writeToFile = new WriteToFile();

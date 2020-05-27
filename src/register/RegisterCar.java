@@ -12,15 +12,14 @@ import java.util.Scanner;
 
 public class RegisterCar {
 
-    public Car register() {
+    public static Car register() {
         Checks c = new Checks();
         PickEnums p = new PickEnums();
         Scanner scanner = new Scanner(System.in);
-        WriteToFile write = new WriteToFile();
 
         System.out.print("\n>>> ID Musterije : ");
         String clientID = scanner.nextLine();
-        Client client = c.findClient(clientID);
+        Client client = Checks.findClient(clientID);
 
         if (client != null) {
             Random r = new Random();
@@ -40,10 +39,6 @@ public class RegisterCar {
             System.out.print(">>> Jacina motora : ");
             String enginePower = scanner.nextLine();
 
-            String newCar = clientID + "|" + rand + "|" + mark + "|" + model + "|"
-                    + fuel + "|" + age + "|" + engineVolume + "|" + enginePower;
-
-            write.write(newCar, "src/data/cars.txt");
             Car car = new Car(client, Integer.toString(rand), mark, model, fuel, age, Float.parseFloat(engineVolume), Integer.parseInt(enginePower));
             return car;
         }
