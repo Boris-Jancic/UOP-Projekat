@@ -16,6 +16,10 @@ public class Part {
         this.id = id;
     }
 
+    public String partToString() {
+        return this.mark + "|" + this.model + "|" + this.name + "|" + this.price + "|" + this.id;
+    }
+
     @Override
     public String toString() {
         return "part{" +
@@ -26,6 +30,22 @@ public class Part {
                 ", id='" + id + '\'' +
                 '}';
     }
+
+    public String getMark() { return mark; }
+
+    public void setMark(String mark) { this.mark = mark; }
+
+    public String getModel() { return model; }
+
+    public void setModel(String model) { this.model = model; }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public double getPrice() { return price; }
+
+    public void setPrice(double price) { this.price = price; }
 
     public String getId() {
         return id;
