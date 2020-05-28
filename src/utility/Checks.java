@@ -1,12 +1,13 @@
 package utility;
 
 import carModels.Car;
+import carModels.CarBook;
 import carModels.Part;
+import carModels.Service;
 import main.LoadParts;
 import userModels.Client;
 import userModels.Person;
 import userModels.Worker;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,6 +19,16 @@ import java.util.GregorianCalendar;
 import java.util.Set;
 
 public class Checks {
+
+    public static Worker findWorker(String id, Set<Person> people) {
+        for (Person person : people) {
+            if (person instanceof Worker && person.getId().equals(id)){
+                return (Worker) person;
+            }
+        }
+        return null;
+    }
+
 
     public static ArrayList<Car> findCars(ArrayList<Car> Cars, String id) {
         ArrayList<Car> carsReturn = new ArrayList<>();
@@ -32,24 +43,63 @@ public class Checks {
     }
 
 
-    public static Car findCar(ArrayList<Car> Cars, String carID) {
-        for (Car car : Cars) {
-            if (car.getCarID().equals(carID)) {
+    public static Car findCar(String carID, ArrayList<Car> cars) {
+        for (Car car : cars) {
+            if (car != null && carID.equals(car.getCarID())) {
                 return car;
             }
         }
         return null;
     }
 
+    public static ArrayList<Part> findParts(String[] PartIDs, ArrayList<Part> parts) {
+        ArrayList<Part> returnParts = new ArrayList<>();
 
-    public static Worker findWorker(String id, Set<Person> people) {
-        for (Person person : people) {
-            if (person instanceof Worker && person.getId().equals(id)){
-                return (Worker) person;
+        for (Part part : parts) {
+            for (String partID : PartIDs) {
+                if (partID.equals(part.getId()))
+                    returnParts.add(part);
+            }
+        }
+
+        return returnParts;
+    }
+
+
+    public static Part findPart(String partID, ArrayList<Part> parts) {
+
+        for (Part part : parts){
+            if (part != null && partID.equals(part.getId())){
+                return part;
             }
         }
         return null;
     }
+
+    public static Service findService(String serviceID, ArrayList<Service> services) {
+
+        for (Service service : services) {
+            if (service != null && serviceID.equals(service.getId()))
+                return service;
+        }
+        return null;
+    }
+
+
+    public static CarBook findCarBook(String carID, ArrayList<CarBook> carBooks) {
+
+        for (CarBook carBook : carBooks) {
+            if (carBook != null && carID.equals(carBook.getCar().getCarID())) {
+                return carBook;
+            }
+        }
+        return null;
+    }
+
+
+
+
+
 
 
     public static Client findClient(String id) {
@@ -81,32 +131,6 @@ public class Checks {
         return null;
     }
 
-
-    public static Part findPart(String partID, ArrayList<Part> parts) {
-
-        for (Part part : parts){
-            if (part != null && partID.equals(part.getId())){
-                return part;
-            }
-        }
-        return null;
-    }
-
-
-    public static ArrayList<Part> findParts(String[] PartIDs) {
-        ArrayList<Part> returnParts = new ArrayList<>();
-        LoadParts lp = new LoadParts();
-        ArrayList<Part> parts = lp.load();
-
-        for (Part part : parts) {
-            for (String partID : PartIDs) {
-                if (partID.equals(part.getId()))
-                    returnParts.add(part);
-            }
-        }
-
-        return returnParts;
-    }
 
 
     public static GregorianCalendar stringToDate(String dateP) {
