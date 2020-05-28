@@ -14,8 +14,8 @@ public class LoadCars {
         String[] cars = ReadFromFile.read("src/data/cars.txt").split("\n");
         ArrayList<Car> Cars = new ArrayList<>();
 
-        if (cars[0] != "") {
-            for (String car : cars) {
+        for (String car : cars) {
+            if (!car.isEmpty()) {
                 String[] carSplit = car.split("\\|");
                 String clientId = carSplit[0];
 
