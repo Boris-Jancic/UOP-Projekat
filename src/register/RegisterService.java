@@ -13,7 +13,7 @@ import java.util.*;
 
 public class RegisterService {
 
-    public static Service register(ArrayList<Car> Cars, Set<Person> people) {
+    public static Service register(ArrayList<Car> cars, Set<Person> people, ArrayList<Part> parts) {
         PickEnums pickEnums = new PickEnums();
         WriteToFile tofile = new WriteToFile();
         Scanner scanner = new Scanner(System.in);
@@ -30,7 +30,7 @@ public class RegisterService {
         System.out.print(">>> ID automobila za servisiranje :");
         String carID = scanner.nextLine();
 
-        Car car = Checks.findCar(Cars, carID);
+        Car car = Checks.findCar(carID, cars);
         if (car == null) {
             System.out.println("\n! Nema datog automobila !");
             return null;
@@ -46,7 +46,7 @@ public class RegisterService {
 
         System.out.print(">>> Iskorisceni delovi (odvojeni zarezom => ID,ID) :");
         String usedParts = scanner.nextLine();
-        ArrayList<Part> parts = Checks.findParts(usedParts.split(","));
+        ArrayList<Part> serviceParts = Checks.findParts(usedParts.split(";"), parts);
 
         if (parts == null) {
             System.out.println("Nema datih delova");
@@ -64,7 +64,7 @@ public class RegisterService {
             tofile.write(carBook, "src/data/carbooks.txt");
 
 
-        Service serviceReturn = new Service(car, worker, reservation, description, parts, status, Integer.toString(rand));
+        Service serviceReturn = new Service(car, worker, reservation, description, serviceParts, status, Integer.toString(rand));
         return serviceReturn;
     }
 }
