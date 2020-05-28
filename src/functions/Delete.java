@@ -1,17 +1,17 @@
- package functions;
+package functions;
 
 import carModels.Car;
-        import carModels.CarBook;
-        import carModels.Part;
+import carModels.CarBook;
+import carModels.Part;
 import carModels.Service;
 import userModels.Admin;
-        import userModels.Client;
-        import userModels.Person;
-        import userModels.Worker;
-        import utility.Checks;
-        import java.util.ArrayList;
-        import java.util.Scanner;
-        import java.util.Set;
+import userModels.Client;
+import userModels.Person;
+import userModels.Worker;
+import utility.Checks;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Set;
 
  public class Delete {
 
@@ -56,7 +56,6 @@ import userModels.Admin;
         return cars;
     }
 
-
     public static ArrayList<Part> deletePart(ArrayList<Part> parts) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\n>>> Unesite ID dela koji zelite da obrisete : ");
@@ -83,4 +82,4 @@ import userModels.Admin;
         services.remove(deletedService);
         return services;
      }
- }
+}
