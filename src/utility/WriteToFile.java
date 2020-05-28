@@ -1,6 +1,7 @@
 package utility;
 
 import carModels.Car;
+import carModels.CarBook;
 import carModels.Part;
 import carModels.Service;
 import userModels.Admin;
@@ -90,6 +91,19 @@ public class WriteToFile {
                 }
             }
 
+        } catch (IOException e) {
+            System.out.println("! Dati fajl ne postoji !");
+        }
+    }
+
+    public static void writeCarBook(ArrayList<CarBook> carBooks) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/carbooks.txt"))) {
+
+            for (CarBook carBook : carBooks) {
+                if (carBook != null) {
+                    writer.write(carBook.carBookToString() + "\n");
+                }
+            }
         } catch (IOException e) {
             System.out.println("! Dati fajl ne postoji !");
         }
