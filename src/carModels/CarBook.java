@@ -14,24 +14,33 @@ public class CarBook {
     public String toString() {
         return "CarBook{" +
                 "car=" + car.getCarID() +
-                ", services=" + printParts() +
+                ", services=" + printServices() +
                 '}';
     }
 
-    private String printParts() {
+
+    public String carBookToString() {
+        return car.getCarID() + "|" + printServices();
+    }
+
+
+    private String printServices() {
         String output = "";
 
         for (Service service : services) {
-            output += "|" + service.getId() + "|";
-
+            output += service.getId() + ";";
         }
+
         return output;
     }
 
 
-    public void setServices(ArrayList<Service> services) {
-        this.services = services;
-    }
+    public Car getCar() { return car; }
 
+    public void setCar(Car car) { this.car = car; }
+
+    public void setServices(ArrayList<Service> services) { this.services = services; }
+
+    public ArrayList<Service> getServices() { return services; }
 
 }
