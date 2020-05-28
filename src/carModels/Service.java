@@ -49,7 +49,7 @@ public class Service {
         String output = "";
 
         for (Part part : usedParts) {
-            output += part.getId() + ",";
+            output += part.getId() + ";";
         }
 
         return output;
