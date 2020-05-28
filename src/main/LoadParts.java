@@ -10,8 +10,8 @@ public class LoadParts {
         String[] parts = ReadFromFile.read("src/data/parts.txt").split("\n");
         ArrayList<Part> partsReturn = new ArrayList<>();
 
-        if(!parts[0].equals("")) {
-            for (String part : parts) {
+        for (String part : parts) {
+            if(!part.isEmpty()) {
                 String[] partSplit = part.split("\\|");
                 String mark = partSplit[0];
                 String model = partSplit[1];
