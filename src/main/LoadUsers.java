@@ -18,8 +18,8 @@ public class LoadUsers {
         String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
         Set<Person> people = new HashSet<>();
 
-        if (users[0] != "") {
-            for (String user : users) {
+        for (String user : users) {
+            if (!user.isEmpty()) {
                 String[] userSplit = user.split("\\|");
                 String role = userSplit[0];
                 String name = userSplit[1];
@@ -38,15 +38,15 @@ public class LoadUsers {
                     people.add(client);
                 }
                 if (role.equals("2")) {
-                    Double sallary = Double.parseDouble(userSplit[10]);
+                    Double salary = Double.parseDouble(userSplit[10]);
                     String specialization = userSplit[11];
-                    Worker w = new Worker(name, lastName, jmbg, gender, address, phone, username, password, specialization, sallary, id);
+                    Worker w = new Worker(name, lastName, jmbg, gender, address, phone, username, password, specialization, salary, id);
                     w.setId(id);
                     people.add(w);
                 }
                 if (role.equals("1")) {
-                    double sallary = Double.parseDouble(userSplit[10]);
-                    Admin a = new Admin(name, lastName, jmbg, gender, address, phone, username, password, sallary, id);
+                    double salary = Double.parseDouble(userSplit[10]);
+                    Admin a = new Admin(name, lastName, jmbg, gender, address, phone, username, password, salary, id);
                     a.setId(id);
                     people.add(a);
                 }
