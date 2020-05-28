@@ -26,9 +26,8 @@ public class Main {
         ArrayList<Car> cars = LoadCars.load();
         Set<Person> people = LoadUsers.load(cars);
         ArrayList<Part> parts = LoadParts.load();
-        ArrayList<Service> services = LoadServices.load(cars, people);
-        ArrayList<CarBook> carBooks = LoadCarBooks.load(services);
-        System.out.print(carBooks);
+        ArrayList<Service> services = LoadServices.load(cars, people, parts);
+        ArrayList<CarBook> carBooks = LoadCarBooks.load(cars, services);
 
         while (true) {
             String option;
@@ -40,8 +39,9 @@ public class Main {
             System.out.println("6) Prikazi delove");
             System.out.println("7) Registruj servis");
             System.out.println("8) Prikazi servise");
-            System.out.println("9) Brisanje podataka");
-            System.out.println("0) Ugasi aplikaciju");
+            System.out.println("9) Prikazi servisne knjizice");
+            System.out.println("10) Brisanje podataka");
+            System.out.println("\n0) Ugasi aplikaciju");
 
             Scanner scanner = new Scanner(System.in);
             System.out.print("\n>>> Unesi funkciju : ");
@@ -76,8 +76,8 @@ public class Main {
                             }
                         }
                     }
-
                     break;
+
 
                 case "4": for(Car car : cars) { System.out.println(car); } break;
 
@@ -92,16 +92,19 @@ public class Main {
 
 
                 case "7":
-                    Service registerService = RegisterService.register(cars, people);
+                    Service registerService = RegisterService.register(cars, people, parts);
                     services.add(registerService);
                     break;
 
 
-                case "8": for(Service service : services) { System.out.println(service); }break;
+                case "8": for(Service service : services) { System.out.println(service); } break;
 
 
-                case "9":
-                    System.out.println("1) Brisanje korisnika (brise njego");
+                case "9": for(CarBook carBook : carBooks) { System.out.println(carBook); } break;
+
+
+                case "10":
+                    System.out.println("\n1) Brisanje korisnika");
                     System.out.println("2) Brisanje automobila (brise njegovu servisnu knjizicu)");
                     System.out.println("3) Brisanje delova");
                     System.out.println("4) Brisanje servisa");
@@ -109,8 +112,25 @@ public class Main {
                     System.out.print("\n>>> Unesi funkciju : ");
                     option = scanner.nextLine();
 
-                    if (option.equals("3"))
+                    if (option.equals("1")) {
+                        people = Delete.deletePerson(people);
+                    }
+
+                    if (option.equals("2")) {
+                        System.out.print("\n>>> Unesite ID automobila koji zelite da obrisete : ");
+                        option = scanner.nextLine();
+
+                        cars = Delete.deleteCar(option, cars);
+                        carBooks = Delete.deleteCarBook(option, carBooks);
+                    }
+
+                    if (option.equals("3")) {
                         parts = Delete.deletePart(parts);
+                    }
+
+                    if (option.equals("4")) {
+                        services = Delete.deleteService(services);
+                    }
 
                     break;
 
@@ -120,6 +140,7 @@ public class Main {
                     WriteToFile.writeUsers(people);
                     WriteToFile.writeParts(parts);
                     WriteToFile.writeService(services);
+                    WriteToFile.writeCarBook(carBooks);
                     return;
             }
         }
