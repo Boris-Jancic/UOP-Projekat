@@ -58,12 +58,6 @@ public class RegisterService {
         Random r = new Random();
         int rand = r.nextInt(999999);
 
-        String carBook = carID + "|" + rand;
-
-        if (!Checks.writeCarBook(carID, Integer.toString(rand)))
-            tofile.write(carBook, "src/data/carbooks.txt");
-
-
         Service serviceReturn = new Service(car, worker, reservation, description, serviceParts, status, Integer.toString(rand));
         return serviceReturn;
     }
