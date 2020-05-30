@@ -13,8 +13,6 @@ import java.util.Scanner;
 public class RegisterCar {
 
     public static Car register() {
-        Checks c = new Checks();
-        PickEnums p = new PickEnums();
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("\n>>> ID Musterije : ");
@@ -25,9 +23,9 @@ public class RegisterCar {
             Random r = new Random();
             int rand = r.nextInt(999999);
 
-            String mark = p.pickMark();
-            String model = p.pickModel();
-            String fuel = p.pickFuel();
+            String mark = PickEnums.pickMark();
+            String model = PickEnums.pickModel();
+            String fuel = PickEnums.pickFuel();
 
 
             System.out.print(">>> Godiste (Samo godina proizvodnje): ");
