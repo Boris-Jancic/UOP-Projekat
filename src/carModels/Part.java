@@ -6,6 +6,7 @@ public class Part {
     private String name;
     private double price;
     private String id;
+    private boolean available;
 
     public Part(String mark, String model, String name,
                 double price, String id) {
@@ -17,7 +18,7 @@ public class Part {
     }
 
     public String partToString() {
-        return this.mark + "|" + this.model + "|" + this.name + "|" + this.price + "|" + this.id;
+        return this.mark + "|" + this.model + "|" + this.name + "|" + this.price + "|" + this.id + "|" + this.available;
     }
 
     @Override
@@ -28,6 +29,7 @@ public class Part {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", id='" + id + '\'' +
+                ", availability='" + available + '\'' +
                 '}';
     }
 
@@ -54,4 +56,9 @@ public class Part {
     public void setId(String id) {
         this.id = id;
     }
+
+    public boolean isAvailable() { return available; }
+
+    public void setAvailable(boolean available) { this.available = available; }
+
 }

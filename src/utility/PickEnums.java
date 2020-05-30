@@ -2,10 +2,11 @@ package utility;
 
 import java.util.Scanner;
 
-public class PickEnums {
-    final Scanner scanner = new Scanner(System.in);
 
-    public String pickMark() {
+public class PickEnums {
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static String pickMark() {
         System.out.println("\n1) Bmw");
         System.out.println("2) Lambo");
         System.out.println("3) Yugo");
@@ -31,7 +32,7 @@ public class PickEnums {
         return m;
     }
 
-    public String pickModel() {
+    public static String pickModel() {
         System.out.println("\n1) Model 1");
         System.out.println("2) Model 2");
         System.out.println("3) Model 3");
@@ -57,7 +58,7 @@ public class PickEnums {
         return m;
     }
 
-    public String pickFuel() {
+    public static String pickFuel() {
         System.out.println("\n1) Dizel");
         System.out.println("2) Elektricni pogon");
         System.out.println("3) Gas");
@@ -79,7 +80,7 @@ public class PickEnums {
         return f;
     }
 
-    public String pickSpecialization() {
+    public static String pickSpecialization() {
         System.out.println("\n1) Auto-mehanicar");
         System.out.println("2) Auto-elektricar");
         System.out.println("3) Vulkanizer");
@@ -105,7 +106,7 @@ public class PickEnums {
         return s;
     }
 
-    public String pickGender() {
+    public static String pickGender() {
         System.out.println("\n1) Muski");
         System.out.println("2) Zenski");
         System.out.print(">>> Pol : ");
@@ -123,7 +124,7 @@ public class PickEnums {
         return g;
     }
 
-    public String pickStatus() {
+    public static String pickStatus() {
         System.out.println("\n1) Gotov");
         System.out.println("2) U toku");
         System.out.println("3) Nije poceo");

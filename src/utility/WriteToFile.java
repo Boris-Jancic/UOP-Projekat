@@ -20,7 +20,7 @@ public class WriteToFile {
     public static void write(String string, String fileP) {
         String oldCredentials = ReadFromFile.read(fileP);
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileP));){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileP))){
             writer.write(oldCredentials + string);
 
         } catch (IOException e) {
