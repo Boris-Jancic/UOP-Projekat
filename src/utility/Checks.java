@@ -30,6 +30,15 @@ public class Checks {
     }
 
 
+    public static Car findCar(String carID, ArrayList<Car> cars) {
+        for (Car car : cars) {
+            if (carID.equals(car.getCarID())) {
+                return car;
+            }
+        }
+        return null;
+    }
+
     public static ArrayList<Car> findCars(ArrayList<Car> Cars, String id) {
         ArrayList<Car> carsReturn = new ArrayList<>();
 
@@ -43,10 +52,11 @@ public class Checks {
     }
 
 
-    public static Car findCar(String carID, ArrayList<Car> cars) {
-        for (Car car : cars) {
-            if (car != null && carID.equals(car.getCarID())) {
-                return car;
+    public static Part findPart(String partID, ArrayList<Part> parts) {
+
+        for (Part part : parts){
+            if (part != null && partID.equals(part.getId())){
+                return part;
             }
         }
         return null;
@@ -65,16 +75,6 @@ public class Checks {
         return returnParts;
     }
 
-
-    public static Part findPart(String partID, ArrayList<Part> parts) {
-
-        for (Part part : parts){
-            if (part != null && partID.equals(part.getId())){
-                return part;
-            }
-        }
-        return null;
-    }
 
     public static Service findService(String serviceID, ArrayList<Service> services) {
 
@@ -95,11 +95,6 @@ public class Checks {
         }
         return null;
     }
-
-
-
-
-
 
 
     public static Client findClient(String id) {
@@ -132,7 +127,6 @@ public class Checks {
     }
 
 
-
     public static GregorianCalendar stringToDate(String dateP) {
         GregorianCalendar date = new GregorianCalendar();
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
@@ -151,33 +145,4 @@ public class Checks {
         return format.format(dateP.getTime());
     }
 
-
-    public static Boolean writeCarBook(String carIDP, String newServiceID) {
-
-        String[] carBooks = ReadFromFile.read("src/data/carbooks.txt").split("\n");
-        String output = "";
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/carbooks.txt"))) {
-            if (!carBooks[0].equals("")) {
-                for (String carBook : carBooks) {
-                    String[] carBookSplit = carBook.split("\\|");
-                    System.out.println(Arrays.toString(carBookSplit));
-                    String carID = carBookSplit[0];
-                    String serviceIDs = carBookSplit[1];
-
-                    if (carIDP.equals(carID)) {
-                        carBook = carBook.replace(serviceIDs, serviceIDs + "," + newServiceID);
-
-                    }
-                    output += carBook + "\n";
-                }
-                writer.write(output);
-                return true;
-            }
-
-        } catch (IOException e) {
-            System.out.println("Fajl ne postoji");
-        }
-        return false;
-    }
 }
