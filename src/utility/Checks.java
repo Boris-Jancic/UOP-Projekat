@@ -4,17 +4,12 @@ import carModels.Car;
 import carModels.CarBook;
 import carModels.Part;
 import carModels.Service;
-import main.LoadParts;
 import userModels.Client;
 import userModels.Person;
 import userModels.Worker;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
@@ -32,7 +27,7 @@ public class Checks {
 
     public static Car findCar(String carID, ArrayList<Car> cars) {
         for (Car car : cars) {
-            if (carID.equals(car.getCarID())) {
+            if (carID.equals(car.getCarID()) && car.isDeleted() == false) {
                 return car;
             }
         }
@@ -44,7 +39,7 @@ public class Checks {
 
         for (Car car : Cars) {
             Client client = car.getClient();
-            if (client.getId().equals(id)) {
+            if (client.getId().equals(id) && car.isDeleted() == false) {
                 carsReturn.add(car);
             }
         }
@@ -55,7 +50,7 @@ public class Checks {
     public static Part findPart(String partID, ArrayList<Part> parts) {
 
         for (Part part : parts){
-            if (part != null && partID.equals(part.getId())){
+            if (partID.equals(part.getId()) && part.isDeleted() == false){
                 return part;
             }
         }
@@ -67,8 +62,9 @@ public class Checks {
 
         for (Part part : parts) {
             for (String partID : PartIDs) {
-                if (partID.equals(part.getId()))
+                if (partID.equals(part.getId()) && part.isDeleted() == false) {
                     returnParts.add(part);
+                }
             }
         }
 
@@ -100,8 +96,8 @@ public class Checks {
     public static Client findClient(String id) {
         String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
 
-        if (!users[0].equals("")) {
-            for (String user : users) {
+        for (String user : users) {
+            if (!users.equals("")) {
                 String[] userSplit = user.split("\\|");
                 String role = userSplit[0];
                 String name = userSplit[1];
@@ -116,8 +112,9 @@ public class Checks {
 
                 if (role.equals("3") && userID.equals(id)) {
                     String points = userSplit[10];
+                    Boolean deleted = Boolean.parseBoolean(userSplit[11]);
                     Client client = new Client(name, lastName, jmbg, gender, address, phone,
-                            username, password, Integer.parseInt(points), userID);
+                            username, password, userID, Integer.parseInt(points), deleted);
 
                     return client;
                 }
@@ -134,7 +131,8 @@ public class Checks {
         try {
             date.setTime(format.parse(dateP));
         } catch (ParseException e) {
-            System.out.println("Pogresan unos datuma");
+            System.out.println("!!! Pogresan unos datuma !!!");
+            return null;
         }
 
         return date;
@@ -144,5 +142,4 @@ public class Checks {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return format.format(dateP.getTime());
     }
-
 }
