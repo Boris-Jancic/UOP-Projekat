@@ -16,19 +16,6 @@ import java.util.ArrayList;
 import java.util.Set;
 
 public class WriteToFile {
-
-    public static void write(String string, String fileP) {
-        String oldCredentials = ReadFromFile.read(fileP);
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileP))){
-            writer.write(oldCredentials + string);
-
-        } catch (IOException e) {
-            System.out.println("Nema datog fajla !");
-        }
-    }
-
-
     public static void writeCars(ArrayList<Car> cars){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/cars.txt"))){
 
@@ -50,18 +37,20 @@ public class WriteToFile {
             for (Person person : people) {
                 if (person != null) {
                     if (person instanceof Client) {
-                        writer.write("3" + "|" + person.personToString() + "|" + ((Client) person).getPoints() + "\n");
+                        writer.write("3" + "|" + person.personToString() + "|" + ((Client) person).getPoints() + "|" + person.isDeleted() + "\n");
                     }
 
                     if (person instanceof Worker) {
-                        writer.write("2" + "|" + person.personToString() + "|" + ((Worker) person).getSallary() + "|" + ((Worker) person).getSpecialization() + "\n");
+                        writer.write("2" + "|" + person.personToString() + "|" + ((Worker) person).getSalary() + "|" +
+                                ((Worker) person).getSpecialization()+ "|" + person.isDeleted() + "\n");
                     }
 
                     if (person instanceof Admin) {
-                        writer.write("1" + "|" + person.personToString() + "|" + ((Admin) person).getSallary() + "\n");
+                        writer.write("1" + "|" + person.personToString() + "|" + ((Admin) person).getSalary() + "|" + person.isDeleted() + "\n");
                     }
                 }
             }
+
         } catch (IOException e) {
             System.out.println("! Dati fajl ne postoji !");
         }
@@ -76,6 +65,7 @@ public class WriteToFile {
                     writer.write(part.partToString() + "\n");
                 }
             }
+
         } catch (IOException e) {
             System.out.println("! Dati fajl ne postoji !");
         }
@@ -104,6 +94,7 @@ public class WriteToFile {
                     writer.write(carBook.carBookToString() + "\n");
                 }
             }
+
         } catch (IOException e) {
             System.out.println("! Dati fajl ne postoji !");
         }
