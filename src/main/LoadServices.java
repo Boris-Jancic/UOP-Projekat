@@ -22,14 +22,16 @@ public class LoadServices {
                 String[] serviceSplit = service.split("\\|");
 
                 Car car = Checks.findCar(serviceSplit[0], cars);
+
                 Worker worker = Checks.findWorker(serviceSplit[1], people);
                 GregorianCalendar date = Checks.stringToDate(serviceSplit[2]);
                 String description = serviceSplit[3];
                 ArrayList<Part> usedParts = Checks.findParts(serviceSplit[4].split(";"), parts);
-                String serviceID = serviceSplit[6];
                 String state = serviceSplit[5];
+                String serviceID = serviceSplit[6];
+                boolean deleted = Boolean.parseBoolean(serviceSplit[7]);
 
-                Service ser = new Service(car, worker, date, description, usedParts, state, serviceID);
+                Service ser = new Service(car, worker, date, description, usedParts, state, serviceID, deleted);
                 Services.add(ser);
             }
         }
