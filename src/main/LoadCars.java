@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class LoadCars {
 
     public static ArrayList<Car> load() {
-        String[] cars = ReadFromFile.read("src/data/cars.txt").split("\n");
-        ArrayList<Car> Cars = new ArrayList<>();
+        String[] carsStr = ReadFromFile.read("src/data/cars.txt").split("\n");
+        ArrayList<Car> cars = new ArrayList<>();
 
-        for (String car : cars) {
-            if (!car.isEmpty()) {
-                String[] carSplit = car.split("\\|");
+        for (String carStr : carsStr) {
+            if (!carStr.isEmpty()) {
+                String[] carSplit = carStr.split("\\|");
                 String clientId = carSplit[0];
 
                 Client client = Checks.findClient(clientId);
@@ -28,16 +28,18 @@ public class LoadCars {
                 String age = carSplit[5];
                 String engineVolume = carSplit[6];
                 String enginePower = carSplit[7];
+                boolean deleted = Boolean.parseBoolean(carSplit[8]);
 
-                Car Car = new Car(client, carId, mark, model, fuel, age,
-                        Float.parseFloat(engineVolume), Integer.parseInt(enginePower));
+                Car car = new Car(client, carId, mark, model, fuel, age,
+                        Float.parseFloat(engineVolume), Integer.parseInt(enginePower), deleted);
 
-                CarBook carBook = new CarBook(Car);
+                CarBook carBook = new CarBook(deleted, car);
 
-                Car.setCarBook(carBook);
-                Cars.add(Car);
+                car.setCarBook(carBook);
+                cars.add(car);
             }
         }
-        return Cars;
+
+        return cars;
     }
 }
