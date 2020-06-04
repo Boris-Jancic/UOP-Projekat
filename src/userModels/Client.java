@@ -8,22 +8,18 @@ public class Client extends Person {
     private int points;
     private ArrayList<Car> cars;
 
-    public Client(String name, String lastName, String jmbg, String gender, String address,
-                  String phone, String username, String password, int points, String id) {
+    public Client(String name, String lastName, String jmbg, String gender, String address, String phone,
+                  String username, String password, String id, int points, boolean deleted) {
 
-        super(name, lastName, jmbg, gender, address, phone, username, password);
+        super(name, lastName, jmbg, gender, address, phone, username, password, deleted);
         this.points = points;
         this.id = id;
-        this.cars = new ArrayList<Car>();
-
     }
 
     @Override
     public String toString() {
         return "client{" +
-                "points=" + points +
-                ", cars='" + printCars() +
-                ", id='" + id + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", jmbg='" + jmbg + '\'' +
@@ -32,6 +28,9 @@ public class Client extends Person {
                 ", phone='" + phone + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", cars='" + printCars() +
+                ", points=" + points +
+                ", deleted='" + deleted + '\'' +
                 '}';
     }
 
