@@ -6,19 +6,21 @@ public class Part {
     private String name;
     private double price;
     private String id;
-    private boolean available;
+    private boolean deleted;
 
     public Part(String mark, String model, String name,
-                double price, String id) {
+                double price, String id, boolean deleted) {
         this.mark = mark;
         this.model = model;
         this.name = name;
         this.price = price;
         this.id = id;
+        this.deleted = deleted;
     }
 
     public String partToString() {
-        return this.mark + "|" + this.model + "|" + this.name + "|" + this.price + "|" + this.id + "|" + this.available;
+        return this.mark + "|" + this.model + "|" + this.name + "|" +
+                this.price + "|" + this.id + "|" + this.deleted;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class Part {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", id='" + id + '\'' +
-                ", availability='" + available + '\'' +
+                ", deleted='" + deleted + '\'' +
                 '}';
     }
 
@@ -57,8 +59,8 @@ public class Part {
         this.id = id;
     }
 
-    public boolean isAvailable() { return available; }
+    public boolean isDeleted() { return deleted; }
 
-    public void setAvailable(boolean available) { this.available = available; }
+    public void setAvailable(boolean deleted) { this.deleted = deleted; }
 
 }
