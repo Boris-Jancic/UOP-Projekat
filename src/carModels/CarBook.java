@@ -5,16 +5,19 @@ import java.util.ArrayList;
 public class CarBook {
     private Car car;
     private ArrayList<Service> services = new ArrayList<>();
+    private boolean deleted;
 
-    public CarBook() {}
-    public CarBook(Car car) {
+
+    public CarBook(boolean deleted, Car car) {
+        this.deleted = deleted;
         this.car = car;
     }
 
     @Override
     public String toString() {
         return "CarBook{" +
-                "car=" + car.getCarID() +
+                "deleted=" + this.deleted +
+                ", car=" + car.getCarID() +
                 ", services=" + printServices() +
                 '}';
     }
@@ -22,7 +25,7 @@ public class CarBook {
 
     public String carBookToString() {
         if (this.services.size() != 0)
-            return car.getCarID() + "|" + printServices();
+            return deleted + "|" + car.getCarID() + "|" + printServices();
         return "";
     }
 
@@ -40,6 +43,10 @@ public class CarBook {
     }
 
 
+    public boolean isDeleted() { return deleted; }
+
+    public void setDeleted(boolean deleted) { this.deleted = deleted; }
+
     public Car getCar() { return car; }
 
     public void setCar(Car car) { this.car = car; }
@@ -47,6 +54,7 @@ public class CarBook {
     public void setServices(ArrayList<Service> services) { this.services = services; }
 
     public void addService(Service service) { this.services.add(service) ;}
+
     public void removeService(Service service) { this.services.remove(service) ;}
 
     public ArrayList<Service> getServices() { return services; }
