@@ -17,12 +17,16 @@ public class RegisterPart {
         String name = scanner.nextLine();
 
         System.out.print(">>> Cena : ");
+        if (!scanner.hasNextDouble()) {
+            System.out.println("!!! Unesite broj !!!");
+            return null;
+        }
         double price = scanner.nextDouble();
 
         Random rand = new Random();
         int id = rand.nextInt(999999);
 
-        Part part = new Part(mark,model,name,price,Integer.toString(id));
+        Part part = new Part(mark,model,name,price,Integer.toString(id), false);
         part.setAvailable(true);
         return part;
     }

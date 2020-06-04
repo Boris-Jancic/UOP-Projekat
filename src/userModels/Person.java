@@ -10,8 +10,11 @@ public abstract class Person {
     protected String phone;
     protected String username;
     protected String password;
+    protected boolean deleted;
 
-    public Person(String name, String lastName, String jmbg, String gender, String address, String phone, String username, String password) {
+
+    public Person(String name, String lastName, String jmbg, String gender, String address,
+                  String phone, String username, String password, boolean deleted) {
         this.name = name;
         this.lastName = lastName;
         this.jmbg = jmbg;
@@ -20,12 +23,14 @@ public abstract class Person {
         this.phone = phone;
         this.username = username;
         this.password = password;
+        this.deleted = deleted;
     }
 
     public String personToString(){
         return this.name + "|" + this.lastName + "|" + this.jmbg + "|" + this.gender + "|" +
                 this.address + "|" + this.phone + "|" + this.username + "|" + this.password + "|" + this.id;
     }
+
 
     public String getName() { return name; }
 
@@ -62,4 +67,8 @@ public abstract class Person {
     public String getId() { return this.id; }
 
     public void setId(String id) { this.id = id; }
+
+    public boolean isDeleted() { return deleted; }
+
+    public void setDeleted(boolean deleted) { this.deleted = deleted; }
 }

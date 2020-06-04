@@ -3,14 +3,12 @@ package userModels;
 public class Worker extends Employe {
     private String specialization;
 
+    public Worker(String name, String lastName, String jmbg, String gender, String address, String phone,
+                  String username, String password, String specialization, Double sallary, String id, boolean deleted) {
+        super(name, lastName, jmbg, gender, address, phone, username, password, sallary, deleted);
 
-    public Worker(String name, String lastName, String jmbg,
-                  String gender, String address, String phone, String username,
-                  String password, String specialization, Double sallary, String id) {
-        super(name, lastName, jmbg, gender, address, phone, username, password, sallary);
         this.specialization = specialization;
         this.id = id;
-
     }
 
 
@@ -21,8 +19,7 @@ public class Worker extends Employe {
     @Override
     public String toString() {
         return "worker{" +
-                "specialization='" + specialization + '\'' +
-                ", id='" + id + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", jmbg='" + jmbg + '\'' +
@@ -31,6 +28,9 @@ public class Worker extends Employe {
                 ", phone='" + phone + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                "specialization='" + specialization + '\'' +
+                ", salary='" + getSalary() + '\'' +
+                ", deleted='" + deleted + '\'' +
                 '}';
     }
 

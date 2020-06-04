@@ -18,10 +18,9 @@ public class LoadParts {
                 String name = partSplit[2];
                 double price = Double.parseDouble(partSplit[3]);
                 String id = partSplit[4];
-                String availability = partSplit[5];
+                boolean deleted = Boolean.parseBoolean(partSplit[5]);
 
-                Part p = new Part(mark, model, name, price, id);
-                p.setAvailable(Boolean.parseBoolean(availability));
+                Part p = new Part(mark, model, name, price, id, deleted);
                 partsReturn.add(p);
             }
         }

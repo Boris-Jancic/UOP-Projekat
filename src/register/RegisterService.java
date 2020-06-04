@@ -21,7 +21,6 @@ public class RegisterService {
         System.out.print("\n>>> ID radnika :");
         String workerID = scanner.nextLine();
         Worker worker = Checks.findWorker(workerID, people);
-
         if (worker == null) {
             System.out.println("\n! Nema datog radnika !");
             return null;
@@ -29,7 +28,6 @@ public class RegisterService {
 
         System.out.print(">>> ID automobila za servisiranje :");
         String carID = scanner.nextLine();
-
         Car car = Checks.findCar(carID, cars);
         if (car == null) {
             System.out.println("\n! Nema datog automobila !");
@@ -39,6 +37,9 @@ public class RegisterService {
         System.out.print(">>> Datum servisa (dd.mm.yyyy) : ");
         String date = scanner.nextLine();
         GregorianCalendar reservation = Checks.stringToDate(date);
+        if (reservation == null) {
+            return null;
+        }
 
         System.out.print(">>> Opis :");
         String description = scanner.nextLine();
@@ -47,7 +48,6 @@ public class RegisterService {
         System.out.print(">>> Iskorisceni delovi (odvojeni zarezom => ID,ID) :");
         String usedParts = scanner.nextLine();
         ArrayList<Part> serviceParts = Checks.findParts(usedParts.split(";"), parts);
-
         if (parts == null) {
             System.out.println("Nema datih delova");
             return null;
@@ -58,7 +58,7 @@ public class RegisterService {
         Random r = new Random();
         int rand = r.nextInt(999999);
 
-        Service serviceReturn = new Service(car, worker, reservation, description, serviceParts, status, Integer.toString(rand));
+        Service serviceReturn = new Service(car, worker, reservation, description, serviceParts, status, Integer.toString(rand), false);
         return serviceReturn;
     }
 }

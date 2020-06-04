@@ -1,16 +1,16 @@
 package userModels;
 
 public abstract class Employe extends Person {
-    private double sallary;
+    private double salary;
 
-    public Employe(String name, String lastName, String jmbg, String gender,
-                   String address, String phone, String username, String password, double sallary) {
-        super(name, lastName, jmbg, gender, address, phone, username, password);
-        this.sallary = sallary;
+    public Employe(String name, String lastName, String jmbg, String gender, String address, String phone,
+                   String username, String password, double salary, boolean deleted) {
+        super(name, lastName, jmbg, gender, address, phone, username, password, deleted);
+        this.salary = salary;
     }
 
-    public double getSallary() { return sallary; }
+    public double getSalary() { return salary; }
 
-    public void setSallary(double sallary) { this.sallary = sallary; }
+    public void setSalary(double salary) { this.salary = salary; }
 }
 

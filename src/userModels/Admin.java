@@ -3,15 +3,15 @@ package userModels;
 public class Admin extends Employe {
 
 
-    public Admin(String name, String lastName, String jmbg, String gender
-            , String address, String phone, String username, String password, double sallary, String id) {
-        super(name, lastName, jmbg, gender, address, phone, username, password, sallary);
+    public Admin(String name, String lastName, String jmbg, String gender,String address, String phone,
+                 String username, String password, double salary, String id, boolean deleted) {
+        super(name, lastName, jmbg, gender, address, phone, username, password, salary, deleted);
         this.id = id;
     }
 
     @Override
     public String toString() {
-        return "Admin{" +
+        return "admin {" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -21,6 +21,8 @@ public class Admin extends Employe {
                 ", phone='" + phone + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", salary='" + getSalary() + '\'' +
+                ", deleted='" + deleted + '\'' +
                 '}';
     }
 

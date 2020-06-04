@@ -19,15 +19,16 @@ public class LoadCarBooks {
                 ArrayList<Service> carBookServices = new ArrayList<>();
 
                 String[] carBookSplit = carBook.split("\\|");
-                Car carBookCar = Checks.findCar(carBookSplit[0], cars);
-                String[] serviceIDs = carBookSplit[1].split(";");
+                Car carBookCar = Checks.findCar(carBookSplit[1], cars);
+                boolean deleted = Boolean.parseBoolean(carBookSplit[0]);
+                String[] serviceIDs = carBookSplit[2].split(";");
 
-                CarBook c = new CarBook(carBookCar);
+                CarBook c = new CarBook(deleted, carBookCar);
 
                 for (String serviceID : serviceIDs) {
                     Service service = Checks.findService(serviceID, services);
 
-                    if (service != null) {
+                    if (service != null && service.isDeleted() == false) {
                         carBookServices.add(service);
                     }
                 }

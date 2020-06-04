@@ -33,20 +33,24 @@ public class LoadUsers {
                 String id = userSplit[9];
 
                 if (role.equals("3")) {
-                    Client client = Checks.findClient(id);
+                    int points = Integer.parseInt(userSplit[10]);
+                    boolean deleted = Boolean.parseBoolean(userSplit[11]);
+                    Client client = new Client(name, lastName, jmbg, gender, address, phone, username, password, id, points, deleted);
                     client.setCars(Checks.findCars(Cars, id));
                     people.add(client);
                 }
                 if (role.equals("2")) {
                     Double salary = Double.parseDouble(userSplit[10]);
                     String specialization = userSplit[11];
-                    Worker w = new Worker(name, lastName, jmbg, gender, address, phone, username, password, specialization, salary, id);
+                    boolean deleted = Boolean.parseBoolean(userSplit[12]);
+                    Worker w = new Worker(name, lastName, jmbg, gender, address, phone, username, password, specialization, salary, id, deleted);
                     w.setId(id);
                     people.add(w);
                 }
                 if (role.equals("1")) {
                     double salary = Double.parseDouble(userSplit[10]);
-                    Admin a = new Admin(name, lastName, jmbg, gender, address, phone, username, password, salary, id);
+                    boolean deleted = Boolean.parseBoolean(userSplit[11]);
+                    Admin a = new Admin(name, lastName, jmbg, gender, address, phone, username, password, salary, id, deleted);
                     a.setId(id);
                     people.add(a);
                 }

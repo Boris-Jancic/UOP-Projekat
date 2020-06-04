@@ -18,7 +18,7 @@ public class RegisterUser {
         WriteToFile writeToFile = new WriteToFile();
         String option = "";
 
-        while (!option.equals("1") && !option.equals("2") && !option.equals("3")) {
+        while (!option.matches("[1-3]")) {
             System.out.println("\nKog korisnika zelite da dodate?");
             System.out.println("1) Administrator");
             System.out.println("2) Serviser");
@@ -35,6 +35,11 @@ public class RegisterUser {
 
         System.out.print("\n>>> JMBG : ");
         String jmbg = scanner.nextLine();
+
+        if (jmbg.length() != 13) {
+            System.out.println("!!! JMBG mora da ima 13 karaktera !!!");
+            return null;
+        }
 
         String gender = pickEnums.pickGender();
 
@@ -57,7 +62,7 @@ public class RegisterUser {
             System.out.print("\n>>> Plata : ");
             Double sallary = scanner.nextDouble();
 
-            Admin admin = new Admin(name,lastName,jmbg,gender,address,phone,userName,password, sallary, Integer.toString(id));
+            Admin admin = new Admin(name,lastName,jmbg,gender,address,phone,userName,password, sallary, Integer.toString(id), false);
             return admin;
         }
         if (option.equals("2")) {
@@ -65,11 +70,11 @@ public class RegisterUser {
             double salary = scanner.nextDouble();
             String specialization = pickEnums.pickSpecialization();
 
-            Worker worker = new Worker(name,lastName,jmbg,gender,address,phone,userName,password,Integer.toString(id), salary, specialization);
+            Worker worker = new Worker(name,lastName,jmbg,gender,address,phone,userName,password,Integer.toString(id), salary, specialization, false);
             return  worker;
         }
         if (option.equals("3")) {
-            Client client = new Client(name, lastName, jmbg, gender, address, phone, userName, password, 0, Integer.toString(id));
+            Client client = new Client(name, lastName, jmbg, gender, address, phone, userName, password, Integer.toString(id), 0, false);
             return client;
         }
         return null;

@@ -4,11 +4,13 @@ import carModels.Car;
 import carModels.CarBook;
 import carModels.Part;
 import carModels.Service;
+import functions.ChangeData;
 import functions.Delete;
 import register.*;
 import userModels.Client;
 import userModels.Person;
 import userModels.Worker;
+import utility.Checks;
 import utility.WriteToFile;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -36,6 +38,7 @@ public class Main {
             System.out.println("8) Prikazi servise");
             System.out.println("9) Prikazi servisne knjizice");
             System.out.println("10) Brisanje podataka");
+            System.out.println("11) Izmena podataka");
             System.out.println("\n0) Ugasi aplikaciju");
 
             Scanner scanner = new Scanner(System.in);
@@ -62,7 +65,6 @@ public class Main {
                     for (Person person : people) {
 
                         if (person instanceof Client){
-
                             if (registeredCar.getClient().getId().equals(person.getId())) {
                                 System.out.println(registeredCar);
                                 ArrayList<Car> clientCars = ((Client) person).getCars();
@@ -79,6 +81,7 @@ public class Main {
 
                 case "5":
                     Part registeredPart = RegisterPart.register();
+                    System.out.println(registeredPart);
                     parts.add(registeredPart);
                     break;
 
@@ -105,10 +108,10 @@ public class Main {
 
 
                 case "10":
-                    System.out.println("\n1) Brisanje korisnika");
+                    System.out.println("\n1) Brisanje korisnika (brise sve servise radnika/automobile klijenta");
                     System.out.println("2) Brisanje automobila (brise njegovu servisnu knjizicu)");
                     System.out.println("3) Brisanje delova");
-                    System.out.println("4) Brisanje servisa");
+                    System.out.println("4) Brisanje servisa (brise servis iz servisne knjizice)");
 
                     System.out.print("\n>>> Unesi funkciju : ");
                     option = scanner.nextLine();
@@ -123,39 +126,55 @@ public class Main {
                         System.out.print("\n>>> Unesite ID korisnika kojeg zelite da obrisete : ");
                         String deletedPerson = scanner.nextLine();
 
-                        Person deletedP = Delete.deletePerson(optionPerson, deletedPerson, people);
-                        people.remove(deletedP);
+                        people = Delete.deletePerson(optionPerson, deletedPerson, people);
 
-                        if (optionPerson.equals("3") && deletedP instanceof Client) {
-                            cars = Delete.deleteCars(((Client) deletedP).getCars(), cars);
-                            for (Car car : ((Client) deletedP).getCars()) {
-                                carBooks = Delete.deleteCarBook(car.getCarID(), carBooks);
-                            }
-                        }
-                        if (optionPerson.equals("2") && deletedP instanceof Worker) {
-                            services = Delete.deleteServices(deletedP.getId(), services);
+                        if (optionPerson.equals("3")) {
+                            cars = Delete.deleteCars(deletedPerson, cars);
+                            carBooks = Delete.deleteCarBook(cars, carBooks);
                         }
                     }
 
-                    if (option.equals("2")) {
+                    else if (option.equals("2")) {
                         System.out.print("\n>>> Unesite ID automobila koji zelite da obrisete : ");
                         String deletedCar = scanner.nextLine();
 
-                        cars.remove(Delete.deleteCar(deletedCar, cars));
-                        carBooks = Delete.deleteCarBook(deletedCar, carBooks);
+                        cars = Delete.deleteCar(deletedCar, cars);
+                        carBooks = Delete.deleteCarBook(cars, carBooks);
                     }
 
-                    if (option.equals("3")) {
+                    else if (option.equals("3")) {
                         parts = Delete.deletePart(parts);
                     }
 
-                    if (option.equals("4")) {
-                        Service deleteService = Delete.deleteService(services);
-                        services.remove(deleteService);
-                        carBooks = Delete.deleteCarBookServices(deleteService, carBooks);
+                    else if (option.equals("4")) {
+                        services = Delete.deleteService(services);
+                        carBooks = Delete.deleteCarBookServices(services, carBooks);
                     }
                     break;
 
+                case "11":
+                    System.out.println("\n1) Izmena korisnika");
+                    System.out.println("2) Izmena automobila");
+                    System.out.println("3) Izmena delova");
+                    System.out.println("4) Izmena servisa");
+
+                    System.out.print("\n>>> Unesi funkciju : ");
+                    option = scanner.nextLine();
+
+                    if (option.equals("1")) {
+                        people = ChangeData.changeUser(people);
+                    }
+                    else if (option.equals("2")) {
+                        cars = ChangeData.changeCar(cars);
+                    }
+                    else if (option.equals("3")) {
+                        parts = ChangeData.changePart(parts);
+                    }
+                    else if (option.equals("4")) {
+                        services = ChangeData.changeService(people, cars, services, parts);
+                        UpdateCarBooks.update(services, carBooks);
+                    }
+                    break;
 
                 case "0":
                     WriteToFile.writeCars(cars);
