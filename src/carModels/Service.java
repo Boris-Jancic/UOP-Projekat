@@ -14,9 +14,10 @@ public class Service {
     private ArrayList<Part> usedParts;
     private String status;
     private String id;
+    private boolean deleted;
 
     public Service(Car car, Worker worker, GregorianCalendar reservation, String description,
-                   ArrayList<Part> usedParts, String status, String id) {
+                   ArrayList<Part> usedParts, String status, String id, Boolean deleted) {
         this.car = car;
         this.worker = worker;
         this.reservation = reservation;
@@ -24,11 +25,12 @@ public class Service {
         this.usedParts = usedParts;
         this.status = status;
         this.id = id;
+        this.deleted = deleted;
     }
 
     public String serviceToString() {
         return  this.car.getCarID() + "|" + this.worker.getId() + "|" + Checks.dateToString(this.reservation) + "|" +
-                this.description + "|" + printParts() + "|" + this.status + "|" + this.id;
+                this.description + "|" + printParts() + "|" + this.status + "|" + this.id + "|" + this.deleted;
 
     }
 
@@ -42,6 +44,7 @@ public class Service {
                 ", usedParts=" + printParts() +
                 ", status=" + status +
                 ", id='" + id + '\'' +
+                ", deleted='" + deleted + '\'' +
                 '}';
     }
 
@@ -54,6 +57,11 @@ public class Service {
 
         return output;
     }
+
+
+    public boolean isDeleted() { return deleted; }
+
+    public void setDeleted(boolean deleted) { this.deleted = deleted; }
 
     public void setCar(Car car) { this.car = car; }
 
