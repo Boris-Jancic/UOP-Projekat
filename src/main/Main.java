@@ -170,7 +170,7 @@ public class Main {
                         parts = ChangeData.changePart(parts);
                     }
                     else if (option.equals("4")) {
-                        services = ChangeData.changeService(people, cars, services, parts);
+                        services = ChangeData.changeService(people, services, parts);
                         UpdateCarBooks.update(services, carBooks);
                     }
                     break;
