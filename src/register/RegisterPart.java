@@ -27,7 +27,6 @@ public class RegisterPart {
         int id = rand.nextInt(999999);
 
         Part part = new Part(mark,model,name,price,Integer.toString(id), false);
-        part.setAvailable(true);
         return part;
     }
 }
