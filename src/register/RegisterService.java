@@ -14,8 +14,6 @@ import java.util.*;
 public class RegisterService {
 
     public static Service register(ArrayList<Car> cars, Set<Person> people, ArrayList<Part> parts) {
-        PickEnums pickEnums = new PickEnums();
-        WriteToFile tofile = new WriteToFile();
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("\n>>> ID radnika :");
@@ -53,12 +51,11 @@ public class RegisterService {
             return null;
         }
 
-        String status = pickEnums.pickStatus();
+        String status = PickEnums.pickStatus();
 
         Random r = new Random();
         int rand = r.nextInt(999999);
 
-        Service serviceReturn = new Service(car, worker, reservation, description, serviceParts, status, Integer.toString(rand), false);
-        return serviceReturn;
+        return new Service(car, worker, reservation, description, serviceParts, status, Integer.toString(rand), false);
     }
 }

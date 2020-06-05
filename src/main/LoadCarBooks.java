@@ -28,7 +28,7 @@ public class LoadCarBooks {
                 for (String serviceID : serviceIDs) {
                     Service service = Checks.findService(serviceID, services);
 
-                    if (service != null && service.isDeleted() == false) {
+                    if (service != null && !service.isDeleted()) {
                         carBookServices.add(service);
                     }
                 }

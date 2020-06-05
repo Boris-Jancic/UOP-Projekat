@@ -5,8 +5,6 @@ import userModels.Client;
 import userModels.Person;
 import userModels.Worker;
 import utility.PickEnums;
-import utility.WriteToFile;
-
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,8 +12,6 @@ import java.util.Scanner;
 public class RegisterUser {
     public static Person register() {
         Scanner scanner = new Scanner(System.in);
-        PickEnums pickEnums = new PickEnums();
-        WriteToFile writeToFile = new WriteToFile();
         String option = "";
 
         while (!option.matches("[1-3]")) {
@@ -41,7 +37,7 @@ public class RegisterUser {
             return null;
         }
 
-        String gender = pickEnums.pickGender();
+        String gender = PickEnums.pickGender();
 
         System.out.print("\n>>> Adresa : ");
         String address = scanner.nextLine();
@@ -60,22 +56,19 @@ public class RegisterUser {
 
         if (option.equals("1")) {
             System.out.print("\n>>> Plata : ");
-            Double sallary = scanner.nextDouble();
+            double sallary = scanner.nextDouble();
 
-            Admin admin = new Admin(name,lastName,jmbg,gender,address,phone,userName,password, sallary, Integer.toString(id), false);
-            return admin;
+            return new Admin(name,lastName,jmbg,gender,address,phone,userName,password, sallary, Integer.toString(id), false);
         }
         if (option.equals("2")) {
             System.out.print("\n>>> Plata : ");
             double salary = scanner.nextDouble();
-            String specialization = pickEnums.pickSpecialization();
+            String specialization = PickEnums.pickSpecialization();
 
-            Worker worker = new Worker(name,lastName,jmbg,gender,address,phone,userName,password,Integer.toString(id), salary, specialization, false);
-            return  worker;
+            return new Worker(name,lastName,jmbg,gender,address,phone,userName,password,Integer.toString(id), salary, specialization, false);
         }
         if (option.equals("3")) {
-            Client client = new Client(name, lastName, jmbg, gender, address, phone, userName, password, Integer.toString(id), 0, false);
-            return client;
+            return new Client(name, lastName, jmbg, gender, address, phone, userName, password, Integer.toString(id), 0, false);
         }
         return null;
     }

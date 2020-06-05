@@ -2,7 +2,6 @@ package utility;
 
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -21,7 +20,7 @@ public class ReadFromFile {
             return oldCredenitals;
 
         } catch (IOException e) {
-            System.out.println("Nema datog fajla !");
+            System.out.println("Nema daztog fajla !");
         }
         return "";
     }
