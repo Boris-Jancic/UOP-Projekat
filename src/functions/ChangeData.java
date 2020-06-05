@@ -246,8 +246,7 @@ public class ChangeData {
     }
 
 
-    public static ArrayList<Service> changeService(Set<Person> people, ArrayList<Car> cars,
-                                                   ArrayList<Service> services, ArrayList<Part> parts) {
+    public static ArrayList<Service> changeService(Set<Person> people, ArrayList<Service> services, ArrayList<Part> parts) {
         System.out.print(">>> Unesi ID servisa : ");
         String serviceID = scanner.nextLine();
 
