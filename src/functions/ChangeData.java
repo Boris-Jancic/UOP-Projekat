@@ -6,10 +6,8 @@ import carModels.Service;
 import userModels.*;
 import utility.Checks;
 import utility.PickEnums;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.Scanner;
-import java.util.Set;
+
+import java.util.*;
 
 public class ChangeData {
     static Scanner scanner = new Scanner(System.in);
@@ -71,10 +69,10 @@ public class ChangeData {
                     System.out.print(">>> Unesi novi JMBG : ");
                     String jmbg = scanner.nextLine();
 
-                    if (jmbg.length() == 13) {
+                    if (jmbg.matches("[0-9]+") || jmbg.length() == 13) {
                         person.setJmbg(jmbg);
                     }
-                    else if (jmbg.length() != 13) {
+                    else {
                         System.out.println("!!! JMBG mora da ima 13 karaktera !!!");
                     }
 
@@ -168,18 +166,41 @@ public class ChangeData {
 
                 case "4":
                     System.out.print("\n>>> Unesi godiste : ");
+
                     String date = scanner.nextLine();
+                    int year = Calendar.getInstance().get(Calendar.YEAR);
+                    if (!date.matches("[0-9]+") || date.length() != 4 || Integer.parseInt(date) > year) {  // Proverava da li je
+                        System.out.println("!!! Pogresno uneseno godiste !!!");                               // godina validna
+                        break;
+                    }
+
                     car.setAge(date);
+                    break;
 
                 case "5":
                     System.out.print("\n>>> Unesi novu zapreminu motora : ");
-                    String engineVolume = scanner.nextLine();
-                    car.setEngineVolume(Float.parseFloat(engineVolume));
+
+                    if (scanner.hasNextFloat()) {
+                        String engineVolume = scanner.nextLine();
+                        car.setEngineVolume(Float.parseFloat(engineVolume));
+                        break;
+                    }
+                    scanner.nextLine();
+                    System.out.println("!!! Unesite broj !!!");
+
+                    break;
 
                 case "6":
                     System.out.print("\n>>> Unesi novu jacinu motora : ");
-                    String enginePower = scanner.nextLine();
-                    car.setEnginePower(Integer.parseInt(enginePower));
+
+                    if (scanner.hasNextInt()) {
+                        String enginePower = scanner.nextLine();
+                        car.setEnginePower(Integer.parseInt(enginePower));
+                        break;
+                    }
+                    scanner.nextLine();
+                    System.out.println("!!! Unesite broj !!!");
+                   break;
 
                 case "0":
                     return car;
@@ -203,8 +224,8 @@ public class ChangeData {
 
     private static Part changePart(Part part) {
         while (true) {
-            System.out.println("\n1) Model");
-            System.out.println("2) Marka");
+            System.out.println("\n1) Marka");
+            System.out.println("2) Model");
             System.out.println("3) Ime");
             System.out.println("4) Cena");
             System.out.println("\n0) Nazad u glavni meni");
@@ -277,6 +298,7 @@ public class ChangeData {
                     String workerID = scanner.nextLine();
 
                     Worker worker = Checks.findWorker(workerID, people);
+
 
                     if (worker != null) {
                         service.setWorker(worker);
