@@ -4,7 +4,7 @@ public class Worker extends Employe {
     private String specialization;
 
     public Worker(String name, String lastName, String jmbg, String gender, String address, String phone,
-                  String username, String password, String specialization, Double sallary, String id, boolean deleted) {
+                  String username, String password, String id, Double sallary, String specialization, boolean deleted) {
         super(name, lastName, jmbg, gender, address, phone, username, password, sallary, deleted);
 
         this.specialization = specialization;
