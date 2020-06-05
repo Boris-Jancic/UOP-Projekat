@@ -32,7 +32,7 @@ public class RegisterUser {
         System.out.print("\n>>> JMBG : ");
         String jmbg = scanner.nextLine();
 
-        if (jmbg.length() != 13) {
+        if (!jmbg.matches("[0-9]+") || jmbg.length() != 13) {
             System.out.println("!!! JMBG mora da ima 13 karaktera !!!");
             return null;
         }
