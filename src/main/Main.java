@@ -9,8 +9,6 @@ import functions.Delete;
 import register.*;
 import userModels.Client;
 import userModels.Person;
-import userModels.Worker;
-import utility.Checks;
 import utility.WriteToFile;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -151,6 +149,7 @@ public class Main {
                         carBooks = Delete.deleteCarBookServices(services, carBooks);
                     }
                     break;
+
 
                 case "11":
                     System.out.println("\n1) Izmena korisnika");

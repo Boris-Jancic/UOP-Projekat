@@ -45,10 +45,8 @@ public class Car {
 
 
     public String carToString() {
-        String carString = this.client.getId() + "|" + this.carID + "|" + this.mark + "|" + this.model + "|" +
+        return this.client.getId() + "|" + this.carID + "|" + this.mark + "|" + this.model + "|" +
                 this.fuel + "|" + this.age + "|" + this.engineVolume + "|" + this.enginePower + "|" + this.deleted;
-
-        return carString;
     }
 
     public Client getClient() {

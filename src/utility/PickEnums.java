@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class PickEnums {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static String pickMark() {
         String option = "";

@@ -27,7 +27,7 @@ public class Checks {
 
     public static Car findCar(String carID, ArrayList<Car> cars) {
         for (Car car : cars) {
-            if (carID.equals(car.getCarID()) && car.isDeleted() == false) {
+            if (carID.equals(car.getCarID()) && !car.isDeleted()) {
                 return car;
             }
         }
@@ -39,7 +39,7 @@ public class Checks {
 
         for (Car car : Cars) {
             Client client = car.getClient();
-            if (client.getId().equals(id) && car.isDeleted() == false) {
+            if (client.getId().equals(id) && !car.isDeleted()) {
                 carsReturn.add(car);
             }
         }
@@ -50,7 +50,7 @@ public class Checks {
     public static Part findPart(String partID, ArrayList<Part> parts) {
 
         for (Part part : parts){
-            if (partID.equals(part.getId()) && part.isDeleted() == false){
+            if (partID.equals(part.getId()) && !part.isDeleted()){
                 return part;
             }
         }
@@ -62,7 +62,7 @@ public class Checks {
 
         for (Part part : parts) {
             for (String partID : PartIDs) {
-                if (partID.equals(part.getId()) && part.isDeleted() == false) {
+                if (partID.equals(part.getId()) && !part.isDeleted()) {
                     returnParts.add(part);
                 }
             }
@@ -112,11 +112,10 @@ public class Checks {
 
                 if (role.equals("3") && userID.equals(id)) {
                     String points = userSplit[10];
-                    Boolean deleted = Boolean.parseBoolean(userSplit[11]);
-                    Client client = new Client(name, lastName, jmbg, gender, address, phone,
-                            username, password, userID, Integer.parseInt(points), deleted);
+                    boolean deleted = Boolean.parseBoolean(userSplit[11]);
 
-                    return client;
+                    return new Client(name, lastName, jmbg, gender, address, phone,
+                            username, password, userID, Integer.parseInt(points), deleted);
                 }
             }
         }

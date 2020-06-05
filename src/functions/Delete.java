@@ -4,23 +4,18 @@ import carModels.Car;
 import carModels.CarBook;
 import carModels.Part;
 import carModels.Service;
-import org.jetbrains.annotations.NotNull;
 import userModels.Admin;
 import userModels.Client;
 import userModels.Person;
 import userModels.Worker;
-import utility.Checks;
-
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Delete {
 
     public static Set<Person> deletePerson(String option, String deletedPerson, Set<Person> people) {
-        Boolean found = false;
+        boolean found = false;
         for (Person person: people) {
             if (person != null){
                 if (option.equals("1") && person instanceof Admin && deletedPerson.equals(person.getId())){
@@ -40,7 +35,7 @@ public class Delete {
             }
         }
 
-        if (found == false) {
+        if (!found) {
             System.out.println("\n! Takav korisnik ne postoji ! \n");
         }
 
@@ -82,7 +77,7 @@ public class Delete {
     }
 
 
-     public static ArrayList<Service> deleteService(ArrayList<Service> services) {
+    public static ArrayList<Service> deleteService(ArrayList<Service> services) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\n>>> Unesite ID servisa koji zelite da obrisete : ");
         String serviceID = scanner.nextLine();
@@ -94,31 +89,13 @@ public class Delete {
         }
 
         return services;
-     }
-
-    public static ArrayList<Service> deleteServices(String workerID, ArrayList<Service> services) {
-        for (Service service : services) {
-            if (service.getWorker().getId().equals(workerID)) {
-                service.setDeleted(true);
-            }
-        }
-        return services;
     }
 
-
-//    public static ArrayList<CarBook> deleteCarBook(String carID, ArrayList<CarBook> carBooks) {
-//        for (CarBook carBook : carBooks) {
-//            if (carBook.getCar().getCarID().equals(carID)){
-//                carBook.setDeleted(true);
-//            }
-//        }
-//        return carBooks;
-//    }
 
     public static ArrayList<CarBook> deleteCarBook(ArrayList<Car> cars, ArrayList<CarBook> carBooks) {
         for (CarBook carBook : carBooks) {
             for (Car car : cars) {
-                if (carBook.getCar().getCarID().equals(car.getCarID()) && car.isDeleted() == true) {
+                if (carBook.getCar().getCarID().equals(car.getCarID()) && car.isDeleted()) {
                     carBook.setDeleted(true);
                 }
             }
@@ -126,13 +103,12 @@ public class Delete {
         return carBooks;
     }
 
-
     public static ArrayList<CarBook> deleteCarBookServices(ArrayList<Service> services, ArrayList<CarBook> carBooks) {
         ArrayList<Service> nonDeletedServices = new ArrayList<>();
         ArrayList<CarBook> returnCarBooks = new ArrayList<>();
 
         for (Service service : services) {  // Dodaju se svi servisi koji nisu obrisani
-            if (service.isDeleted() == false) {
+            if (!service.isDeleted()) {
                 nonDeletedServices.add(service);
             }
         }
