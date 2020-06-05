@@ -69,7 +69,7 @@ public class Delete {
 
         for (Part part : parts) {
             if (part.getId().equals(partID)){
-                part.setAvailable(false);
+                part.setDeleted(true);
             }
         }
 

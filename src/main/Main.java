@@ -106,7 +106,7 @@ public class Main {
 
 
                 case "10":
-                    System.out.println("\n1) Brisanje korisnika (brise sve servise radnika/automobile klijenta");
+                    System.out.println("\n1) Brisanje korisnika");
                     System.out.println("2) Brisanje automobila (brise njegovu servisnu knjizicu)");
                     System.out.println("3) Brisanje delova");
                     System.out.println("4) Brisanje servisa (brise servis iz servisne knjizice)");
@@ -117,7 +117,7 @@ public class Main {
                     if (option.equals("1")) {
                         System.out.println("\n1) Izbrisi admina");
                         System.out.println("2) Izbrisi radnika");
-                        System.out.println("3) Izbrisi musteriju");
+                        System.out.println("3) Izbrisi musteriju (brise sve njegove automobile)");
 
                         System.out.print("\n>>> Unesi funkciju : ");
                         String optionPerson = scanner.nextLine();
@@ -170,7 +170,7 @@ public class Main {
                         parts = ChangeData.changePart(parts);
                     }
                     else if (option.equals("4")) {
-                        services = ChangeData.changeService(people, cars, services, parts);
+                        services = ChangeData.changeService(people, services, parts);
                         UpdateCarBooks.update(services, carBooks);
                     }
                     break;

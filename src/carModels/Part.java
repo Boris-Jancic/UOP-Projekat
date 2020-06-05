@@ -61,6 +61,6 @@ public class Part {
 
     public boolean isDeleted() { return deleted; }
 
-    public void setAvailable(boolean deleted) { this.deleted = deleted; }
+    public void setDeleted(boolean deleted) { this.deleted = deleted; }
 
 }
