@@ -43,7 +43,7 @@ public class LoadUsers {
                     Double salary = Double.parseDouble(userSplit[10]);
                     String specialization = userSplit[11];
                     boolean deleted = Boolean.parseBoolean(userSplit[12]);
-                    Worker w = new Worker(name, lastName, jmbg, gender, address, phone, username, password, specialization, salary, id, deleted);
+                    Worker w = new Worker(name, lastName, jmbg, gender, address, phone, username, password, id, salary, specialization, deleted);
                     w.setId(id);
                     people.add(w);
                 }
