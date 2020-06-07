@@ -15,6 +15,16 @@ import java.util.Set;
 
 public class Checks {
 
+    public static Person Login(Set<Person> people, String username, String password) {
+        for (Person person : people) {
+            if (person.getUsername().equals(username) && person.getPassword().equals(password) && !person.isDeleted()) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+
     public static Worker findWorker(String id, Set<Person> people) {
         for (Person person : people) {
             if (person instanceof Worker && person.getId().equals(id)){
