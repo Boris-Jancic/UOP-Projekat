@@ -1,4 +1,4 @@
-package gui;
+package guiTables;
 
 import carModels.Car;
 import guiForms.CarForm;
