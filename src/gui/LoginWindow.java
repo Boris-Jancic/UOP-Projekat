@@ -1,35 +1,34 @@
 package gui;
 
+import main.Access;
 import net.miginfocom.swing.MigLayout;
+import userModels.Admin;
 import userModels.Client;
 import userModels.Person;
+import userModels.Worker;
 import utility.Checks;
-
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
+import java.io.IOException;
 
 public class LoginWindow extends JFrame {
     private JLabel lblWelcome = new JLabel("Dobrodosli. Molimo da se prijavite.");
     private JLabel lblUsername = new JLabel("Korisnicko ime");
-    private JTextField txtUsername = new JTextField(20);
+    private JTextField txtUsername = new JTextField(15);
     private JLabel lblPassword = new JLabel("Lozinka");
-    private JPasswordField pfPassword = new JPasswordField(20);
-
+    private JPasswordField pfPassword = new JPasswordField(15);
     private JButton btnOk = new JButton("Uloguj se");
     private JButton btnCancel = new JButton("Otkazi");
+    private Access access;
 
-    private Set<Person> people;
-
-    public LoginWindow(Set<Person> people) {
-        this.people = people;
+    public LoginWindow(Access access) {
+        this.access = access;
         setTitle("Prijava korisnika");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         initGUI();
-        initActions();
+        initActions(access);
         pack();
 
         getRootPane().setDefaultButton(btnOk);
@@ -49,7 +48,7 @@ public class LoginWindow extends JFrame {
         add(btnCancel);
     }
 
-    private void initActions() {
+    private void initActions(Access access) {
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -68,7 +67,7 @@ public class LoginWindow extends JFrame {
                     JOptionPane.showMessageDialog(null, "Niste uneli sve podatke",
                                                     "Greska", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    Person person = Checks.Login(people, username, password);
+                    Person person = Checks.Login(access.getPeople(), username, password);
 
                     if (person == null) {
                         JOptionPane.showMessageDialog(null, "Nevazeca sifra ili korisniko ime",
@@ -78,9 +77,25 @@ public class LoginWindow extends JFrame {
                     if (person instanceof Client) {
                         LoginWindow.this.dispose();
                         LoginWindow.this.setVisible(false);
-                        System.out.println(person);
-                        ClientWindow clientWindow = new ClientWindow((Client) person);
+                        ClientWindow clientWindow = new ClientWindow(access, (Client) person);
                         clientWindow.setVisible(true);
+
+                    } else if (person instanceof Worker) {
+                        LoginWindow.this.dispose();
+                        LoginWindow.this.setVisible(false);
+                        WorkerWindow serviceWindow = new WorkerWindow((Worker) person, access, 1);
+                        serviceWindow.setVisible(true);
+
+                    } else if (person instanceof Admin) {
+                        LoginWindow.this.dispose();
+                        LoginWindow.this.setVisible(false);
+                        AdminWindow adminWindow = null;
+                        try {
+                            adminWindow = new AdminWindow((Admin) person, access);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        adminWindow.setVisible(true);
                     }
                 }
             }
