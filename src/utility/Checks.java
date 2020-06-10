@@ -4,6 +4,8 @@ import carModels.Car;
 import carModels.CarBook;
 import carModels.Part;
 import carModels.Service;
+import enums.Gender;
+import main.Access;
 import userModels.Client;
 import userModels.Person;
 import userModels.Worker;
@@ -102,7 +104,6 @@ public class Checks {
         return null;
     }
 
-
     public static Client findClient(String id) {
         String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
 
@@ -113,7 +114,7 @@ public class Checks {
                 String name = userSplit[1];
                 String lastName = userSplit[2];
                 String jmbg = userSplit[3];
-                String gender = userSplit[4];
+                Gender gender = Gender.valueOf(userSplit[4]);
                 String address = userSplit[5];
                 String phone = userSplit[6];
                 String username = userSplit[7];
@@ -132,6 +133,14 @@ public class Checks {
         return null;
     }
 
+    public Client findClient(String userName, ArrayList<Client> clients) {
+        for (Client client : clients) {
+            if (client instanceof Client && client.getUsername().equals(userName)) {
+                return client;
+            }
+        }
+        return null;
+    }
 
     public static GregorianCalendar stringToDate(String dateP) {
         GregorianCalendar date = new GregorianCalendar();
@@ -151,4 +160,14 @@ public class Checks {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return format.format(dateP.getTime());
     }
+
+//    public static Set<Client> getClients() {
+//        Set<Client> returnClients = null;
+//        for (Person person : ) {
+//            if (person instanceof Client) {
+//                returnClients.add((Client) person);
+//            }
+//        }
+//        return returnClients;
+//    }
 }
