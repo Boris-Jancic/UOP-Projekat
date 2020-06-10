@@ -3,6 +3,7 @@ package main;
 import carModels.Car;
 import carModels.Part;
 import carModels.Service;
+import enums.Status;
 import userModels.Person;
 import userModels.Worker;
 import utility.Checks;
@@ -27,7 +28,7 @@ public class LoadServices {
                 GregorianCalendar date = Checks.stringToDate(serviceSplit[2]);
                 String description = serviceSplit[3];
                 ArrayList<Part> usedParts = Checks.findParts(serviceSplit[4].split(";"), parts);
-                String state = serviceSplit[5];
+                Status state = Status.valueOf(serviceSplit[5]);
                 String serviceID = serviceSplit[6];
                 boolean deleted = Boolean.parseBoolean(serviceSplit[7]);
 

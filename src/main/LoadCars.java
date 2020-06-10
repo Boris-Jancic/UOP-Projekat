@@ -2,6 +2,10 @@ package main;
 
 import carModels.Car;
 import carModels.CarBook;
+import carModels.Service;
+import enums.Fuel;
+import enums.Mark;
+import enums.Model;
 import userModels.Client;
 import utility.Checks;
 import utility.ReadFromFile;
@@ -22,24 +26,33 @@ public class LoadCars {
                 Client client = Checks.findClient(clientId);
 
                 String carId = carSplit[1];
-                String mark = carSplit[2];
-                String model = carSplit[3];
-                String fuel = carSplit[4];
+                Mark markCar = Mark.valueOf(carSplit[2]);
+                Model modelCar = Model.valueOf(carSplit[3]);
+                Fuel fuelCar = Fuel.valueOf(carSplit[4]);
                 String age = carSplit[5];
                 String engineVolume = carSplit[6];
                 String enginePower = carSplit[7];
                 boolean deleted = Boolean.parseBoolean(carSplit[8]);
 
-                Car car = new Car(client, carId, mark, model, fuel, age,
+                Car car = new Car(client, carId, markCar, modelCar, fuelCar, age,
                         Float.parseFloat(engineVolume), Integer.parseInt(enginePower), deleted);
 
-                CarBook carBook = new CarBook(deleted, car);
-
-                car.setCarBook(carBook);
                 cars.add(car);
             }
         }
 
+        return cars;
+    }
+
+    public static ArrayList<Car> setCarBooks(ArrayList<Car> cars, ArrayList<CarBook> carBooks) {
+        for (Car car : cars) {
+            for (CarBook carBook : carBooks) {
+                for (Service service : carBook.getServices())
+                if (car.getCarID().equals(carBook.getCar().getCarID())) {
+                    car.setCarBook(carBook);
+                }
+            }
+        }
         return cars;
     }
 }
