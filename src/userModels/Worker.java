@@ -1,10 +1,13 @@
 package userModels;
 
-public class Worker extends Employe {
-    private String specialization;
+import enums.Gender;
+import enums.Specialization;
 
-    public Worker(String name, String lastName, String jmbg, String gender, String address, String phone,
-                  String username, String password, String id, Double sallary, String specialization, boolean deleted) {
+public class Worker extends Employe {
+    private Specialization specialization;
+
+    public Worker(String name, String lastName, String jmbg, Gender gender, String address, String phone,
+                  String username, String password, String id, Double sallary, Specialization specialization, boolean deleted) {
         super(name, lastName, jmbg, gender, address, phone, username, password, sallary, deleted);
 
         this.specialization = specialization;
@@ -12,9 +15,9 @@ public class Worker extends Employe {
     }
 
 
-    public String getSpecialization() { return specialization; }
+    public Specialization getSpecialization() { return specialization; }
 
-    public void setSpecialization(String specialization) { this.specialization = specialization; }
+    public void setSpecialization(Specialization specialization) { this.specialization = specialization; }
 
     @Override
     public String toString() {

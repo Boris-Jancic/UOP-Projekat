@@ -1,11 +1,13 @@
 package userModels;
 
+import enums.Gender;
+
 public abstract class Person {
     protected String id;
     protected String name;
     protected String lastName;
     protected String jmbg;
-    protected String gender;
+    protected Gender gender;
     protected String address;
     protected String phone;
     protected String username;
@@ -13,7 +15,7 @@ public abstract class Person {
     protected boolean deleted;
 
 
-    public Person(String name, String lastName, String jmbg, String gender, String address,
+    public Person(String name, String lastName, String jmbg, Gender gender, String address,
                   String phone, String username, String password, boolean deleted) {
         this.name = name;
         this.lastName = lastName;
@@ -44,9 +46,9 @@ public abstract class Person {
 
     public void setJmbg(String jmbg) { this.jmbg = jmbg; }
 
-    public String getGender() { return gender; }
+    public Gender getGender() { return gender; }
 
-    public void setGender(String gender) { this.gender = gender; }
+    public void setGender(Gender gender) { this.gender = gender; }
 
     public String getAddress() { return address; }
 
