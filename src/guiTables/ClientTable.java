@@ -1,4 +1,4 @@
-package gui;
+package guiTables;
 
 import guiForms.ClientForm;
 import main.Access;

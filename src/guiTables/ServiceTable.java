@@ -1,4 +1,4 @@
-package gui;
+package guiTables;
 
 import carModels.Service;
 import guiForms.ServiceForm;
