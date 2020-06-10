@@ -1,2 +1,9 @@
 BMW|TWO|Retrovizor|2000.0|285667|false
-OPEL|THREE|Auspuh|5000.0|554642|false
+OPEL|FOUR|Auspuh|5000.0|554642|false
+LAMBO|THREE|Karburator|5000.0|425342|false
+BMW|ONE|Hauba|5000.0|786642|false
+OPEL|THREE|Vrata|5000.0|888642|false
+YUGO|TWO|Auspuh|5000.0|999642|false
+YUGO|THREE|Staklo|2000.0|269126|false
+LAMBO|ONE|Desna strana - retrovizor|6000.0|124218|false
+LAMBO|ONE|Leva strana - retrovizor|6000.0|569375|false
