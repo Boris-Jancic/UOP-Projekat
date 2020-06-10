@@ -55,8 +55,6 @@ public class CarBook {
 
     public void addService(Service service) { this.services.add(service) ;}
 
-    public void removeService(Service service) { this.services.remove(service) ;}
-
     public ArrayList<Service> getServices() { return services; }
 
 }

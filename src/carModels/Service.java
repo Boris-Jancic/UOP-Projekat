@@ -1,5 +1,6 @@
 package carModels;
 
+import enums.Status;
 import userModels.Worker;
 import utility.Checks;
 
@@ -12,12 +13,12 @@ public class Service {
     private GregorianCalendar reservation;
     private String description;
     private ArrayList<Part> usedParts;
-    private String status;
+    private Status status;
     private String id;
     private boolean deleted;
 
     public Service(Car car, Worker worker, GregorianCalendar reservation, String description,
-                   ArrayList<Part> usedParts, String status, String id, Boolean deleted) {
+                   ArrayList<Part> usedParts, Status status, String id, Boolean deleted) {
         this.car = car;
         this.worker = worker;
         this.reservation = reservation;
@@ -48,13 +49,11 @@ public class Service {
                 '}';
     }
 
-    private String printParts() {
+    public String printParts() {
         String output = "";
-
         for (Part part : usedParts) {
             output += part.getId() + ";";
         }
-
         return output;
     }
 
@@ -81,9 +80,9 @@ public class Service {
 
     public void setUsedParts(ArrayList<Part> usedParts) { this.usedParts = usedParts; }
 
-    public String getStatus() { return status; }
+    public Status getStatus() { return status; }
 
-    public void setStatus(String status) { this.status = status; }
+    public void setStatus(Status status) { this.status = status; }
 
     public void setId(String id) { this.id = id; }
 
