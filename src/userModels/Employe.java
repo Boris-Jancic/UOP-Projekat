@@ -1,9 +1,11 @@
 package userModels;
 
+import enums.Gender;
+
 public abstract class Employe extends Person {
     private double salary;
 
-    public Employe(String name, String lastName, String jmbg, String gender, String address, String phone,
+    public Employe(String name, String lastName, String jmbg, Gender gender, String address, String phone,
                    String username, String password, double salary, boolean deleted) {
         super(name, lastName, jmbg, gender, address, phone, username, password, deleted);
         this.salary = salary;

@@ -1,6 +1,8 @@
 package main;
 
 import carModels.Car;
+import enums.Gender;
+import enums.Specialization;
 import userModels.Admin;
 import userModels.Client;
 import userModels.Person;
@@ -25,7 +27,7 @@ public class LoadUsers {
                 String name = userSplit[1];
                 String lastName = userSplit[2];
                 String jmbg = userSplit[3];
-                String gender = userSplit[4];
+                Gender gender = Gender.valueOf(userSplit[4]);
                 String address = userSplit[5];
                 String phone = userSplit[6];
                 String username = userSplit[7];
@@ -41,7 +43,7 @@ public class LoadUsers {
                 }
                 if (role.equals("2")) {
                     Double salary = Double.parseDouble(userSplit[10]);
-                    String specialization = userSplit[11];
+                    Specialization specialization = Specialization.valueOf(userSplit[11]);
                     boolean deleted = Boolean.parseBoolean(userSplit[12]);
                     Worker w = new Worker(name, lastName, jmbg, gender, address, phone, username, password, id, salary, specialization, deleted);
                     w.setId(id);
@@ -53,6 +55,19 @@ public class LoadUsers {
                     Admin a = new Admin(name, lastName, jmbg, gender, address, phone, username, password, salary, id, deleted);
                     a.setId(id);
                     people.add(a);
+                }
+            }
+        }
+        return people;
+    }
+
+    public static Set<Person> setClientCarBooks(Set<Person> people, ArrayList<Car> cars) {
+        for (Person person : people) {
+            int i = 0;
+            for (Car car : cars) {
+                if (person instanceof Client && person.getId().equals(car.getClient().getId())) {
+                    ((Client) person).getCars().set(i, car);
+                    i++;
                 }
             }
         }
