@@ -1,4 +1,5 @@
-package utility;
+package enums;
 
-public class model {
+public enum Model {
+    ONE,TWO,THREE,FOUR
 }
