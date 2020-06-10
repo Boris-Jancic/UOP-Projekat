@@ -1,14 +1,17 @@
 package carModels;
 
+import enums.Mark;
+import enums.Model;
+
 public class Part {
-    private String mark;
-    private String model;
+    private Mark mark;
+    private Model model;
     private String name;
     private double price;
     private String id;
     private boolean deleted;
 
-    public Part(String mark, String model, String name,
+    public Part(Mark mark, Model model, String name,
                 double price, String id, boolean deleted) {
         this.mark = mark;
         this.model = model;
@@ -35,13 +38,13 @@ public class Part {
                 '}';
     }
 
-    public String getMark() { return mark; }
+    public Mark getMark() { return mark; }
 
-    public void setMark(String mark) { this.mark = mark; }
+    public void setMark(Mark mark) { this.mark = mark; }
 
-    public String getModel() { return model; }
+    public Model getModel() { return model; }
 
-    public void setModel(String model) { this.model = model; }
+    public void setModel(Model model) { this.model = model; }
 
     public String getName() { return name; }
 
@@ -51,9 +54,7 @@ public class Part {
 
     public void setPrice(double price) { this.price = price; }
 
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
 
     public void setId(String id) {
         this.id = id;

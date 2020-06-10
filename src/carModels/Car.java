@@ -1,21 +1,24 @@
 package carModels;
 
+import enums.Fuel;
+import enums.Mark;
+import enums.Model;
 import userModels.Client;
 
 public class Car {
 
     private Client client;
     private String carID;
-    private String mark;
-    private String model;
-    private String fuel;
+    private Model model;
+    private Mark mark;
+    private Fuel fuel;
     private String age;
     private float engineVolume;
     private int enginePower;
     private CarBook carBook;
     private boolean deleted;
 
-    public Car(Client client, String carID, String mark, String model, String fuel,
+    public Car(Client client, String carID, Mark mark, Model model, Fuel fuel,
                String age, float engineVolume, int enginePower, boolean deleted) {
         this.client = client;
         this.carID = carID;
@@ -61,17 +64,17 @@ public class Car {
 
     public void setCarID(String carID) { this.carID = carID; }
 
-    public String getMark() { return mark; }
+    public Mark getMark() { return mark; }
 
-    public void setMark(String mark) { this.mark = mark; }
+    public void setMark(Mark mark) { this.mark = mark; }
 
-    public String getModel() { return model; }
+    public Model getModel() { return model; }
 
-    public void setModel(String model) { this.model = model; }
+    public void setModel(Model model) { this.model = model; }
 
-    public String getFuel() { return fuel; }
+    public Fuel getFuel() { return fuel; }
 
-    public void setFuel(String fuel) { this.fuel = fuel; }
+    public void setFuel(Fuel fuel) { this.fuel = fuel; }
 
     public String getAge() { return age; }
 
