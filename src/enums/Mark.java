@@ -1,4 +1,5 @@
-package utility;
+package enums;
 
-public class mark {
+public enum Mark {
+    BMW,LAMBO,YUGO,OPEL
 }

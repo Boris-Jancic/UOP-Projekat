@@ -1,4 +1,5 @@
-package utility;
+package enums;
 
-public class specialization {
+public enum Specialization {
+    AUTOMEHANICAR,AUTOELEKTRICAR,VULKANIZER,LIMAR
 }

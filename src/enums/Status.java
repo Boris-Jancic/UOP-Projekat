@@ -1,4 +1,5 @@
-package utility;
+package enums;
 
-public class status {
+public enum Status {
+    NIJE_ZAPOCET,ZAVRSEN,NIJE_ZAVRSEN
 }

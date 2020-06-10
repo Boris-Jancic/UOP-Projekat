@@ -1,4 +1,5 @@
-package utility;
+package enums;
 
-public class fuel {
+public enum Fuel{
+    DIZEL,ELECTRIC,GAS
 }
