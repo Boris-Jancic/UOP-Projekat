@@ -160,7 +160,8 @@ public class CarForm extends JFrame {
         }
 
         if (ok == false) {
-            JOptionPane.showMessageDialog(null, message, "Greska !", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, message,
+                        "Greska !", JOptionPane.WARNING_MESSAGE);
         }
 
         return ok;
