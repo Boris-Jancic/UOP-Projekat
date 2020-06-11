@@ -92,4 +92,12 @@ public class Service {
 
     public String getId() { return id; }
 
+    public double getPrice() {
+        double price = 0;
+        for (Part part : usedParts) {
+            price += part.getPrice();
+        }
+        return price;
+    }
+
 }
