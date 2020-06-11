@@ -24,6 +24,7 @@ public class AdminWindow extends JFrame {
     private JMenu serviceMenu = new JMenu("Servisi");
     private JMenuItem serviceItem = new JMenuItem("Pregled");
     private JMenu userMenu = new JMenu("Korisnici");
+
     private JMenuItem clientItem = new JMenuItem("Musterije");
     private JMenuItem workerItem = new JMenuItem("Radnici");
     private JMenuItem adminItem = new JMenuItem("Administratori");
@@ -82,8 +83,6 @@ public class AdminWindow extends JFrame {
         add(lblPhone = new JLabel("Telefon : " + admin.getPhone()), "gapleft 90");
         add(lblAddress = new JLabel("Adresa : " + admin.getAddress()), "gapleft 90");
         add(lblUserName = new JLabel("Korisnicko ime : " + admin.getUsername()), "gapleft 90");
-
-
     }
 
     private void initActions() {
@@ -106,7 +105,7 @@ public class AdminWindow extends JFrame {
         serviceItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ServiceTable serviceWindow = new ServiceTable(access, 1);
+                ServiceTable serviceWindow = new ServiceTable(access, admin);
                 serviceWindow.setVisible(true);
             }
         });
