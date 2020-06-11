@@ -4,12 +4,11 @@ import carModels.Car;
 import carModels.CarBook;
 import carModels.Service;
 import enums.Fuel;
+import enums.Gender;
 import enums.Mark;
 import enums.Model;
 import userModels.Client;
-import utility.Checks;
 import utility.ReadFromFile;
-
 import java.util.ArrayList;
 
 public class LoadCars {
@@ -23,7 +22,7 @@ public class LoadCars {
                 String[] carSplit = carStr.split("\\|");
                 String clientId = carSplit[0];
 
-                Client client = Checks.findClient(clientId);
+                Client client = findClient(clientId);
 
                 String carId = carSplit[1];
                 Mark markCar = Mark.valueOf(carSplit[2]);
@@ -44,10 +43,38 @@ public class LoadCars {
         return cars;
     }
 
+    private static Client findClient(String id) {
+        String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
+
+        for (String user : users) {
+            if (!users.equals("")) {
+                String[] userSplit = user.split("\\|");
+                String role = userSplit[0];
+                String name = userSplit[1];
+                String lastName = userSplit[2];
+                String jmbg = userSplit[3];
+                Gender gender = Gender.valueOf(userSplit[4]);
+                String address = userSplit[5];
+                String phone = userSplit[6];
+                String username = userSplit[7];
+                String password = userSplit[8];
+                String userID = userSplit[9];
+
+                if (role.equals("3") && userID.equals(id)) {
+                    String points = userSplit[10];
+                    boolean deleted = Boolean.parseBoolean(userSplit[11]);
+
+                    return new Client(name, lastName, jmbg, gender, address, phone,
+                            username, password, userID, Integer.parseInt(points), deleted);
+                }
+            }
+        }
+        return null;
+    }
+
     public static ArrayList<Car> setCarBooks(ArrayList<Car> cars, ArrayList<CarBook> carBooks) {
         for (Car car : cars) {
             for (CarBook carBook : carBooks) {
-                for (Service service : carBook.getServices())
                 if (car.getCarID().equals(carBook.getCar().getCarID())) {
                     car.setCarBook(carBook);
                 }
