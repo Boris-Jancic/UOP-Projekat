@@ -26,7 +26,6 @@ public class Checks {
         return null;
     }
 
-
     public static Worker findWorker(String id, Set<Person> people) {
         for (Person person : people) {
             if (person instanceof Worker && person.getId().equals(id)){
@@ -58,17 +57,6 @@ public class Checks {
         return carsReturn;
     }
 
-
-    public static Part findPart(String partID, ArrayList<Part> parts) {
-
-        for (Part part : parts){
-            if (partID.equals(part.getId()) && !part.isDeleted()){
-                return part;
-            }
-        }
-        return null;
-    }
-
     public static ArrayList<Part> findParts(String[] PartIDs, ArrayList<Part> parts) {
         ArrayList<Part> returnParts = new ArrayList<>();
 
@@ -93,55 +81,6 @@ public class Checks {
         return null;
     }
 
-
-    public static CarBook findCarBook(String carID, ArrayList<CarBook> carBooks) {
-
-        for (CarBook carBook : carBooks) {
-            if (carBook != null && carID.equals(carBook.getCar().getCarID())) {
-                return carBook;
-            }
-        }
-        return null;
-    }
-
-    public static Client findClient(String id) {
-        String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
-
-        for (String user : users) {
-            if (!users.equals("")) {
-                String[] userSplit = user.split("\\|");
-                String role = userSplit[0];
-                String name = userSplit[1];
-                String lastName = userSplit[2];
-                String jmbg = userSplit[3];
-                Gender gender = Gender.valueOf(userSplit[4]);
-                String address = userSplit[5];
-                String phone = userSplit[6];
-                String username = userSplit[7];
-                String password = userSplit[8];
-                String userID = userSplit[9];
-
-                if (role.equals("3") && userID.equals(id)) {
-                    String points = userSplit[10];
-                    boolean deleted = Boolean.parseBoolean(userSplit[11]);
-
-                    return new Client(name, lastName, jmbg, gender, address, phone,
-                            username, password, userID, Integer.parseInt(points), deleted);
-                }
-            }
-        }
-        return null;
-    }
-
-    public Client findClient(String userName, ArrayList<Client> clients) {
-        for (Client client : clients) {
-            if (client instanceof Client && client.getUsername().equals(userName)) {
-                return client;
-            }
-        }
-        return null;
-    }
-
     public static GregorianCalendar stringToDate(String dateP) {
         GregorianCalendar date = new GregorianCalendar();
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
@@ -160,14 +99,4 @@ public class Checks {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return format.format(dateP.getTime());
     }
-
-//    public static Set<Client> getClients() {
-//        Set<Client> returnClients = null;
-//        for (Person person : ) {
-//            if (person instanceof Client) {
-//                returnClients.add((Client) person);
-//            }
-//        }
-//        return returnClients;
-//    }
 }
