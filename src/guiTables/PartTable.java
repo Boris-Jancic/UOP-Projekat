@@ -87,6 +87,7 @@ public class PartTable extends JFrame{
                 partForm.setVisible(true);
             }
         });
+
         btnEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,8 +98,11 @@ public class PartTable extends JFrame{
                 } else {
                     String partID = tableModel.getValueAt(row,4).toString();
                     Part part = access.findPart(partID);
-                    PartForm partForm = new PartForm(access, part);
-                    partForm.setVisible(true);
+
+                    if (part != null) {
+                        PartForm partForm = new PartForm(access, part);
+                        partForm.setVisible(true);
+                    }
                 }
             }
         });
