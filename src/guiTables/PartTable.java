@@ -6,6 +6,8 @@ import guiForms.PartForm;
 import guiForms.ServiceForm;
 import jdk.nashorn.internal.scripts.JO;
 import main.Access;
+import userModels.Admin;
+import userModels.Person;
 import utility.Checks;
 import utility.WriteToFile;
 
@@ -29,11 +31,12 @@ public class PartTable extends JFrame{
     private JTable partTable;
 
     private Access access;
+    private Person person;
     private ArrayList<Part> parts;
-    int option;
 
-    public PartTable(Access access, int option) {
+    public PartTable(Access access, Person person) {
         this.access = access;
+        this.person = person;
         this.parts = access.getParts();
         setTitle("Delovi");
         setSize(800,300);
@@ -44,13 +47,14 @@ public class PartTable extends JFrame{
     }
 
     private void initMenu() {
-        mainToolBar.setFloatable(false);
-        mainToolBar.add(btnAdd);
-        mainToolBar.add(btnEdit);
-        mainToolBar.add(btnDelete);
-        mainToolBar.add(btnSymmetry);
-        add(mainToolBar, BorderLayout.NORTH);
-
+        if (person instanceof Admin) {
+            mainToolBar.setFloatable(false);
+            mainToolBar.add(btnAdd);
+            mainToolBar.add(btnEdit);
+            mainToolBar.add(btnDelete);
+            mainToolBar.add(btnSymmetry);
+            add(mainToolBar, BorderLayout.NORTH);
+        }
 
         String[] partInfo = new String[] {"Marka", "Model", "Ime dela", "Cena",
                 "ID dela"};

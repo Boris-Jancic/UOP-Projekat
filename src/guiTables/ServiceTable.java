@@ -55,7 +55,7 @@ public class ServiceTable extends JFrame {
         add(mainToolBar, BorderLayout.NORTH);
         mainToolBar.setFloatable(false);
         mainToolBar.add(btnAdd);
-        if (person instanceof Worker || person instanceof Admin) {
+        if (person instanceof Admin) {
             mainToolBar.add(btnEdit);
             mainToolBar.add(btnDelete);
         }
@@ -70,12 +70,15 @@ public class ServiceTable extends JFrame {
         int i = 0;
         for (Service service : services) {
             content[i][0] = service.getCar().getCarID();
-            content[i][1] = service.getWorker().getId();
-            content[i][2] = Checks.dateToString(service.getReservation());
             content[i][3] = service.getDescription();
-            content[i][4] = service.printParts();
             content[i][5] = service.getStatus();
             content[i][6] = service.getId();
+
+            if (service.getWorker() != null) {
+                content[i][1] = service.getWorker().getId();
+                content[i][2] = Checks.dateToString(service.getReservation());
+                content[i][4] = service.printParts();
+            }
             i++;
         }
 
