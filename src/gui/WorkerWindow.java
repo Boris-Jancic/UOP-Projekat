@@ -46,7 +46,7 @@ public class WorkerWindow extends JFrame {
         this.parts = access.getParts();
         this.services = access.getServices();
         setTitle("Radnik : " + worker.getName());
-        setSize(400,420);
+        setSize(400,430);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         initMenu();
@@ -80,14 +80,14 @@ public class WorkerWindow extends JFrame {
         carItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CarTable carTable = new CarTable(access, 1);
+                CarTable carTable = new CarTable(access, worker);
                 carTable.setVisible(true);
             }
         });
         partItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PartTable partTable = new PartTable(access, 1);
+                PartTable partTable = new PartTable(access, worker);
                 partTable.setVisible(true);
             }
         });
