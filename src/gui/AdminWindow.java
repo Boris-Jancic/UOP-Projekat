@@ -89,7 +89,7 @@ public class AdminWindow extends JFrame {
         carItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CarTable carTable = new CarTable(access, 1);
+                CarTable carTable = new CarTable(access, admin);
                 carTable.setVisible(true);
             }
         });
@@ -97,7 +97,7 @@ public class AdminWindow extends JFrame {
         partItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PartTable partWindow = new PartTable(access, 1);
+                PartTable partWindow = new PartTable(access, admin);
                 partWindow.setVisible(true);
             }
         });
