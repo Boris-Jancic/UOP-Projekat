@@ -33,7 +33,7 @@ public class ClientWindow extends JFrame {
         this.access = access;
         this.client = client;
         setTitle("Musterija : " + client.getName());
-        setSize(380,380);
+        setSize(380,400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         initMenu();
@@ -51,9 +51,9 @@ public class ClientWindow extends JFrame {
         setLayout(migLayout);
 
         if(client.getGender() == Gender.MALE) {
-            add(lblMalePicture, "gapleft 80");
+            add(lblMalePicture, "gapleft 70");
         } else {
-            add(lblFemalePicture, "gapleft 80");
+            add(lblFemalePicture, "gapleft 70");
         }
         add(lblName = new JLabel("Ime : " + client.getName()), "gapleft 90");
         add(lblLastName = new JLabel("Prezime : " + client.getLastName()),"gapleft 90");
@@ -67,7 +67,7 @@ public class ClientWindow extends JFrame {
         carItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CarTable carTable = new CarTable(access, 0);
+                CarTable carTable = new CarTable(access, client);
                 carTable.setVisible(true);
             }
         });
