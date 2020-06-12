@@ -21,17 +21,31 @@ public class Access {
     private ArrayList<Car> cars;
     private Set<Person> people;
 
-    public Access() {
-        parts = LoadParts.load();
-        services = LoadServices.load(cars_temp, people_temp, parts);
-        carBooks = LoadCarBooks.load(cars_temp, services);
-        cars = LoadCars.setCarBooks(cars_temp, carBooks);
-        people = LoadUsers.setClientCarBooks(people_temp, cars);
-    }
+    public Access() {}
 
     public ArrayList<Part> getParts() { return parts; }
 
     public ArrayList<Service> getServices() { return services; }
+
+    public void setParts(ArrayList<Part> parts) {
+        this.parts = parts;
+    }
+
+    public void setServices(ArrayList<Service> services) {
+        this.services = services;
+    }
+
+    public void setCarBooks(ArrayList<CarBook> carBooks) {
+        this.carBooks = carBooks;
+    }
+
+    public void setCars(ArrayList<Car> cars) {
+        this.cars = cars;
+    }
+
+    public void setPeople(Set<Person> people) {
+        this.people = people;
+    }
 
     public ArrayList<CarBook> getCarBooks() { return carBooks; }
 
@@ -58,6 +72,16 @@ public class Access {
             }
         }
         return null;
+    }
+
+    public ArrayList<Car> getClientCars(String id) {
+        ArrayList<Car> returnCars = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.getClient().getId().equals(id)) {
+                returnCars.add(car);
+            }
+        }
+        return returnCars;
     }
 
     public Client findClient(String userName) {
