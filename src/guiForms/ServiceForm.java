@@ -56,7 +56,13 @@ public class ServiceForm extends JFrame {
     }
 
     private void initMenu() {
-        ArrayList<Car> cars = access.getCars();
+        ArrayList<Car> cars = new ArrayList<>();
+        if (person instanceof Client) {
+            cars = access.getClientCars(person.getId());
+        } else {
+            cars = access.getCars();
+        }
+
         for (Car car : cars) {
             cbCar.addItem(car.getCarID());
         }
@@ -92,11 +98,14 @@ public class ServiceForm extends JFrame {
 
     private void fillBlanks() {
         cbCar.setSelectedItem(service.getCar().getCarID());
-        txtWorker.setText(service.getWorker().getUsername());
-        txtDate.setText(service.getReservation().toString());
         txtDescription.setText(service.getDescription());
-        txtParts.setText(service.printParts());
         cbStatus.setSelectedItem(service.getStatus());
+
+        if (service.getWorker() != null) {
+            txtWorker.setText(service.getWorker().getUsername());
+            txtDate.setText(Checks.dateToString(service.getReservation()));
+            txtParts.setText(service.printParts());
+        }
     }
 
     private void initActions() {
@@ -114,8 +123,14 @@ public class ServiceForm extends JFrame {
                     if (service == null) {
                         Random r = new Random();
                         int randomID = r.nextInt(999999);
-                        service = new Service(car, worker, date, description,
-                                parts, status, Integer.toString(randomID), false);
+
+                        if (person instanceof Client) {
+                            service = new Service(car, description, Status.ZAKAZAN, Integer.toString(randomID), false);
+                        } else {
+                            service = new Service(car, worker, date, description,
+                                    parts, status, Integer.toString(randomID), false);
+                        }
+
                         access.addService(service);
                     } else {
                         service.setCar(car);
@@ -146,32 +161,33 @@ public class ServiceForm extends JFrame {
         String message = "Molimo vas da uradite sledece stvari : \n";
         boolean ok = true;
 
-        if (txtWorker.getText().isEmpty()) {
-            message += "- Unesite korisnicko ime za radinika";
-        } else if (!txtWorker.getText().trim().isEmpty()) {
-            Worker worker = access.findWorker(txtWorker.getText());
-            if (worker == null) {
-                message += "- Radnik sa takvim korisnickim imenom ne postoji\n";
+        if (!(person instanceof Client)) {
+            if (txtWorker.getText().isEmpty()) {
+                message += "- Unesite korisnicko ime za radinika\n";
+            } else if (!txtWorker.getText().trim().isEmpty()) {
+                Worker worker = access.findWorker(txtWorker.getText());
+                if (worker == null) {
+                    message += "- Radnik sa takvim korisnickim imenom ne postoji\n";
+                    ok = false;
+                }
+            }
+            if (txtParts.getText().isEmpty()) {
+                message += "- Unesite delove za servis\n";
                 ok = false;
+            } else if (!txtParts.getText().isEmpty()) {
+                String[] partIDs = txtParts.getText().split(";");
+                ArrayList<Part> parts = access.findParts(partIDs);
+
+                if (parts.isEmpty()) {
+                    message += "- Unesite ispravne ID-jeve delova za servis\n";
+                    ok = false;
+                }
             }
         }
 
         if (txtDescription.getText().isEmpty()) {
-            message += "- Unesite opis servisa";
+            message += "- Unesite opis servisa\n";
             ok = false;
-        }
-
-        if (txtParts.getText().isEmpty()) {
-            message += "- Unesite delove za servis";
-            ok = false;
-        } else if (!txtParts.getText().isEmpty()) {
-            String[] partIDs = txtParts.getText().split(";");
-            ArrayList<Part> parts = access.findParts(partIDs);
-
-            if (parts.isEmpty()) {
-                message += "- Unesite ispravne ID-jeve delova za servis";
-                ok = false;
-            }
         }
 
         if (ok == false) {
