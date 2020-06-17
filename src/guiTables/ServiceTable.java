@@ -163,24 +163,32 @@ public class ServiceTable extends JFrame {
                     if (service != null && client != null) {
                         int points = service.getCar().getClient().getPoints();
                         double price = service.getPrice();
+                        double discountedPrice = price * (1 - (points * 0.02));
+                        String message = "Originalna cena : " + price + "\n" + "Cena sa popustom : " + discountedPrice;
 
-                        int option = JOptionPane.showConfirmDialog(null,
-                                "Da li zelite da uracunate bodove od musterije?\n" +
-                                        "- Bodovi musterije : " + points,
-                                "Zavrsi servis", JOptionPane.YES_NO_OPTION);
-
-                        if (option == JOptionPane.YES_OPTION) {
-                            price = price / (points * 0.2);
-                            price = Math.round(price);
-                            client.setPoints(0);
+                        if (client.getPoints() > 0) {
+                            int pointOption = JOptionPane.showConfirmDialog(null,
+                                    "Da li zelite da uracunate bodove od musterije?\n" +
+                                            "- Bodovi musterije : " + points + "\n" + message,
+                                    "Bodovi", JOptionPane.YES_NO_OPTION);
+                            if (pointOption == JOptionPane.YES_OPTION) {
+                                price = Math.round(price);
+                                client.setPoints(0);
+                            }
                         }
 
-                        JOptionPane.showMessageDialog(null,
-                                ("Cena servisa je : " + price),
-                                "Konacna cena", JOptionPane.INFORMATION_MESSAGE);
-                        service.setStatus(Status.ZAVRSEN);
-                        WriteToFile.writeUsers(access.getPeople());
-                        WriteToFile.writeService(services);
+                        int endOption = JOptionPane.showConfirmDialog(null,
+                                "Da li ste sigurni da zelite da zavrsite servis?",
+                                "Zavrsi servis", JOptionPane.YES_NO_OPTION);
+
+                        if (endOption == JOptionPane.YES_OPTION) {
+                            JOptionPane.showMessageDialog(null,
+                                    ("Cena servisa je : " + price),
+                                    "Konacna cena", JOptionPane.INFORMATION_MESSAGE);
+                            service.setStatus(Status.ZAVRSEN);
+                            WriteToFile.writeUsers(access.getPeople());
+                            WriteToFile.writeService(services);
+                        }
                     }
                 }
             }
