@@ -3,6 +3,9 @@ package guiTables;
 import carModels.Car;
 import guiForms.CarForm;
 import main.Access;
+import userModels.Admin;
+import userModels.Client;
+import userModels.Person;
 import utility.Checks;
 import utility.WriteToFile;
 import javax.swing.*;
@@ -19,29 +22,38 @@ public class CarTable extends JFrame {
     private JButton btnDelete = new JButton("Izbrisi");
 
     private Access access;
+    private Person person;
     private ArrayList<Car> cars;
     public DefaultTableModel tableModel;
     private JTable carTable;
 
-    public CarTable(Access access, Integer option) {
+    public CarTable(Access access, Person person) {
+        this.person = person;
         this.access = access;
-        this.cars = access.getCars();
+
+        if (person instanceof Client) {
+            this.cars = access.getClientCars(person.getId());
+        } else {
+            this.cars = access.getCars();
+        }
+
         setTitle("Manipulisanje automobila");
-        setSize(800,300);
+        setSize(800, 300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        initMenu(option);
+        initMenu();
         initActions();
     }
 
-    private void initMenu (Integer option) {
-        if (option == 1) {
+    private void initMenu () {
+        if (person instanceof Admin) {
             mainToolBar.setFloatable(false);
             mainToolBar.add(btnAdd);
             mainToolBar.add(btnEdit);
             mainToolBar.add(btnDelete);
             add(mainToolBar, BorderLayout.NORTH);
         }
+
 
         String[] carInfo = new String[] {"ID automobila", "Marka", "Model", "Gorivo",
                                             "Godiste", "Zapremina Motora", "Jacina Motora"};

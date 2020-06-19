@@ -3,12 +3,11 @@ package main;
 import carModels.Car;
 import carModels.Part;
 import carModels.Service;
-import enums.Status;
 import userModels.Person;
 import userModels.Worker;
 import utility.Checks;
 import utility.ReadFromFile;
-
+import enums.Status;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Set;
@@ -18,10 +17,10 @@ public class LoadServices {
         String[] servicesString = ReadFromFile.read("src/data/services.txt").split("\n");
         ArrayList<Service> Services = new ArrayList<>();
 
-        for (String service : servicesString) {
-            if (!service.isEmpty()) {
-                String[] serviceSplit = service.split("\\|");
-
+        for (String serviceStr : servicesString) {
+            Service service = null;
+            if (!serviceStr.isEmpty()) {
+                String[] serviceSplit = serviceStr.split("\\|");
                 Car car = Checks.findCar(serviceSplit[0], cars);
 
                 Worker worker = Checks.findWorker(serviceSplit[1], people);
@@ -32,8 +31,25 @@ public class LoadServices {
                 String serviceID = serviceSplit[6];
                 boolean deleted = Boolean.parseBoolean(serviceSplit[7]);
 
-                Service ser = new Service(car, worker, date, description, usedParts, state, serviceID, deleted);
-                Services.add(ser);
+                if (serviceSplit.length == 5) {
+                    description = serviceSplit[1];
+                    state = Status.valueOf(serviceSplit[2]);
+                    serviceID = serviceSplit[3];
+                    deleted = Boolean.parseBoolean(serviceSplit[4]);
+                    service = new Service(car, description, state, serviceID, deleted);
+
+                } else {
+//                    worker = Checks.findWorker(serviceSplit[1], people);
+//                    date = Checks.stringToDate(serviceSplit[2]);
+//                    description = serviceSplit[3];
+//                    usedParts = Checks.findParts(serviceSplit[4].split(";"), parts);
+//                    state = Status.valueOf(serviceSplit[5]);
+//                    serviceID = serviceSplit[6];
+//                    deleted = Boolean.parseBoolean(serviceSplit[7]);
+                    service = new Service(car, worker, date, description, usedParts, state, serviceID, deleted);
+                }
+
+                Services.add(service);
             }
         }
 

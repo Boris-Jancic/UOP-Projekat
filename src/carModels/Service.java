@@ -4,6 +4,7 @@ import enums.Status;
 import userModels.Worker;
 import utility.Checks;
 
+import javax.management.Descriptor;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -16,6 +17,17 @@ public class Service {
     private Status status;
     private String id;
     private boolean deleted;
+
+    public Service(Car car, String description, Status status,  String id,Boolean deleted) {
+        this.car = car;
+        this.worker = null;
+        this.reservation = null;
+        this.usedParts = null;
+        this.description = description;
+        this.status = status;
+        this.id = id;
+        this.deleted = deleted;
+    }
 
     public Service(Car car, Worker worker, GregorianCalendar reservation, String description,
                    ArrayList<Part> usedParts, Status status, String id, Boolean deleted) {
@@ -30,9 +42,12 @@ public class Service {
     }
 
     public String serviceToString() {
-        return  this.car.getCarID() + "|" + this.worker.getId() + "|" + Checks.dateToString(this.reservation) + "|" +
-                this.description + "|" + printParts() + "|" + this.status + "|" + this.id + "|" + this.deleted;
-
+        if (worker != null) {
+            return this.car.getCarID() + "|" + this.worker.getId() + "|" + Checks.dateToString(this.reservation) + "|" +
+                    this.description + "|" + printParts() + "|" + this.status + "|" + this.id + "|" + this.deleted;
+        } else {
+            return this.car.getCarID() + "|" + this.description + "|" + this.id + "|" + this.deleted;
+         }
     }
 
     @Override
@@ -91,5 +106,13 @@ public class Service {
     }
 
     public String getId() { return id; }
+
+    public double getPrice() {
+        double price = 0;
+        for (Part part : usedParts) {
+            price += part.getPrice();
+        }
+        return price;
+    }
 
 }

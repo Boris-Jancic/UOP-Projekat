@@ -21,17 +21,31 @@ public class Access {
     private ArrayList<Car> cars;
     private Set<Person> people;
 
-    public Access() {
-        parts = LoadParts.load();
-        services = LoadServices.load(cars_temp, people_temp, parts);
-        carBooks = LoadCarBooks.load(cars_temp, services);
-        cars = LoadCars.setCarBooks(cars_temp, carBooks);
-        people = LoadUsers.setClientCarBooks(people_temp, cars);
-    }
+    public Access() {}
 
     public ArrayList<Part> getParts() { return parts; }
 
     public ArrayList<Service> getServices() { return services; }
+
+    public void setParts(ArrayList<Part> parts) {
+        this.parts = parts;
+    }
+
+    public void setServices(ArrayList<Service> services) {
+        this.services = services;
+    }
+
+    public void setCarBooks(ArrayList<CarBook> carBooks) {
+        this.carBooks = carBooks;
+    }
+
+    public void setCars(ArrayList<Car> cars) {
+        this.cars = cars;
+    }
+
+    public void setPeople(Set<Person> people) {
+        this.people = people;
+    }
 
     public ArrayList<CarBook> getCarBooks() { return carBooks; }
 
@@ -49,6 +63,8 @@ public class Access {
 
     public void addPart(Part part) { this.parts.add(part); }
 
+    public void addService(Service service) { this.services.add(service); }
+
     public Car findCar(String carID) {
         for (Car car : cars) {
             if (carID.equals(car.getCarID()) && !car.isDeleted()) {
@@ -56,6 +72,16 @@ public class Access {
             }
         }
         return null;
+    }
+
+    public ArrayList<Car> getClientCars(String id) {
+        ArrayList<Car> returnCars = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.getClient().getId().equals(id)) {
+                returnCars.add(car);
+            }
+        }
+        return returnCars;
     }
 
     public Client findClient(String userName) {
@@ -123,5 +149,84 @@ public class Access {
             }
         }
         return null;
+    }
+
+    public ArrayList<Part> findParts(String[] partIDs) {
+        ArrayList<Part> returnParts = new ArrayList<>();
+        for (Part part : parts) {
+            for (String partId : partIDs) {
+                if (part.getId().equals(partId)) {
+                    returnParts.add(part);
+                }
+            }
+        }
+        return returnParts;
+    }
+
+    public ArrayList<Service> getClientServices(Client person) {
+        ArrayList<Service> returnServices = new ArrayList<>();
+        for (CarBook carBook : carBooks) {
+            for (Car car : person.getCars()) {
+                if (carBook.getCar().getCarID().equals(car.getCarID())) {
+                    for (Service service : carBook.getServices()) {
+                        returnServices.add(service);
+                    }
+                }
+            }
+        }
+        return returnServices;
+    }
+
+    public ArrayList<Service> getWorkerServices(Worker worker) {
+        ArrayList<Service> returnServices = new ArrayList<>();
+        for (Service service : services) {
+            if (service.getWorker().getId().equals(worker.getId())) {
+                returnServices.add(service);
+            }
+        }
+        return returnServices;
+    }
+
+    public Service findService(String serviceID) {
+        for (Service service : services) {
+            if (service.getId().equals(serviceID)) {
+                return service;
+            }
+        }
+        return null;
+    }
+
+    public void updateCarBooks() {
+        ArrayList<CarBook> carBooksReturn = new ArrayList<>();
+        ArrayList<String> carBookIDs = new ArrayList<>();
+
+        for (CarBook carBook : carBooks) {  // Proverava da li postoji auto koji vec ima knjizicu i ako postoji upisuje servis u nju
+            ArrayList<Service> servicesReturn = new ArrayList<>();
+            CarBook carBookNew = new CarBook(false, carBook.getCar());
+
+            for (Service service : services) {
+                if (carBookNew.getCar().getCarID().equals(service.getCar().getCarID()) && !service.isDeleted()) {
+                    servicesReturn.add(service);
+                }
+            }
+
+            carBookNew.setServices(servicesReturn);
+            carBooksReturn.add(carBookNew);
+        }
+
+        for (CarBook c : carBooks) {
+            carBookIDs.add(c.getCar().getCarID());
+        }
+
+        for (Service service : services) {  // Ako postoji auto koji nema ni jedan servis napravice se nova knjizica
+            if (!carBookIDs.contains(service.getCar().getCarID())) {
+                CarBook carBook = new CarBook(false, service.getCar());
+                carBook.addService(service);
+                carBooksReturn.add(carBook);
+                break;
+            }
+        }
+
+        this.carBooks = carBooksReturn;
     }
 }

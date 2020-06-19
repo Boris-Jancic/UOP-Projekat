@@ -1,12 +1,10 @@
 package guiTables;
 
 import carModels.Part;
-import carModels.Service;
 import guiForms.PartForm;
-import guiForms.ServiceForm;
-import jdk.nashorn.internal.scripts.JO;
 import main.Access;
-import utility.Checks;
+import userModels.Admin;
+import userModels.Person;
 import utility.WriteToFile;
 
 import javax.swing.*;
@@ -16,8 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
-
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class PartTable extends JFrame{
     private JToolBar mainToolBar = new JToolBar();
@@ -29,11 +25,12 @@ public class PartTable extends JFrame{
     private JTable partTable;
 
     private Access access;
+    private Person person;
     private ArrayList<Part> parts;
-    int option;
 
-    public PartTable(Access access, int option) {
+    public PartTable(Access access, Person person) {
         this.access = access;
+        this.person = person;
         this.parts = access.getParts();
         setTitle("Delovi");
         setSize(800,300);
@@ -44,13 +41,14 @@ public class PartTable extends JFrame{
     }
 
     private void initMenu() {
-        mainToolBar.setFloatable(false);
-        mainToolBar.add(btnAdd);
-        mainToolBar.add(btnEdit);
-        mainToolBar.add(btnDelete);
-        mainToolBar.add(btnSymmetry);
-        add(mainToolBar, BorderLayout.NORTH);
-
+        if (person instanceof Admin) {
+            mainToolBar.setFloatable(false);
+            mainToolBar.add(btnAdd);
+            mainToolBar.add(btnEdit);
+            mainToolBar.add(btnDelete);
+            mainToolBar.add(btnSymmetry);
+            add(mainToolBar, BorderLayout.NORTH);
+        }
 
         String[] partInfo = new String[] {"Marka", "Model", "Ime dela", "Cena",
                 "ID dela"};
@@ -87,6 +85,7 @@ public class PartTable extends JFrame{
                 partForm.setVisible(true);
             }
         });
+
         btnEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,8 +96,11 @@ public class PartTable extends JFrame{
                 } else {
                     String partID = tableModel.getValueAt(row,4).toString();
                     Part part = access.findPart(partID);
-                    PartForm partForm = new PartForm(access, part);
-                    partForm.setVisible(true);
+
+                    if (part != null) {
+                        PartForm partForm = new PartForm(access, part);
+                        partForm.setVisible(true);
+                    }
                 }
             }
         });
