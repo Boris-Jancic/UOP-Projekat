@@ -2,7 +2,6 @@ package main;
 
 import carModels.Car;
 import carModels.CarBook;
-import carModels.Service;
 import enums.Fuel;
 import enums.Gender;
 import enums.Mark;
@@ -42,7 +41,6 @@ public class LoadCars {
 
         return cars;
     }
-
     private static Client findClient(String id) {
         String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
 

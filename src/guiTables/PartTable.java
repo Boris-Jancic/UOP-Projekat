@@ -1,14 +1,10 @@
 package guiTables;
 
 import carModels.Part;
-import carModels.Service;
 import guiForms.PartForm;
-import guiForms.ServiceForm;
-import jdk.nashorn.internal.scripts.JO;
 import main.Access;
 import userModels.Admin;
 import userModels.Person;
-import utility.Checks;
 import utility.WriteToFile;
 
 import javax.swing.*;
@@ -18,8 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
-
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class PartTable extends JFrame{
     private JToolBar mainToolBar = new JToolBar();

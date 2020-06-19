@@ -26,9 +26,10 @@ public class Checks {
         return null;
     }
 
+
     public static Worker findWorker(String id, Set<Person> people) {
         for (Person person : people) {
-            if (person instanceof Worker && person.getId().equals(id)){
+            if (person instanceof Worker && person.getId().equals(id)) {
                 return (Worker) person;
             }
         }
@@ -70,7 +71,6 @@ public class Checks {
 
         return returnParts;
     }
-
 
     public static Service findService(String serviceID, ArrayList<Service> services) {
 
