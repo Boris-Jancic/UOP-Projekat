@@ -63,7 +63,7 @@ public class PartForm extends JFrame {
                     Mark mark = (Mark) cbMark.getSelectedItem();
                     Model model = (Model) cbModel.getSelectedItem();
                     String name = txtName.getText();
-                    Double price = Double.parseDouble(txtPrice.getText());
+                    double price = Double.parseDouble(txtPrice.getText());
 
                     if (part == null) {
                         Random r = new Random();
@@ -114,7 +114,7 @@ public class PartForm extends JFrame {
             ok = false;
         }
 
-        if (ok == false) {
+        if (!ok) {
             JOptionPane.showMessageDialog(null, message, "Greska !", JOptionPane.WARNING_MESSAGE);
         }
 

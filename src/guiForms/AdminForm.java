@@ -1,13 +1,10 @@
 package guiForms;
 
-import enums.Gender;
-import enums.Specialization;
+import enums.*;
 import main.Access;
 import net.miginfocom.swing.MigLayout;
 import userModels.Admin;
-import userModels.Worker;
 import utility.WriteToFile;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -44,7 +41,7 @@ public class AdminForm extends JFrame {
         this.access = access;
         this.admin = admin;
         setLocationRelativeTo(null);
-        setTitle("Unos musterije");
+        setTitle("Unos administratora");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initMenu();
         initActions();
@@ -86,7 +83,7 @@ public class AdminForm extends JFrame {
                     String phone = txtPhone.getText();
                     String username = txtUsername.getText();
                     String password = txtPassword.getText();
-                    Double sallary = Double.parseDouble(txtSalary.getText());
+                    double sallary = Double.parseDouble(txtSalary.getText());
 
                     if (admin == null) {
                         Random r = new Random();
@@ -137,17 +134,17 @@ public class AdminForm extends JFrame {
         String message = "Molimo vas da popravite sledece podatke : \n";
 
         if (txtName.getText().trim().isEmpty()) {
-            message += "- Unesite ime radnika\n";
+            message += "- Unesite ime administratora\n";
             ok = false;
         }
         if (txtLastName.getText().trim().isEmpty()) {
-            message += "- Unesite prezime radnika\n";
+            message += "- Unesite prezime administratora\n";
             ok = false;
         }
 
         String jmbg = txtJmbg.getText();
         if (jmbg.trim().isEmpty()) {
-            message += "- Unesite jmbg radnika\n";
+            message += "- Unesite jmbg administratora\n";
             ok = false;
         } else if (jmbg.trim().length() != 13 || !jmbg.trim().matches("[0-9]+")) {
             message += "- Jmbg radnika nije ispravnog formata\n";
@@ -155,34 +152,34 @@ public class AdminForm extends JFrame {
         }
 
         if (txtAddress.getText().trim().isEmpty()) {
-            message += "- Unesite adresu radnika\n";
+            message += "- Unesite adresu administratora\n";
             ok = false;
         }
 
         if (txtPhone.getText().trim().isEmpty()) {
-            message += "- Unesite telefon radnika\n";
+            message += "- Unesite telefon administratora\n";
             ok = false;
         } else if (!txtPhone.getText().trim().matches("[0-9]+")) {
-            message += "- Telefon musterije nije ispravnog radnika\n";
+            message += "- Telefon musterije nije ispravnog administratora\n";
             ok = false;
         }
 
         if (txtUsername.getText().trim().isEmpty()) {
-            message += "- Unesite korisnicko ime radnika\n";
+            message += "- Unesite korisnicko ime administratora\n";
             ok = false;
         }
 
         if (txtPassword.getText().trim().isEmpty()) {
-            message += "- Unesite lozinku radnika\n";
+            message += "- Unesite lozinku administratora\n";
             ok = false;
         }
 
         if (txtSalary.getText().trim().isEmpty()) {
-            message += "- Unesite platu radnika\n";
+            message += "- Unesite platu administratora\n";
             ok = false;
         }
 
-        if (ok == false) {
+        if (!ok) {
             JOptionPane.showMessageDialog(null, message, "Greska !", JOptionPane.WARNING_MESSAGE);
         }
 

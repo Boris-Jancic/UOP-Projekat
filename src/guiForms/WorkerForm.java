@@ -4,15 +4,12 @@ import enums.Gender;
 import enums.Specialization;
 import main.Access;
 import net.miginfocom.swing.MigLayout;
-import userModels.Client;
 import userModels.Worker;
 import utility.WriteToFile;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class WorkerForm extends JFrame {
@@ -47,7 +44,7 @@ public class WorkerForm extends JFrame {
         this.access = access;
         this.worker = worker;
         setLocationRelativeTo(null);
-        setTitle("Unos musterije");
+        setTitle("Unos radnika");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initMenu();
         initActions();
@@ -91,7 +88,7 @@ public class WorkerForm extends JFrame {
                     String username = txtUsername.getText();
                     String password = txtPassword.getText();
                     Specialization specialization = (Specialization) cbSpecialization.getSelectedItem();
-                    Double sallary = Double.parseDouble(txtSalary.getText());
+                    double sallary = Double.parseDouble(txtSalary.getText());
 
                     if (worker == null) {
                         Random r = new Random();
@@ -190,7 +187,7 @@ public class WorkerForm extends JFrame {
             ok = false;
         }
 
-        if (ok == false) {
+        if (!ok) {
             JOptionPane.showMessageDialog(null, message, "Greska !", JOptionPane.WARNING_MESSAGE);
         }
 

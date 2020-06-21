@@ -1,10 +1,8 @@
 package guiTables;
 
 import guiForms.AdminForm;
-import guiForms.WorkerForm;
 import main.Access;
 import userModels.Admin;
-import userModels.Worker;
 import utility.WriteToFile;
 
 import javax.swing.*;
@@ -28,7 +26,7 @@ public class AdminTable extends JFrame {
     public AdminTable(Access access) {
         this.access = access;
         this.admins = access.findAdmins();
-        setTitle("Radnici");
+        setTitle("Administratori");
         setSize(900,300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

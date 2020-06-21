@@ -45,7 +45,7 @@ public class LoadCars {
         String[] users = ReadFromFile.read("src/data/korisnici.txt").split("\n");
 
         for (String user : users) {
-            if (!users.equals("")) {
+            if (!user.isEmpty()) {
                 String[] userSplit = user.split("\\|");
                 String role = userSplit[0];
                 String name = userSplit[1];

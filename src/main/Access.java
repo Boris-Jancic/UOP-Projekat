@@ -10,11 +10,10 @@ import userModels.Person;
 import userModels.Worker;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Access {
-    private ArrayList<Car> cars_temp = LoadCars.load();
-    private Set<Person> people_temp = LoadUsers.load(cars_temp);
     private ArrayList<Part> parts;
     private ArrayList<Service> services;
     private ArrayList<CarBook> carBooks;
@@ -22,10 +21,6 @@ public class Access {
     private Set<Person> people;
 
     public Access() {}
-
-    public ArrayList<Part> getParts() { return parts; }
-
-    public ArrayList<Service> getServices() { return services; }
 
     public void setParts(ArrayList<Part> parts) {
         this.parts = parts;
@@ -47,11 +42,55 @@ public class Access {
         this.people = people;
     }
 
-    public ArrayList<CarBook> getCarBooks() { return carBooks; }
+    public Set<Person> getPeople() {
+        Set<Person> returnPeople = new HashSet<>();
+        for (Person person : people) {
+            if (!person.isDeleted()) {
+                returnPeople.add(person);
+            }
+        }
+        return returnPeople;
+    }
 
-    public ArrayList<Car> getCars() { return cars; }
+    public ArrayList<Car> getCars() {
+        ArrayList<Car> returnCars = new ArrayList<>();
+        for (Car car : cars) {
+            if (!car.isDeleted()) {
+                returnCars.add(car);
+            }
+        }
+        return returnCars;
+    }
 
-    public Set<Person> getPeople() { return people; }
+    public ArrayList<Part> getParts() {
+        ArrayList<Part> returnParts = new ArrayList<>();
+        for (Part part : parts) {
+            if (!part.isDeleted()) {
+                returnParts.add(part);
+            }
+        }
+        return returnParts;
+    }
+
+    public ArrayList<Service> getServices() {
+        ArrayList<Service> returnServices = new ArrayList<>();
+        for (Service service : services) {
+            if (!service.isDeleted()) {
+                returnServices.add(service);
+            }
+        }
+        return returnServices;
+    }
+
+    public ArrayList<CarBook> getCarBooks() {
+        ArrayList<CarBook> returnCarBooks = new ArrayList<>();
+        for (CarBook carBook : carBooks) {
+            if (!carBook.isDeleted()) {
+                returnCarBooks.add(carBook);
+            }
+        }
+        return returnCarBooks;
+    }
 
     public void addClient(Client client) { this.people.add(client); }
 
@@ -168,9 +207,7 @@ public class Access {
         for (CarBook carBook : carBooks) {
             for (Car car : person.getCars()) {
                 if (carBook.getCar().getCarID().equals(car.getCarID())) {
-                    for (Service service : carBook.getServices()) {
-                        returnServices.add(service);
-                    }
+                    returnServices.addAll(carBook.getServices());
                 }
             }
         }
@@ -180,8 +217,10 @@ public class Access {
     public ArrayList<Service> getWorkerServices(Worker worker) {
         ArrayList<Service> returnServices = new ArrayList<>();
         for (Service service : services) {
-            if (service.getWorker().getId().equals(worker.getId())) {
-                returnServices.add(service);
+            if (service.getWorker() != null) {
+                if (service.getWorker().getId().equals(worker.getId())) {
+                    returnServices.add(service);
+                }
             }
         }
         return returnServices;

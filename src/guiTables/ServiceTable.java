@@ -3,7 +3,6 @@ package guiTables;
 import carModels.Service;
 import enums.Status;
 import guiForms.ServiceForm;
-import jdk.nashorn.internal.scripts.JO;
 import main.Access;
 import userModels.Admin;
 import userModels.Client;
@@ -160,7 +159,7 @@ public class ServiceTable extends JFrame {
                     Service service = access.findService(serviceID);
                     Client client = access.findClient(service.getCar().getClient().getUsername());
 
-                    if (service != null && client != null) {
+                    if (client != null) {
                         int points = service.getCar().getClient().getPoints();
                         double price = service.getPrice();
                         double discountedPrice = price * (1 - (points * 0.02));

@@ -17,12 +17,6 @@ public class ClientWindow extends JFrame {
     private JMenuItem serviceItem = new JMenuItem("Servisi");
 
 
-    private JLabel lblName;
-    private JLabel lblLastName;
-    private JLabel lblJmbg;
-    private JLabel lblPhone;
-    private JLabel lblAddress;
-    private JLabel lblUserName;
     JLabel lblMalePicture = new JLabel(new ImageIcon("src/pictures/client-male.png"));
     JLabel lblFemalePicture = new JLabel(new ImageIcon("src/pictures/client-female.png"));
 
@@ -55,11 +49,17 @@ public class ClientWindow extends JFrame {
         } else {
             add(lblFemalePicture, "gapleft 70");
         }
+        JLabel lblName;
         add(lblName = new JLabel("Ime : " + client.getName()), "gapleft 90");
+        JLabel lblLastName;
         add(lblLastName = new JLabel("Prezime : " + client.getLastName()),"gapleft 90");
+        JLabel lblJmbg;
         add(lblJmbg = new JLabel("JMBG : " + client.getJmbg()), "gapleft 90");
+        JLabel lblPhone;
         add(lblPhone = new JLabel("Telefon : " + client.getPhone()), "gapleft 90");
+        JLabel lblAddress;
         add(lblAddress = new JLabel("Adresa : " + client.getAddress()), "gapleft 90");
+        JLabel lblUserName;
         add(lblUserName = new JLabel("Korisnicko ime : " + client.getUsername()), "gapleft 90");
     }
 
