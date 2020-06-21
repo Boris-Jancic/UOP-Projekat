@@ -24,12 +24,6 @@ public class WorkerWindow extends JFrame {
     private JMenu serviceMenu = new JMenu("Servisi");
     private JMenuItem serviceItem = new JMenuItem("Pregled");
 
-    private JLabel lblName;
-    private JLabel lblLastName;
-    private JLabel lblJmbg;
-    private JLabel lblPhone;
-    private JLabel lblAddress;
-    private JLabel lblUserName;
     JLabel lblMalePicture = new JLabel(new ImageIcon("src/pictures/worker-male.png"));
     JLabel lblFemalePicture = new JLabel(new ImageIcon("src/pictures/worker-female.png"));
 
@@ -39,7 +33,7 @@ public class WorkerWindow extends JFrame {
     private ArrayList<Part> parts;
     private ArrayList<Service> services;
 
-    public WorkerWindow(Worker worker, Access access, int i) {
+    public WorkerWindow(Worker worker, Access access) {
         this.access = access;
         this.worker = worker;
         this.cars = access.getCars();
@@ -68,11 +62,17 @@ public class WorkerWindow extends JFrame {
             add(lblFemalePicture, "gapleft 70");
         }
 
+        JLabel lblName;
         add(lblName = new JLabel("Ime : " + worker.getName()), "gapleft 80");
+        JLabel lblLastName;
         add(lblLastName = new JLabel("Prezime : " + worker.getLastName()),"gapleft 80");
+        JLabel lblJmbg;
         add(lblJmbg = new JLabel("JMBG : " + worker.getJmbg()), "gapleft 80");
+        JLabel lblPhone;
         add(lblPhone = new JLabel("Telefon : " + worker.getPhone()), "gapleft 80");
+        JLabel lblAddress;
         add(lblAddress = new JLabel("Adresa : " + worker.getAddress()), "gapleft 80");
+        JLabel lblUserName;
         add(lblUserName = new JLabel("Korisnicko ime : " + worker.getUsername()), "gapleft 80");
     }
 

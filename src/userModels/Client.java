@@ -31,25 +31,18 @@ public class Client extends Person {
                 ", phone='" + phone + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", cars='" + printCars() +
                 ", points=" + points +
                 ", deleted='" + deleted + '\'' +
                 '}';
     }
 
-
-
-    private String printCars() {
-        String output = "";
-        for (Car car : cars) {
-            output += "|" + car.getCarID() + "|";
-        }
-        return output;
-    }
-
     public int getPoints() { return points; }
 
-    public void setPoints(int points) { this.points = points; }
+    public void setPoints(int points) {
+        if (this.points < 10) {
+            this.points = points;
+        }
+    }
 
     public ArrayList<Car> getCars() { return cars; }
 
@@ -69,9 +62,7 @@ public class Client extends Person {
         ArrayList<Service> services = new ArrayList<>();
         for (Car car : getCars()) {
             if (car.getCarBook() != null) {
-                for (Service service : car.getCarBook().getServices()) {
-                    services.add(service);
-                }
+                services.addAll(car.getCarBook().getServices());
             }
         }
         return services;

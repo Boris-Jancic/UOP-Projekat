@@ -142,10 +142,10 @@ public class PartTable extends JFrame{
 
                     int option = JOptionPane.showConfirmDialog(null,
                             "Da li ste sigurni da zelite da napravite simetrican deo?",
-                            "Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+                            "Potvrda", JOptionPane.YES_NO_OPTION);
 
-                    if (option == JOptionPane.YES_OPTION) {
-                        Boolean ok = true;
+                    if (option == JOptionPane.YES_OPTION && part1 != null) {
+                        boolean ok = true;
                         Random r = new Random();
                         int part2ID = r.nextInt(999999);
                         Part part2 = new Part(part1.getMark(), part1.getModel(), part1.getName(),

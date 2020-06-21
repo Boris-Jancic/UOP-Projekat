@@ -38,7 +38,7 @@ public class LoadUsers {
                     int points = Integer.parseInt(userSplit[10]);
                     boolean deleted = Boolean.parseBoolean(userSplit[11]);
                     Client client = new Client(name, lastName, jmbg, gender, address, phone, username, password, id, points, deleted);
-                    client.setCars(Checks.findCars(Cars, id));
+                    client.setCars(Checks.findCars(Cars));
                     people.add(client);
                 }
                 if (role.equals("2")) {
@@ -55,19 +55,6 @@ public class LoadUsers {
                     Admin a = new Admin(name, lastName, jmbg, gender, address, phone, username, password, salary, id, deleted);
                     a.setId(id);
                     people.add(a);
-                }
-            }
-        }
-        return people;
-    }
-
-    public static Set<Person> setClientCarBooks(Set<Person> people, ArrayList<Car> cars) {
-        for (Person person : people) {
-            int i = 0;
-            for (Car car : cars) {
-                if (person instanceof Client && person.getId().equals(car.getClient().getId())) {
-                    ((Client) person).getCars().set(i, car);
-                    i++;
                 }
             }
         }

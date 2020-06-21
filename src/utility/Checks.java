@@ -46,13 +46,15 @@ public class Checks {
         return null;
     }
 
-    public static ArrayList<Car> findCars(ArrayList<Car> Cars, String id) {
+    public static ArrayList<Car> findCars(ArrayList<Car> Cars) {
         ArrayList<Car> carsReturn = new ArrayList<>();
 
         for (Car car : Cars) {
             Client client = car.getClient();
-            if (client.getId().equals(id) && !car.isDeleted()) {
-                carsReturn.add(car);
+            if (client != null) {
+                if (client.getId().equals(car.getClient().getId())) {
+                    carsReturn.add(car);
+                }
             }
         }
         return carsReturn;
@@ -67,7 +69,7 @@ public class Checks {
                     returnParts.add(part);
                 }
             }
-        }
+    }
 
         return returnParts;
     }

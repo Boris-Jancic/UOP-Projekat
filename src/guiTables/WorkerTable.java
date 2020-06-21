@@ -1,9 +1,7 @@
 package guiTables;
 
-import guiForms.ClientForm;
 import guiForms.WorkerForm;
 import main.Access;
-import userModels.Client;
 import userModels.Worker;
 import utility.WriteToFile;
 

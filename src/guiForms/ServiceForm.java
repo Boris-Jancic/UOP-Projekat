@@ -41,11 +41,18 @@ public class ServiceForm extends JFrame {
     private Access access;
     private Person person;
     private Service service;
+    private ArrayList<Car> cars;
 
     public ServiceForm(Access access, Person person, Service service) {
         this.access = access;
         this.service = service;
         this.person = person;
+
+        if (person instanceof Client) {
+            this.cars = access.getClientCars(person.getId());
+        } else {
+            this.cars = access.getCars();
+        }
 
         setLocationRelativeTo(null);
         setTitle("Unos servisa");
@@ -56,13 +63,6 @@ public class ServiceForm extends JFrame {
     }
 
     private void initMenu() {
-        ArrayList<Car> cars = new ArrayList<>();
-        if (person instanceof Client) {
-            cars = access.getClientCars(person.getId());
-        } else {
-            cars = access.getCars();
-        }
-
         for (Car car : cars) {
             cbCar.addItem(car.getCarID());
         }
@@ -125,8 +125,13 @@ public class ServiceForm extends JFrame {
                         int randomID = r.nextInt(999999);
 
                         if (person instanceof Client) {
-                            service = new Service(car, description, Status.ZAKAZAN, Integer.toString(randomID), false);
-                        } else {
+                            int clientPoints = ((Client) person).getPoints();
+                            ((Client) person).setPoints(clientPoints + 1);
+                            service = new Service(car, description, Integer.toString(randomID), false);
+                        } else if (person instanceof Worker) {
+                            service = new Service(car, (Worker) person, date, description,
+                                    parts, Status.ZAKAZAN, Integer.toString(randomID), false);
+                        } else if (person instanceof Admin) {
                             service = new Service(car, worker, date, description,
                                     parts, status, Integer.toString(randomID), false);
                         }
@@ -141,6 +146,8 @@ public class ServiceForm extends JFrame {
                         service.setStatus(status);
                     }
                     access.updateCarBooks();
+
+                    WriteToFile.writeUsers(access.getPeople());
                     WriteToFile.writeCarBook(access.getCarBooks());
                     WriteToFile.writeService(access.getServices());
                     ServiceForm.this.dispose();
@@ -190,7 +197,7 @@ public class ServiceForm extends JFrame {
             ok = false;
         }
 
-        if (ok == false) {
+        if (!ok) {
             JOptionPane.showMessageDialog(null, message,
                     "Greska !", JOptionPane.WARNING_MESSAGE);
         }

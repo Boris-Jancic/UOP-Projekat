@@ -169,7 +169,7 @@ public class ClientForm extends JFrame {
             ok = false;
         }
 
-        if (ok == false) {
+        if (!ok) {
             JOptionPane.showMessageDialog(null, message, "Greska !", JOptionPane.WARNING_MESSAGE);
         }
 

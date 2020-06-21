@@ -10,7 +10,6 @@ import utility.Checks;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class LoginWindow extends JFrame {
     private JLabel lblWelcome = new JLabel("Dobrodosli. Molimo da se prijavite.");
@@ -83,18 +82,13 @@ public class LoginWindow extends JFrame {
                     } else if (person instanceof Worker) {
                         LoginWindow.this.dispose();
                         LoginWindow.this.setVisible(false);
-                        WorkerWindow serviceWindow = new WorkerWindow((Worker) person, access, 1);
+                        WorkerWindow serviceWindow = new WorkerWindow((Worker) person, access);
                         serviceWindow.setVisible(true);
 
                     } else if (person instanceof Admin) {
                         LoginWindow.this.dispose();
                         LoginWindow.this.setVisible(false);
-                        AdminWindow adminWindow = null;
-                        try {
-                            adminWindow = new AdminWindow((Admin) person, access);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
+                        AdminWindow adminWindow = new AdminWindow((Admin) person, access);
                         adminWindow.setVisible(true);
                     }
                 }

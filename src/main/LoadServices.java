@@ -18,38 +18,32 @@ public class LoadServices {
         ArrayList<Service> Services = new ArrayList<>();
 
         for (String serviceStr : servicesString) {
-            Service service = null;
             if (!serviceStr.isEmpty()) {
                 String[] serviceSplit = serviceStr.split("\\|");
                 Car car = Checks.findCar(serviceSplit[0], cars);
 
-                Worker worker = Checks.findWorker(serviceSplit[1], people);
-                GregorianCalendar date = Checks.stringToDate(serviceSplit[2]);
-                String description = serviceSplit[3];
-                ArrayList<Part> usedParts = Checks.findParts(serviceSplit[4].split(";"), parts);
-                Status state = Status.valueOf(serviceSplit[5]);
-                String serviceID = serviceSplit[6];
-                boolean deleted = Boolean.parseBoolean(serviceSplit[7]);
+                String description;
+                String serviceID;
+                boolean deleted;
 
-                if (serviceSplit.length == 5) {
+                if (serviceSplit.length == 4) {
                     description = serviceSplit[1];
-                    state = Status.valueOf(serviceSplit[2]);
-                    serviceID = serviceSplit[3];
-                    deleted = Boolean.parseBoolean(serviceSplit[4]);
-                    service = new Service(car, description, state, serviceID, deleted);
+                    serviceID = serviceSplit[2];
+                    deleted = Boolean.parseBoolean(serviceSplit[3]);
+                    Service service = new Service(car, description, serviceID, deleted);
+                    Services.add(service);
 
                 } else {
-//                    worker = Checks.findWorker(serviceSplit[1], people);
-//                    date = Checks.stringToDate(serviceSplit[2]);
-//                    description = serviceSplit[3];
-//                    usedParts = Checks.findParts(serviceSplit[4].split(";"), parts);
-//                    state = Status.valueOf(serviceSplit[5]);
-//                    serviceID = serviceSplit[6];
-//                    deleted = Boolean.parseBoolean(serviceSplit[7]);
-                    service = new Service(car, worker, date, description, usedParts, state, serviceID, deleted);
+                    Worker worker = Checks.findWorker(serviceSplit[1], people);
+                    GregorianCalendar date = Checks.stringToDate(serviceSplit[2]);
+                    description = serviceSplit[3];
+                    ArrayList<Part> usedParts = Checks.findParts(serviceSplit[4].split(";"), parts);
+                    Status status = Status.valueOf(serviceSplit[5]);
+                    serviceID = serviceSplit[6];
+                    deleted = Boolean.parseBoolean(serviceSplit[7]);
+                    Service service = new Service(car, worker, date, description, usedParts, status, serviceID, deleted);
+                    Services.add(service);
                 }
-
-                Services.add(service);
             }
         }
 

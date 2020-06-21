@@ -29,28 +29,18 @@ public class AdminWindow extends JFrame {
     private JMenuItem workerItem = new JMenuItem("Radnici");
     private JMenuItem adminItem = new JMenuItem("Administratori");
 
-    private JLabel lblName;
-    private JLabel lblLastName;
-    private JLabel lblJmbg;
-    private JLabel lblPhone;
-    private JLabel lblAddress;
-    private JLabel lblUserName;
-
     JLabel lblMalePicture = new JLabel(new ImageIcon("src/pictures/admin-male.png"));
     JLabel lblFemalePicture = new JLabel(new ImageIcon("src/pictures/admin-female.png"));
 
     private Access access;
     private Admin admin;
-    private ArrayList<Car> cars;
-    private ArrayList<Part> parts;
-    private ArrayList<Service> services;
 
-    public AdminWindow(Admin admin, Access access) throws IOException {
+    public AdminWindow(Admin admin, Access access) {
         this.access = access;
         this.admin = admin;
-        this.cars = access.getCars();
-        this.parts = access.getParts();
-        this.services = access.getServices();
+        ArrayList<Car> cars = access.getCars();
+        ArrayList<Part> parts = access.getParts();
+        ArrayList<Service> services = access.getServices();
         setTitle("Administrator : " + admin.getName());
         setSize(400,400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -77,11 +67,17 @@ public class AdminWindow extends JFrame {
         } else {
             add(lblFemalePicture, "gapleft 80");
         }
+        JLabel lblName;
         add(lblName = new JLabel("Ime : " + admin.getName()), "gapleft 90");
+        JLabel lblLastName;
         add(lblLastName = new JLabel("Prezime : " + admin.getLastName()),"gapleft 90");
+        JLabel lblJmbg;
         add(lblJmbg = new JLabel("JMBG : " + admin.getJmbg()), "gapleft 90");
+        JLabel lblPhone;
         add(lblPhone = new JLabel("Telefon : " + admin.getPhone()), "gapleft 90");
+        JLabel lblAddress;
         add(lblAddress = new JLabel("Adresa : " + admin.getAddress()), "gapleft 90");
+        JLabel lblUserName;
         add(lblUserName = new JLabel("Korisnicko ime : " + admin.getUsername()), "gapleft 90");
     }
 

@@ -4,7 +4,6 @@ import enums.Status;
 import userModels.Worker;
 import utility.Checks;
 
-import javax.management.Descriptor;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -18,13 +17,13 @@ public class Service {
     private String id;
     private boolean deleted;
 
-    public Service(Car car, String description, Status status,  String id,Boolean deleted) {
+    public Service(Car car, String description,  String id,Boolean deleted) {
         this.car = car;
         this.worker = null;
         this.reservation = null;
         this.usedParts = null;
         this.description = description;
-        this.status = status;
+        this.status = Status.ZAKAZAN;
         this.id = id;
         this.deleted = deleted;
     }
