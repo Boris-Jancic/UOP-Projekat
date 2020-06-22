@@ -1,5 +1,5 @@
 BMW|ONE|Desna strana - retrovizor|3000.0|122797|false
-OPEL|THREE|Pumpa za motor|4000.0|833143|false
+OPEL|THREE|Pumpa za motor|2000.0|833143|false
 YUGO|THREE|Auspuh|6000.0|348992|false
 BMW|ONE|Leva strana - retrovizor|3000.0|796772|false
 BMW|ONE|Desna strana - retrovizor|3000.0|560158|false

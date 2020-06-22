@@ -171,6 +171,7 @@ public class ServiceForm extends JFrame {
         if (!(person instanceof Client)) {
             if (txtWorker.getText().isEmpty()) {
                 message += "- Unesite korisnicko ime za radinika\n";
+                ok = false;
             } else if (!txtWorker.getText().trim().isEmpty()) {
                 Worker worker = access.findWorker(txtWorker.getText());
                 if (worker == null) {
@@ -178,17 +179,26 @@ public class ServiceForm extends JFrame {
                     ok = false;
                 }
             }
+
             if (txtParts.getText().isEmpty()) {
                 message += "- Unesite delove za servis\n";
                 ok = false;
             } else if (!txtParts.getText().isEmpty()) {
                 String[] partIDs = txtParts.getText().split(";");
                 ArrayList<Part> parts = access.findParts(partIDs);
-
                 if (parts.isEmpty()) {
                     message += "- Unesite ispravne ID-jeve delova za servis\n";
                     ok = false;
                 }
+            }
+
+            GregorianCalendar reservation = Checks.stringToDate(txtDate.getText());
+            if (txtDate.getText().isEmpty()) {
+                message += "- Unesite datum servisa\n";
+                ok = false;
+            } else if (reservation == null) {
+                message += "- Unesite ispravan datum servisa\n";
+                ok = false;
             }
         }
 

@@ -177,9 +177,16 @@ public class AdminForm extends JFrame {
         if (txtSalary.getText().trim().isEmpty()) {
             message += "- Unesite platu administratora\n";
             ok = false;
+        } else {
+            try {
+                Double.parseDouble(txtSalary.getText());
+            } catch (NumberFormatException e) {
+                message += "- Unesite broj za platu administratora\n";
+                ok = false;
+            }
         }
 
-        if (!ok) {
+            if (!ok) {
             JOptionPane.showMessageDialog(null, message, "Greska !", JOptionPane.WARNING_MESSAGE);
         }
 

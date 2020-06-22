@@ -109,9 +109,16 @@ public class PartForm extends JFrame {
             message += "- Unesite ime dela\n";
             ok = false;
         }
-        if (txtPrice.getText().trim().isEmpty() && txtPrice.getText().trim().matches("[0-9]+")) {
+        if (txtPrice.getText().trim().isEmpty()) {
             message += "- Unesite cenu dela\n";
             ok = false;
+        } else {
+            try {
+                Double.parseDouble(txtPrice.getText());
+            } catch(NumberFormatException e){
+                message += "- Unesite broj za cenu dela\n";
+                ok = false;
+            }
         }
 
         if (!ok) {

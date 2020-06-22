@@ -165,7 +165,7 @@ public class ClientForm extends JFrame {
         }
 
         if (txtPassword.getText().trim().isEmpty()) {
-            message += "- Unesite prezime musterije\n";
+            message += "- Unesite lozinku musterije\n";
             ok = false;
         }
 

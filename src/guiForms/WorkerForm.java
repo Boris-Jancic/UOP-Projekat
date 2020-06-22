@@ -185,6 +185,13 @@ public class WorkerForm extends JFrame {
         if (txtSalary.getText().trim().isEmpty()) {
             message += "- Unesite platu radnika\n";
             ok = false;
+        } else {
+            try {
+                Double.parseDouble(txtSalary.getText());
+            } catch (NumberFormatException e) {
+                message += "- Unesite broj za platu administratora\n";
+                ok = false;
+            }
         }
 
         if (!ok) {

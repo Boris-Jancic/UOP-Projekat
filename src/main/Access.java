@@ -116,7 +116,7 @@ public class Access {
     public ArrayList<Car> getClientCars(String id) {
         ArrayList<Car> returnCars = new ArrayList<>();
         for (Car car : cars) {
-            if (car.getClient().getId().equals(id)) {
+            if (car.getClient().getId().equals(id) && !car.isDeleted()) {
                 returnCars.add(car);
             }
         }
@@ -125,7 +125,7 @@ public class Access {
 
     public Client findClient(String userName) {
         for (Person person : people) {
-            if (person instanceof Client && person.getUsername().equals(userName)) {
+            if (person instanceof Client && person.getUsername().equals(userName) && !person.isDeleted()) {
                 return (Client) person;
             }
         }
@@ -134,7 +134,7 @@ public class Access {
 
     public Worker findWorker(String userName) {
         for (Person person : people) {
-            if (person instanceof Worker && person.getUsername().equals(userName)) {
+            if (person instanceof Worker && person.getUsername().equals(userName) && !person.isDeleted()) {
                 return (Worker) person;
             }
         }
@@ -143,7 +143,7 @@ public class Access {
 
     public Admin findAdmin(String userName) {
         for (Person person : people) {
-            if (person instanceof Admin && person.getUsername().equals(userName)) {
+            if (person instanceof Admin && person.getUsername().equals(userName) && !person.isDeleted()) {
                 return (Admin) person;
             }
         }
@@ -154,7 +154,7 @@ public class Access {
     public ArrayList<Client> findClients() {
         ArrayList<Client> returnClients = new ArrayList<>();
         for (Person person : people) {
-            if (person instanceof Client) {
+            if (person instanceof Client && !person.isDeleted()) {
                 returnClients.add((Client) person);
             }
         }
@@ -164,7 +164,7 @@ public class Access {
     public ArrayList<Worker> findWorkers() {
         ArrayList<Worker> returnWorkers = new ArrayList<>();
         for (Person person : people) {
-            if (person instanceof Worker) {
+            if (person instanceof Worker && !person.isDeleted()) {
                 returnWorkers.add((Worker) person);
             }
         }
@@ -194,7 +194,7 @@ public class Access {
         ArrayList<Part> returnParts = new ArrayList<>();
         for (Part part : parts) {
             for (String partId : partIDs) {
-                if (part.getId().equals(partId)) {
+                if (part.getId().equals(partId) && !part.isDeleted()) {
                     returnParts.add(part);
                 }
             }

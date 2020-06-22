@@ -90,7 +90,6 @@ public class Checks {
         try {
             date.setTime(format.parse(dateP));
         } catch (ParseException e) {
-            System.out.println("!!! Pogresan unos datuma !!!");
             return null;
         }
 

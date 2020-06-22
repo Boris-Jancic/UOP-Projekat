@@ -73,8 +73,10 @@ public class LoadCars {
     public static ArrayList<Car> setCarBooks(ArrayList<Car> cars, ArrayList<CarBook> carBooks) {
         for (Car car : cars) {
             for (CarBook carBook : carBooks) {
-                if (car.getCarID().equals(carBook.getCar().getCarID())) {
-                    car.setCarBook(carBook);
+                if (!car.isDeleted()) {
+                    if (car.getCarID().equals(carBook.getCar().getCarID())) {
+                        car.setCarBook(carBook);
+                    }
                 }
             }
         }

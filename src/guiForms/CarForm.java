@@ -91,7 +91,7 @@ public class CarForm extends JFrame {
                         car.setModel(carModel);
                         car.setFuel(carFuel);
                         car.setAge(age);
-                        car.setEngineVolume(enginePow);
+                        car.setEngineVolume(engineVol);
                         car.setEnginePower(enginePow);
                     }
                     WriteToFile.writeCars(access.getCars());
@@ -136,29 +136,47 @@ public class CarForm extends JFrame {
         }
 
         String age = txtAge.getText().trim();
+        System.out.println(age.charAt(0));
         if (age.isEmpty()) {
             message += "- Unesite godiste automobila\n";
             ok = false;
-        } else if(age.matches("[0-9]+") && age.length() == 4) {
-            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-            int setYear = Integer.parseInt(txtAge.getText().trim());
-            if (currentYear < setYear || setYear < 1970) {
-                message += "- Unesite pravilno godiste automobila\n";
-
+        } else if (age.length() != 4) {
+            message += "- Unesite pravilno godiste automobila\n";
+            ok = false;
+        } else if (!age.matches("[0-9]+")) {
+            message += "- Godiste automobila mora biti godina\n";
+            ok = false;
+        } else {
+            if (1 > (Integer.parseInt(Character.toString(age.charAt(0))))) {
+                message += "- Godiste automobila ne sme da pocinje sa nulom\n";
                 ok = false;
+            } else {
+                int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+                int setYear = Integer.parseInt(txtAge.getText().trim());
+                if (currentYear < setYear || setYear < 1970) {
+                    message += "- Unesite pravilno godiste automobila\n";
+
+                    ok = false;
+                }
             }
         }
 
         if (txtEngineVol.getText().trim().isEmpty()) {
             message += "- Unesite zapreminu motora\n";
             ok = false;
-        } else if (!txtEngineVol.getText().matches("[0-9]+")) { 	
-            message += "- Unesite broj zapremine motora\n";
-            ok = false;
+        }
+        else {
+            try {
+                Float.parseFloat(txtEngineVol.getText());
+            } catch(NumberFormatException e){
+                message += "- Unesite decimalni broj motora\n";
+                ok = false;
+            }
+
         }
         
         if (txtEnginePow.getText().trim().isEmpty()) {
-            message += "- Unesite Jacinu motora\n";
+            message += "- Unesite jacinu motora\n";
             ok = false;
         } else if (!txtEnginePow.getText().matches("[0-9]+")) { 	
             message += "- Unesite broj jacine motora\n";
