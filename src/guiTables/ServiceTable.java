@@ -159,6 +159,13 @@ public class ServiceTable extends JFrame {
                     Service service = access.findService(serviceID);
                     Client client = access.findClient(service.getCar().getClient().getUsername());
 
+                    if (service.getStatus() == Status.ZAVRSEN) {
+                        JOptionPane.showMessageDialog(null,
+                                ("Ovaj servis je vec zavrsen"),
+                                "Greska", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+
                     if (client != null) {
                         int points = service.getCar().getClient().getPoints();
                         double price = service.getPrice();
